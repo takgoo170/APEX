@@ -1233,7 +1233,7 @@ local CollectV1 = MainTab:AddToggle("CollectV1", {
     end 
   })
 
-local CollectV2 = MainTab:AddToggle("CollectV2", {
+--[[local CollectV2 = MainTab:AddToggle("CollectV2", {
     Title = "Auto Collect [ V2 ]",
     Description "OPTIMIZED",
     Default = false, 
@@ -1266,8 +1266,9 @@ local CollectV2 = MainTab:AddToggle("CollectV2", {
         if collectionThread then task.cancel(collectionThread) collectionThread = nil end
     end
 end })
+]]
 
--- descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
+ descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
 local SellToggle = MainTab:AddToggle("SellToggle", {
     Title = "Auto Sell",
     Description = "Automatically sells when inventory is FULL.",
