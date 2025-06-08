@@ -1268,7 +1268,7 @@ local CollectV1 = MainTab:AddToggle("CollectV1", {
 end })
 ]]
 
- descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
+ --descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
 local SellToggle = MainTab:AddToggle("SellToggle", {
     Title = "Auto Sell",
     Description = "Automatically sells when inventory is FULL.",
@@ -1278,7 +1278,8 @@ local SellToggle = MainTab:AddToggle("SellToggle", {
     if autoSellEnabled then
         autoSellThread = task.spawn(function() while autoSellEnabled and task.wait(1) do if isInventoryFull() then sellItems() end end end)
     elseif autoSellThread then task.cancel(autoSellThread) end
-end })
+end 
+    })
 
 MainTab:AddSection("Mutations")
 
