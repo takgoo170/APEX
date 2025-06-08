@@ -1267,7 +1267,7 @@ local CollectV2 = MainTab:AddToggle("CollectV2", {
     end
 end })
 
-descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
+-- descendantConnection = workspace.DescendantAdded:Connect(function(obj) if obj:IsA("ProximityPrompt") and isInsideFarm(obj) then handleNewPrompt(obj) end end)
 local SellToggle = MainTab:AddToggle("SellToggle", {
     Title = "Auto Sell",
     Description = "Automatically sells when inventory is FULL.",
