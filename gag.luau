@@ -1,4 +1,4 @@
-setclipboard("https://discord.gg/dmBzVaRrD3")
+setclipboard("https://discord.gg/VrJx432MB5")
 -- Services
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
@@ -1188,13 +1188,13 @@ end
 -- UI Setup
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-    Name = "Grow a Garden | PolleserHub",
+    Name = "APEX OT",
     Icon = 0,
-    LoadingTitle = "Grow a Garden | PolleserHub",
-    LoadingSubtitle = "by Polleser",
+    LoadingTitle = "APEX OT | Grow a Garden",
+    LoadingSubtitle = "by Apex Team (Takgoo)",
     Theme = "Ocean",
     ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "Polleser Hub" },
-    Discord = { Enabled = true, Invite = "dmBzVaRrD3", RememberJoins = true },
+    Discord = { Enabled = true, Invite = "VrJx432MB5", RememberJoins = true },
     KeySystem = false,
     KeySettings = {
         Title = "Polleser Hub Key System",
@@ -1215,15 +1215,15 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Tabs
-local MainTab = Window:CreateTab("Main", "flower")
+local MainTab = Window:CreateTab("Main", "house")
 local ShopTab = Window:CreateTab("Shop", "shopping-cart")
 local PlayerTab = Window:CreateTab("Players", "user")
-local MiscTab = Window:CreateTab("Miscellaneous", "list")
+local MiscTab = Window:CreateTab("Misc", "list")
 local SpawnerTab = Window:CreateTab("Spawner", "paw-print")
 local VisualsTab = Window:CreateTab("Visuals", "eye")
 
 -- Main Tab
-MainTab:CreateSection("Auto Farm")
+MainTab:CreateSection("Main Farm")
 MainTab:CreateToggle({ Name = "Auto Farm", CurrentValue = false, Callback = function(state) autoFarmEnabled = state if state then instantFarm() else if farmThread then task.cancel(farmThread) farmThread = nil end end end })
 MainTab:CreateToggle({ Name = "Auto Farm v2", Info = "Make sure you look down! May not collect sometimes. Bad for packed areas!", CurrentValue = false, Callback = ToggleHarvest })
 MainTab:CreateToggle({ Name = "Auto Collect", CurrentValue = false, Callback = function(state) fastClickEnabled = state if state then fastClickFarm() else if fastClickThread then task.cancel(fastClickThread) fastClickThread = nil end end end })
