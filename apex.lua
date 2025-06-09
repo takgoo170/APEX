@@ -1195,6 +1195,7 @@ KaiUI:Notify({
         Duration = 12 -- Set to nil to make the notification not disappear
     })
 --------------------------- TABS ------------------------------
+local InfoTab = Window:AddTab({ Title = "Info/Server", Icon = "scroll" })
 local MainTab = Window:AddTab({ Title = "Main", Icon = "home" })
 local EventTab = Window:AddTab({ Title = "Event", Icon = "swords" })
 local ShopTab = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" })
@@ -1203,6 +1204,203 @@ local VisualTab = Window:AddTab({ Title = "Visual", Icon = "eye" })
 local Tabs = { 
      MiscTab = Window:AddTab({ Title = "Misc", Icon = "settings" })
 }
+------------- INFO TAB --------------------
+InfoTab:AddSection("Info")
+InfoTab:AddParagraph({
+        Title = "👋🏻 Welcome to APEX OT!",
+        Content = "This script is made by Takgoo and Kazuma."
+    })
+Info:AddButton({
+        Title = "APEX OT | Discord Server",
+        Description = "Join to Kazuma's Discord Derver",
+        Callback = function()
+            Window:Dialog({
+                Title = "Hey!",
+                Content = "Would you like to copy our discord server link?",
+                Buttons = {
+                    {
+                        Title = "Copy",
+                        Callback = function()
+                            setclipboard("https://discord.gg/VrJx432MB5")
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the request.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+InfoTab:AddButton({
+        Title = "Kai Hub | Discord Server",
+        Description = "Join to Takgoo's Discord Server",
+        Callback = function()
+            Window:Dialog({
+                Title = "Hey!",
+                Content = "Would you like to copy our discord server link?",
+                Buttons = {
+                    {
+                        Title = "Copy",
+                        Callback = function()
+                            setclipboard("https://discord.gg/wDMPK3QAmY")
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the request.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+InfoTab:AddSection("Server")
+Timmessss = InfoTab:AddParagraph({
+    Title = "🎮 Server Game Time",
+    Content = ""
+})
+function UpdateTime()
+    local GameTime = math.floor(workspace.DistributedGameTime + 0.5)
+    local Hour = math.floor(GameTime / (60^2)) % 24
+    local Minute = math.floor(GameTime / (60^1)) % 60
+    local Second = math.floor(GameTime / (60^0)) % 60
+    Timmessss:SetDesc(Hour.." Hour (h) "..Minute.." Minute (m) "..Second.." Second (s) ")
+end
+spawn(function()
+    while true do
+        UpdateTime()
+        wait(1)
+    end
+end)
+InfoTab:AddParagraph({
+    Title = "Server Job ID",
+    Content = game.JobId ~= "" and game.JobId or "Job ID not available."
+})
+local lastCopyTime = 0
+local copyCooldown = 2
+InfoTab:AddButton({
+    Title = "Copy Job ID",
+    Description = "Copies the Server Job Id.",
+    Callback = function()
+        if tick() - lastCopyTime >= copyCooldown then
+            lastCopyTime = tick()
+            setclipboard(tostring(game.JobId))
+	KaiUI:Notify({
+	Title = "Job Id Copied!",
+	Content = "Job ID copied to clipboard successfully!",
+	Duration = 10
+})
+            print("JobId Copied!")
+        else
+            print("Please try again in a moment!")
+	
+        end
+    end
+})
+Input = InfoTab:AddInput("Input", {
+     Title = "Job Id",
+     Default = "",
+     Placeholder = "Input Job Id",
+     Numeric = false,
+     Finished = false,
+     Callback = function(Value)
+         getgenv().Job = Value
+     end
+})    
+local lastTeleportTime = 0
+local teleportCooldown = 5
+InfoTab:AddButton({
+    Title = "Join Server",
+    Callback = function()
+        if tick() - lastTeleportTime >= teleportCooldown then
+            lastTeleportTime = tick()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, getgenv().Job, game.Players.LocalPlayer)        
+        end
+    end
+})
+local lastTeleportTime = 0
+local teleportCooldown = 3
+InfoTab:AddButton({
+    Title = "Rejoin Server",
+    Callback = function()
+        if tick() - lastTeleportTime >= teleportCooldown then
+            lastTeleportTime = tick()
+            game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)        
+        end
+    end
+})
+InfoTab:AddButton({
+	  Title = "Server Hop",
+	  Callback = function()
+          Hop()
+      end
+})
+function Hop()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end        
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end        
+        local num = 0
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)            
+            if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait(0.1)
+                    pcall(function()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(1)
+                    break
+                end
+            end
+        end
+    end
+    function Teleport() 
+        while true do
+            pcall(function()
+                TPReturner()
+                if foundAnything ~= "" then
+                    TPReturner()
+                end
+            end)
+            wait(2)
+        end
+    end
+    Teleport()
+end
 ----------- MAIN TAB -------------
 MainTab:AddSection("Main Farm")
 local FarmV1 = MainTab:AddToggle("FarmV1", {
