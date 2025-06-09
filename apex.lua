@@ -52,11 +52,11 @@ local RANGE = 50
 local flySpeed = 48
 
 -- Item Lists
-local seedItems = {"Carrot", "Strawberry", "Blueberry", "Orange Tulip", "Tomato", "Corn", "Daffodil", "Watermelon", "Pumpkin", "Apple", "Bamboo", "Coconut", "Cactus", "Dragon Fruit", "Mango", "Grape", "Mushroom", "Pepper", "Cacao", "Beanstalk"}
+local seedItems = {"Carrot", "Strawberry", "Blueberry", "Orange Tulip", "Tomato", "Corn", "Daffodil", "Watermelon", "Pumpkin", "Apple", "Bamboo", "Coconut", "Cactus", "Dragon Fruit", "Mango", "Grape", "Mushroom", "Pepper", "Cacao", "Beanstalk", "Ember Lily"}
 local gearItems = {"Watering Can", "Trowel", "Recall Wrench", "Basic Sprinkler", "Advanced Sprinkler", "Godly Sprinkler", "Lightning Rod", "Master Sprinkler", "Favorite Tool", "Harvest Tool"}
 local TwilightItems = {"Night Egg", "Night Seed Pack", "Twilight Crate", "Star Caller", "Moon Cat", "Celestiberry", "Moon Mango"}
 local mutationOptions = {"Wet", "Gold", "Frozen", "Rainbow", "Choc", "Chilled", "Shocked", "Moonlit", "Bloodlit", "Celestial", "Plasma", "Disco", "Zombified"}
-local seedNames = {"Apple", "Banana", "Bamboo", "Blueberry", "Candy Blossom", "Candy Sunflower", "Carrot", "Cactus", "Chocolate Carrot", "Chocolate Sprinkler", "Coconut", "Corn", "Cranberry", "Cucumber", "Cursed Fruit", "Candy Blossom", "Daffodil", "Dragon Fruit", "Durian", "Easter Egg", "Eggplant", "Grape", "Lemon", "Lotus", "Mango", "Mushroom", "Pepper", "Orange Tulip", "Papaya", "Passionfruit", "Peach", "Pear", "Pineapple", "Pumpkin", "Raspberry", "Red Lollipop", "Soul Fruit", "Strawberry", "Tomato", "Venus Fly Trap", "Watermelon", "Cacao", "Beanstalk"}
+local seedNames = {"Apple", "Banana", "Bamboo", "Blueberry", "Candy Blossom", "Candy Sunflower", "Carrot", "Cactus", "Chocolate Carrot", "Chocolate Sprinkler", "Coconut", "Corn", "Cranberry", "Cucumber", "Cursed Fruit", "Candy Blossom", "Daffodil", "Dragon Fruit", "Durian", "Easter Egg", "Eggplant", "Grape", "Lemon", "Lotus", "Mango", "Mushroom", "Pepper", "Orange Tulip", "Papaya", "Passionfruit", "Peach", "Pear", "Pineapple", "Pumpkin", "Raspberry", "Red Lollipop", "Soul Fruit", "Strawberry", "Tomato", "Venus Fly Trap", "Watermelon", "Cacao", "Beanstalk", "Ember Lily"}
 
 -- State Variables
 local autoBuyEnabled = false
@@ -2077,7 +2077,34 @@ local InfJump = PlayerTab:AddToggle("InfJump", {
         Title = "Infinite Jump",
         Callback = ToggleInfJump
     })
-        
+
+------------------ VISUAL TAB ---------------
+VisualTab:AddSection("Seed Spawner")
+local SeedNameInput = VisualTab:AddInput("SeedNameInput", {
+		Title = "Seed Name",
+		Default = "",
+		Placeholder = "Seed",
+		Numeric = false, -- Only allows numbers
+                Finished = false,
+		Callback = function(t)
+			seedName = t 
+		end
+	})
+
+local SeedQuantityInput = VisualTab:AddInput("SeedQuantityInput", {
+		Title = "Seed Quantity",
+		Default = "",
+		Placeholder = "Amount",
+		Numeric = false, -- Only allows numbers
+                Finished = false,
+		Callback=function(t)seedAmount=tonumber(t)or 0 end}
+	})
+
+VisualTab:AddButton({
+	Title = "Spawn Seed",
+	Callback=function()if seedName==""or seedAmount<=0 then return end local m=game:GetService("ReplicatedStorage"):FindFirstChild("Seed_Models"):FindFirstChild(seedName)if not m then warn("no model:",seedName)return end local t=Instance.new("Tool")t.Name=seedName.." Seed [x"..seedAmount.."]"t.RequiresHandle=true local c=m:Clone()local h=c:IsA("Part")and c or c:FindFirstChildWhichIsA("Part")if not h then warn("no handle lololol")return end h.Name="Handle"h.Anchored=false h.CanCollide=false h.Massless=true h.Parent=t t.Grip=CFrame.new(0.2,-0.449,0.232)*CFrame.Angles(0,math.rad(0),0)t.Parent=game.Players.LocalPlayer.Backpack end
+})
+
 ----------- INTERFACE MANAGER -------------
 --[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
