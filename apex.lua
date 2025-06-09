@@ -1210,7 +1210,7 @@ InfoTab:AddParagraph({
         Title = "👋🏻 Welcome to APEX OT!",
         Content = "This script is made by Takgoo and Kazuma."
     })
-Info:AddButton({
+InfoTab:AddButton({
         Title = "APEX OT | Discord Server",
         Description = "Join to Kazuma's Discord Derver",
         Callback = function()
