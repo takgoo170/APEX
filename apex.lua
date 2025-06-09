@@ -1466,7 +1466,7 @@ local SelectMutation = MainTab:AddDropdown("SelectMutation", {
             if autoFavoriteEnabled then 
                 processBackpack() 
             end 
-        end })
+        end 
     })
 
 local AutoFav = MainTab:AddToggle("AutoFav", {
