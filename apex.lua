@@ -1850,6 +1850,24 @@ ShopTab:AddButton({
             end
         end
     })
+
+ShopTab:AddSection("Menu")
+ShopTab:AddButton({
+        Title = "Open Seed Shop",
+        Callback = OpenShop
+    })
+---------------------- PLAYER TAB ----------------------
+PlayerTab:AddSection("Movement")
+local NoClip = PlayerTab:AddToggle("NoClip", {
+        Title = "No Clip",
+        Default = false,
+        Callback = ToggleNoclip
+    })
+local InfJump = PlayerTab:AddToggle("InfJump", {
+        Title = "Infinite Jump",
+        Callback = ToggleInfJump
+    })
+        
 ----------- INTERFACE MANAGER -------------
 --[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
