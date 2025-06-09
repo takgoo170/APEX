@@ -2079,7 +2079,62 @@ local InfJump = PlayerTab:AddToggle("InfJump", {
     })
 
 ------------------ VISUAL TAB ---------------
-VisualTab:AddSection("Seed Spawner")
+VisualTab:AddSection("ESP")
+local ESP = VisualTab:AddDropdown("ESP", {
+    Title = "Select ESP Mutation",
+    Description = "",
+    Values = mutationOptions,
+    Multi = true,
+    Default = {},
+    Callback = function(options) state.selectedMutations = options updateESP() end 
+})
+local MutationESP = VisualTab:AddToggle("MutationESP", {
+		Title = "Enable Mutation ESP",
+		Default = false,
+		Callback = function(value) state.espEnabled = value updateESP() end
+	})
+
+VisualTab:AddSection("FAKE")
+local FakeMoneyInput = VisualTab:AddInput("FakeMoneyInput", {
+		Title = "Fake Money",
+		Default = "",
+		Placeholder = "Amount",
+		Numeric = false,
+		Finished = false,
+		Callback = function(value)
+    local amount = tonumber(value)
+    if not amount then return end
+    if lp and lp:FindFirstChild("leaderstats") and lp.leaderstats:FindFirstChild("Sheckles") then lp.leaderstats.Sheckles.Value = amount end
+    local function formatCommas(n)
+        local negative = n < 0
+        n = tostring(math.abs(n))
+        local left, num, right = string.match(n, "^([^%d]*%d)(%d*)(.-)$")
+        local formatted = left .. (num:reverse():gsub("(%d%d%d)", "%1,"):reverse()) .. right
+        return (negative and "-" or "") .. formatted .. "ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢"
+    end
+    local function shortenNumber(n)
+        local scales = { {1000000000000000000, "Qi"}, {999999986991104, "Qa"}, {999999995904, "T"}, {1000000000, "B"}, {1000000, "M"}, {1000, "K"} }
+        local negative = n < 0
+        n = math.abs(n)
+        if n < 1000 then return (negative and "-" or "") .. tostring(math.floor(n)) end
+        for i = 1, #scales do
+            local scale, label = scales[i][1], scales[i][2]
+            if n >= scale then
+                local value = n / scale
+                return (negative and "-" or "") .. (value % 1 == 0 and string.format("%.0f%s", value, label) or string.format("%.2f%s", value, label))
+            end
+        end
+        return (negative and "-" or "") .. tostring(n)
+    end
+    local formattedDealer = formatCommas(amount)
+    local formattedBoard = shortenNumber(amount)
+    local shecklesUI = lp:FindFirstChild("PlayerGui") and lp.PlayerGui:FindFirstChild("Sheckles_UI")
+    if shecklesUI and shecklesUI:FindFirstChild("TextLabel") then shecklesUI.TextLabel.Text = formattedDealer end
+    local dealerBoard = workspace:FindFirstChild("DealerBoard")
+    if dealerBoard and dealerBoard:FindFirstChild("BillboardGui") and dealerBoard.BillboardGui:FindFirstChild("TextLabel") then dealerBoard.BillboardGui.TextLabel.Text = formattedBoard end
+end 
+	})
+--[[VisualTab:AddSection("Seed Spawner")
 local SeedNameInput = VisualTab:AddInput("SeedNameInput", {
 		Title = "Seed Name",
 		Default = "Beanstalk",
@@ -2104,7 +2159,7 @@ VisualTab:AddButton({
 	Title = "Spawn Seed",
 	Callback=function()if seedName==""or seedAmount<=0 then return end local m=game:GetService("ReplicatedStorage"):FindFirstChild("Seed_Models"):FindFirstChild(seedName)if not m then warn("no model:",seedName)return end local t=Instance.new("Tool")t.Name=seedName.." Seed [x"..seedAmount.."]"t.RequiresHandle=true local c=m:Clone()local h=c:IsA("Part")and c or c:FindFirstChildWhichIsA("Part")if not h then warn("no handle lololol")return end h.Name="Handle"h.Anchored=false h.CanCollide=false h.Massless=true h.Parent=t t.Grip=CFrame.new(0.2,-0.449,0.232)*CFrame.Angles(0,math.rad(0),0)t.Parent=game.Players.LocalPlayer.Backpack end
 })
-
+]]
 ----------- INTERFACE MANAGER -------------
 --[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
