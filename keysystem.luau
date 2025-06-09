@@ -99,12 +99,18 @@ CheckKeyCorner.Parent = CheckKey
 
 -- Function to validate the key
 local function validateKey(key)
-    return key == "APEX-123" -- Replace this with your actual key
+    return key == "APEX-123" -- Valid until: July 11, 2026
+    return key == "FREE_12345678" -- Valid until: June 15, 2025
+    return key == "Kazuma" -- Valid until: N/A
+    return key == "KaiHub_Premium" -- Valid until: N/A
+    return key == "ApexOT_Premium" -- Valid until: N/A
+    return key == "APEX_FREE2200" -- Valid until: December 25, 2025
+    return key == "KaiXApex_2025" -- Valid until: N/A
 end
 
 -- Get Key button functionality
 GetKey.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/wDMPK3QAmY")
+    setclipboard("https://discord.gg/VrJx432MB5 | https://discord.gg/wDMPK3QAmY")
 end)
 
 -- Check Key button functionality
