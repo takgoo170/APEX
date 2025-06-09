@@ -19,7 +19,7 @@ local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
 Close.Position = UDim2.new(1, -40, 0, 0)
 Close.BackgroundTransparency = 1
-Close.Text = "脳"
+Close.Text = "×"
 Close.TextScaled = true
 Close.TextColor3 = Color3.fromRGB(150, 150, 150)
 Close.Parent = Frame
@@ -30,8 +30,8 @@ end)
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 30)
 Title.Position = UDim2.new(0, 0, 0.05, 0)
-Title.Text = "Windy Hub Key System"
-Title.TextSize = 18
+Title.Text = "APEX OT | Key System"
+Title.TextSize = 20
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Parent = Frame
@@ -39,7 +39,7 @@ Title.Parent = Frame
 local Instructions = Instance.new("TextLabel")
 Instructions.Size = UDim2.new(1, 0, 0, 30)
 Instructions.Position = UDim2.new(0, 0, 0.2, 0)
-Instructions.Text = "Join Discord For GetKey"
+Instructions.Text = "Join to our discord server to get key."
 Instructions.TextSize = 13
 Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
 Instructions.BackgroundTransparency = 1
@@ -86,15 +86,15 @@ CheckKeyCorner.CornerRadius = UDim.new(0, 5)
 CheckKeyCorner.Parent = CheckKey
  
 GetKey.MouseButton1Click:Connect(function()
-   setclipboard("https://discord.gg/VrJx432MB5        https://discord.gg/wDMPK3QAmY")
+   setclipboard("https://discord.gg/VrJx432MB5  |  https://discord.gg/wDMPK3QAmY")
 end)
  
 local function validateKey(key)
-    return key == "APEX_FREEKEY123" -- Replace this with your key
+    return key == "KAI_11bc4a88n3x1bo" -- Replace this with your key 
     return key == "APEX_1A220abF" -- Replace this with your key
     return key == "KAI_22a7hbEw1" -- Replace this with your key
     return key == "FREE_10000000" -- Replace this with your key
-    return key == "FREE_12345678" -- Replace this with your key
+    return key == "FREE_12345678"
 end
  
 CheckKey.MouseButton1Click:Connect(function()
@@ -106,7 +106,8 @@ CheckKey.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
  
 -- Put Your Script Here
-loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/apex.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/apex.lua"))();
+ 
     else
         TextBox.PlaceholderText = "Wrong Key. Try again."
         TextBox.Text = ""
