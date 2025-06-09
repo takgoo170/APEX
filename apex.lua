@@ -1776,7 +1776,80 @@ EventTab:AddToggle("", {
     end
 })
 
+----------- SHOP TAB ------------
+ShopTab:AddSection("Auto Buy")
+local buyseed = ShopTab:AddDropdown("buyseed", {
+    Title = "Select Seed",
+    Description = "",
+    Values = seedItems,
+    Multi = true,
+    Default = {},
+    Callback = function(Options) selectedSeeds = Options end
+})
 
+local buygear = ShopTab:AddDropdown("buygear", {
+    Title = "Select Gear",
+    Description = "",
+    Values = gearItems,
+    Multi = true,
+    Default = {},
+    Callback = function(Options) selectedGears = Options end
+})
+
+local AutoBuy = ShopTab:AddToggle("AutoBuy", {
+        Title = "Auto Buy",
+        Description = "Buys a selected item",
+        Callback = function(Value)
+        autoBuyEnabled = Value
+        if autoBuyEnabled then
+            spawn(function()
+                while autoBuyEnabled do
+                    -- Auto buy selected seeds
+                    for _, seed in ipairs(selectedSeeds) do
+                        if autoBuyEnabled then
+                            seedRemote:FireServer(seed)
+                            wait(0.01) -- 0.1 second delay
+                        end
+                    end
+                    -- Auto buy selected twilight
+                    for _, twilight in ipairs(selectedTwilight) do
+                        if autoBuyEnabled then
+                            TwilightRemote:FireServer(twilight)
+                            wait(0.01) -- 0.1 second delay
+                        end
+                    end
+                    -- Auto buy selected gears
+                    for _, gear in ipairs(selectedGears) do
+                        if autoBuyEnabled then
+                            gearRemote:FireServer(gear)
+                            wait(0.01) -- 0.1 second delay
+                        end
+                    end
+                end
+            end)
+        end
+    end
+   })
+
+local AutoBuyEggs = ShopTab:AddToggle("AutoBuyEggs", {
+        Title = "Auto Buy Eggs",
+        Default = false,
+        Callback = function(value) Autoegg_autoBuyEnabled = value if Autoegg_autoBuyEnabled then Autoegg_firstRun = true Autoegg_autoBuyEggs() end end
+    })
+
+ShopTab:AddSection("Cosmetics")
+ShopTab:AddButton({
+        Title = "Teleport to Cosmetic Shop",
+        Callback = function()
+            local player = Players.LocalPlayer
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-287, 3, -15))
+            else
+                warn("Character or HumanoidRootPart not found.")
+            end
+        end
+    })
 ----------- INTERFACE MANAGER -------------
 --[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
