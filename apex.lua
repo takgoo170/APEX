@@ -1494,7 +1494,7 @@ local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
 
 -- Assuming you have a Fluent UI tab object named `FarmTab`
 
-EventTab:AddToggle({
+local CollectPollinated = EventTab:AddToggle("CollectPollinated", {
     Title = "Auto Collect Pollinated Fruits",
     Description = "Automatically collects pollinated fruits in Garden.",
     Callback = function(state)
