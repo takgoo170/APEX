@@ -1494,7 +1494,94 @@ local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
 
 -- Assuming you have a Fluent UI tab object named `FarmTab`
 
-local CollectPollinated = EventTab:AddToggle("CollectPollinated", {
+-- Assume FarmTab is your Fluent UI tab object
+
+local autoCollectPollinatedEnabled = false
+local autoCollectPollinatedThread = nil
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local function AutoCollectPollinatedFruits(state)
+    autoCollectPollinatedEnabled = state
+    local pickup_radius = 50
+
+    if state then
+        if autoCollectPollinatedThread then
+            -- already running
+            return
+        end
+
+        autoCollectPollinatedThread = task.spawn(function()
+            local farm_model
+
+            for _, farm in ipairs(workspace.Farm:GetChildren()) do
+                local important = farm:FindFirstChild("Important")
+                local data = important and important:FindFirstChild("Data")
+                local owner = data and data:FindFirstChild("Owner")
+                if owner and owner.Value == player.Name then
+                    farm_model = farm
+                    break
+                end
+            end
+
+            while autoCollectPollinatedEnabled and farm_model do
+                task.wait(0.1)
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    local plants_folder = farm_model.Important and farm_model.Important:FindFirstChild("Plants_Physical")
+                    if plants_folder then
+                        local playerPosition = player.Character.HumanoidRootPart.Position
+                        for _, plant_model in ipairs(plants_folder:GetChildren()) do
+                            if plant_model:IsA("Model") then
+                                local fruits = plant_model:FindFirstChild("Fruits")
+                                if fruits then
+                                    for _, fruit_model in ipairs(fruits:GetChildren()) do
+                                        if fruit_model:GetAttribute("Pollinated") == true then
+                                            for _, part in ipairs(fruit_model:GetDescendants()) do
+                                                if part:IsA("BasePart") then
+                                                    local prompt = part:FindFirstChildOfClass("ProximityPrompt")
+                                                    if prompt then
+                                                        local distance = (part.Position - playerPosition).Magnitude
+                                                        if distance <= pickup_radius then
+                                                            pcall(function()
+                                                                fireproximityprompt(prompt)
+                                                            end)
+                                                            task.wait(0.05)
+                                                        end
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                else
+                    task.wait(1) -- Wait if player or character not ready
+                end
+            end
+            autoCollectPollinatedThread = nil
+        end)
+    else
+        if autoCollectPollinatedThread then
+            task.cancel(autoCollectPollinatedThread)
+            autoCollectPollinatedThread = nil
+        end
+        autoCollectPollinatedEnabled = false
+    end
+end
+
+local CollectPollinated2 = EventTab:AddToggle("CollectPollinated2", {
+    Title = "Auto Collect Pollinated Fruits",
+    Description = "Automatically collects pollinated fruits within 50 studs radius.",
+    Default = false
+})
+
+CollectPollinated2:OnChanged(function(state)
+    AutoCollectPollinatedFruits(state)
+end)
+
+--[[local CollectPollinated = EventTab:AddToggle("CollectPollinated", {
     Title = "Auto Collect Pollinated Fruits",
     Description = "Automatically collects pollinated fruits in Garden.",
     Callback = function(state)
@@ -1558,7 +1645,7 @@ local function AutoCollectPollinatedFruits(state)
         end
     end
 end
-
+]]
 local ativo = false
 EventTab:AddToggle("Auto Trade Machine", {
     Title = "Auto Trade Pollinated Fruits",
