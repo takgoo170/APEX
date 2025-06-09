@@ -1440,7 +1440,7 @@ MainTab:AddButton({
 })
 
 MainTab:AddSection("Other")
-local SelectMutation = MainTab:AddDropdown("SelectMutation", {
+--[[local SelectMutation = MainTab:AddDropdown("SelectMutation", {
         Title = "Select Mutation ( Auto Fav )",
         Description = "Select a mutation to be added to FAVORITES.",
         Values = mutationOptions,
@@ -1473,7 +1473,7 @@ local oneclickplant = MainTab:AddToggle("oneclickplant", {
         Default = false,
         Callback = OneClickRemove
 })
-
+]]
 --------------- EVENT TAB ----------------
 local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
 local ativo = false
