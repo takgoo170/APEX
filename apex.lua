@@ -1201,7 +1201,7 @@ local ShopTab = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" })
 local PlayerTab = Window:AddTab({ Title = "Player", Icon = "user" })
 local VisualTab = Window:AddTab({ Title = "Visual", Icon = "eye" })
 local Tabs = { 
-    local MiscTab = Window:AddTab({ Title = "Misc", Icon = "settings" })
+     MiscTab = Window:AddTab({ Title = "Misc", Icon = "settings" })
 }
 ----------- MAIN TAB -------------
 MainTab:AddSection("Main Farm")
