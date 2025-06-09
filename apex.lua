@@ -1903,6 +1903,14 @@ EventTab:AddToggle("Auto Trade Machine", {
 })
 
 EventTab:AddButton({
+    Title = "Teleport to Bee Event",
+    Callback = function()
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Workspace.NightEvent.OwlNPCTree["26"].Part.CFrame + Vector3.new(0, 5, 0)
+        end
+    end
+})
+EventTab:AddButton({
     Title = "Open Honey Shop UI",
     Description = "CLICK THIS TWICE IF YOU'LL GONNA CLOSE THE HONEY SHOP UI",
     Callback = function()
