@@ -1200,8 +1200,9 @@ local EventTab = Window:AddTab({ Title = "Event", Icon = "swords" })
 local ShopTab = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" })
 local PlayerTab = Window:AddTab({ Title = "Player", Icon = "user" })
 local VisualTab = Window:AddTab({ Title = "Visual", Icon = "eye" })
-local MiscTab = Window:AddTab({ Title = "Misc", Icon = "settings" })
-
+local Tabs = { 
+    local MiscTab = Window:AddTab({ Title = "Misc", Icon = "settings" })
+}
 ----------- MAIN TAB -------------
 MainTab:AddSection("Main Farm")
 local FarmV1 = MainTab:AddToggle("FarmV1", {
