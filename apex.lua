@@ -1624,7 +1624,7 @@ EventTab:AddToggle("", {
 
 
 ----------- INTERFACE MANAGER -------------
-SaveManager:SetLibrary(Fluent)
+--[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
@@ -1639,6 +1639,6 @@ SaveManager:SetIgnoreIndexes({})
 -- and game configs in a separate folder per game
 InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
-
+]]
 InterfaceManager:BuildInterfaceSection(Tabs.MiscTab)
 SaveManager:BuildConfigSection(Tabs.MiscTab)
