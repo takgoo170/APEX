@@ -1,194 +1,117 @@
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
  
-repeat wait()
-until game:IsLoaded() and game.Players.LocalPlayer
-local BananaMain = Instance.new("ScreenGui")
-local mainFrame = Instance.new("Frame")
-local cornerMainFrame = Instance.new("UICorner")
-local titleFrame = Instance.new("Frame")
-local titleText = Instance.new("TextLabel")
-local lineFrame = Instance.new("Frame")
-local gradientLineFrame = Instance.new("UIGradient")
-local keyFrame = Instance.new("Frame")
-local keyBox = Instance.new("TextBox")
-local actionFrame = Instance.new("Frame")
-local UIListLayout = Instance.new("UIListLayout")
-local checkKeyFrame = Instance.new("Frame")
-local cornerCheckKey = Instance.new("UICorner")
-local buttonCheckKey = Instance.new("TextButton")
-local getKeyFrame = Instance.new("Frame")
-local cornerGetKey = Instance.new("UICorner")
-local buttonGetKey = Instance.new("TextButton")
-local strokeKeyFrame = Instance.new('UIStroke', keyFrame)
-local strokeGetKey = Instance.new('UIStroke', getKeyFrame)
-
-
-BananaMain.Name = "[Banana] Main"
-BananaMain.Parent = game:GetService('CoreGui')
-
-mainFrame.Name = "mainFrame"
-mainFrame.Parent = BananaMain
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-mainFrame.BorderSizePixel = 0
-mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-mainFrame.Size = UDim2.new(0, 350, 0, 120)
-
-cornerMainFrame.CornerRadius = UDim.new(0, 4)
-cornerMainFrame.Name = "cornerMainFrame"
-cornerMainFrame.Parent = mainFrame
-
-titleFrame.Name = "titleFrame"
-titleFrame.Parent = mainFrame
-titleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-titleFrame.BackgroundTransparency = 1.000
-titleFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
-titleFrame.Size = UDim2.new(1, 0, 0, 27)
-
-titleText.Name = "titleText"
-titleText.Parent = titleFrame
-titleText.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
-titleText.BackgroundTransparency = 1.000
-titleText.Position = UDim2.new(0, 5, 0, 0)
-titleText.Size = UDim2.new(0, 0, 0, 25)
-titleText.Font = Enum.Font.GothamBold
-titleText.Text = "APEX OT | KEY SYSTEM                "
-titleText.TextColor3 = Color3.fromRGB(255, 0, 255)
-titleText.TextSize = 14.000
-titleText.TextXAlignment = Enum.TextXAlignment.Left
-
-lineFrame.Name = "lineFrame"
-lineFrame.Parent = titleFrame
-lineFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
-lineFrame.BorderSizePixel = 0
-lineFrame.Position = UDim2.new(0, 5, 0, 25)
-lineFrame.Size = UDim2.new(0, 184, 0, 2)
-
-gradientLineFrame.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.44), NumberSequenceKeypoint.new(0.90, 0.70), NumberSequenceKeypoint.new(1.00, 1.00)}
-gradientLineFrame.Name = "gradientLineFrame"
-gradientLineFrame.Parent = lineFrame
-
-keyFrame.Name = "keyFrame"
-keyFrame.Parent = mainFrame
-keyFrame.Active = true
-keyFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-keyFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-keyFrame.BorderSizePixel = 0
-keyFrame.ClipsDescendants = true
-keyFrame.Position = UDim2.new(0.5, 0, 0.5, -5)
-keyFrame.Selectable = true
-keyFrame.Size = UDim2.new(1, -20, 0, 25)
-
-strokeKeyFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-strokeKeyFrame.Color = Color3.fromRGB(255,0,255)
-strokeKeyFrame.LineJoinMode = Enum.LineJoinMode.Round
-strokeKeyFrame.Thickness = 2
-
-keyBox.Name = "keyBox"
-keyBox.Parent = keyFrame
-keyBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-keyBox.BackgroundTransparency = 1.000
-keyBox.ClipsDescendants = true
-keyBox.Position = UDim2.new(0, 5, 0, 0)
-keyBox.Size = UDim2.new(1, -10, 1, 0)
-keyBox.ClearTextOnFocus = false
-keyBox.Font = Enum.Font.GothamBold
-keyBox.PlaceholderText = "Key Here"
-keyBox.Text = ""
-keyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-keyBox.TextSize = 14.000
-keyBox.TextXAlignment = Enum.TextXAlignment.Left
-
-actionFrame.Name = "actionFrame"
-actionFrame.Parent = mainFrame
-actionFrame.AnchorPoint = Vector2.new(0.5, 1)
-actionFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-actionFrame.BackgroundTransparency = 1.000
-actionFrame.Position = UDim2.new(0.5, 0, 1, -10)
-actionFrame.Size = UDim2.new(1, -10, 0, 25)
-
-UIListLayout.Parent = actionFrame
-UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIListLayout.Padding = UDim.new(0, 30)
-
-checkKeyFrame.Name = "checkKeyFrame"
-checkKeyFrame.Parent = actionFrame
-checkKeyFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
-checkKeyFrame.Size = UDim2.new(0, 150, 0, 25)
-
-cornerCheckKey.CornerRadius = UDim.new(0, 4)
-cornerCheckKey.Name = "cornerCheckKey"
-cornerCheckKey.Parent = checkKeyFrame
-
-buttonCheckKey.Name = "buttonCheckKey"
-buttonCheckKey.Parent = checkKeyFrame
-buttonCheckKey.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
-buttonCheckKey.BackgroundTransparency = 1.000
-buttonCheckKey.Size = UDim2.new(1, 0, 1, 0)
-buttonCheckKey.Font = Enum.Font.GothamBold
-buttonCheckKey.Text = "Check Key"
-buttonCheckKey.TextColor3 = Color3.fromRGB(255, 255, 255)
-buttonCheckKey.TextSize = 14.000
-
-getKeyFrame.Name = "getKeyFrame"
-getKeyFrame.Parent = actionFrame
-getKeyFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-getKeyFrame.Size = UDim2.new(0, 150, 0, 25)
-
-strokeGetKey.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-strokeGetKey.Color = Color3.fromRGB(255,255,255)
-strokeGetKey.LineJoinMode = Enum.LineJoinMode.Round
-strokeGetKey.Thickness = 1
-
-
-cornerGetKey.CornerRadius = UDim.new(0, 4)
-cornerGetKey.Name = "cornerGetKey"
-cornerGetKey.Parent = getKeyFrame
-
-buttonGetKey.Name = "buttonGetKey"
-buttonGetKey.Parent = getKeyFrame
-buttonGetKey.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-buttonGetKey.BackgroundTransparency = 1.000
-buttonGetKey.Size = UDim2.new(1, 0, 1, 0)
-buttonGetKey.Font = Enum.Font.GothamBold
-buttonGetKey.Text = "Get Key"
-buttonGetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
-buttonGetKey.TextSize = 14.000
-
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 400, 0, 300)
+Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+Frame.Parent = ScreenGui
  
-buttonGetKey.MouseButton1Click:Connect(function()
-   setclipboard("https://discord.gg/VrJx432MB5")
-   setclipboard("https://discord.gg/wDMPK3QAmY")
+local FrameCorner = Instance.new("UICorner")
+FrameCorner.CornerRadius = UDim.new(0, 10)
+FrameCorner.Parent = Frame
+ 
+local Close = Instance.new("TextButton")
+Close.Size = UDim2.new(0, 40, 0, 40)
+Close.Position = UDim2.new(1, -40, 0, 0)
+Close.BackgroundTransparency = 1
+Close.Text = "脳"
+Close.TextScaled = true
+Close.TextColor3 = Color3.fromRGB(150, 150, 150)
+Close.Parent = Frame
+Close.MouseButton1Click:Connect(function()
+   ScreenGui:Destroy()
 end)
-
+ 
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0.05, 0)
+Title.Text = "Windy Hub Key System"
+Title.TextSize = 18
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Parent = Frame
+ 
+local Instructions = Instance.new("TextLabel")
+Instructions.Size = UDim2.new(1, 0, 0, 30)
+Instructions.Position = UDim2.new(0, 0, 0.2, 0)
+Instructions.Text = "Join Discord For GetKey"
+Instructions.TextSize = 13
+Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
+Instructions.BackgroundTransparency = 1
+Instructions.Parent = Frame
+ 
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TextBox.PlaceholderText = "Enter Key..."
+TextBox.Text = ""
+TextBox.TextSize = 18
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Parent = Frame
+ 
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0, 5)
+TextBoxCorner.Parent = TextBox
+ 
+local GetKey = Instance.new("TextButton")
+GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
+GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+GetKey.Text = "Get Key"
+GetKey.TextSize = 18
+GetKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+GetKey.Parent = Frame
+ 
+local GetKeyCorner = Instance.new("UICorner")
+GetKeyCorner.CornerRadius = UDim.new(0, 5)
+GetKeyCorner.Parent = GetKey
+ 
+local CheckKey = Instance.new("TextButton")
+CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
+CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
+CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+CheckKey.Text = "Check Key"
+CheckKey.TextSize = 18
+CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+CheckKey.Parent = Frame
+ 
+local CheckKeyCorner = Instance.new("UICorner")
+CheckKeyCorner.CornerRadius = UDim.new(0, 5)
+CheckKeyCorner.Parent = CheckKey
+ 
+GetKey.MouseButton1Click:Connect(function()
+   setclipboard("https://discord.gg/VrJx432MB5        https://discord.gg/wDMPK3QAmY")
+end)
+ 
 local function validateKey(key)
+    return key == "APEX_FREEKEY123" -- Replace this with your key
     return key == "APEX_1A220abF" -- Replace this with your key
     return key == "KAI_22a7hbEw1" -- Replace this with your key
     return key == "FREE_10000000" -- Replace this with your key
-    return key == "FREE_12345678"
+    return key == "FREE_12345678" -- Replace this with your key
 end
  
- 
-buttonCheckKey.MouseButton1Click:Connect(function()
-    local enteredKey = keyBox.Text
+CheckKey.MouseButton1Click:Connect(function()
+    local enteredKey = TextBox.Text
     if validateKey(enteredKey) then
-        keyBox.PlaceholderText = "Correct Key!"
-        keyBox.Text = ""
-        wait(2)
-        mainFrame:Destroy()
-        print('KEY SUCCESS!')
+        TextBox.PlaceholderText = "Success Key!"
+        TextBox.Text = ""
+        wait(1)
+        ScreenGui:Destroy()
  
 -- Put Your Script Here
 loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/apex.lua"))()
-      
     else
-        keyBox.PlaceholderText = "Wrong Key. Try again."
-        keyBox.Text = ""
+        TextBox.PlaceholderText = "Wrong Key. Try again."
+        TextBox.Text = ""
         wait(1)
-        keyBox.PlaceholderText = "Enter Key..."
-        keyBox.Text = ""
+        TextBox.PlaceholderText = "Enter Key..."
+        TextBox.Text = ""
     end
 end)
