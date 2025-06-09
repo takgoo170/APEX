@@ -1176,6 +1176,8 @@ end
 
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = KaiUI:CreateWindow({
     Title = "Apex OT | Grow a Garden",
     SubTitle = "by Apex Team | (discord.gg/VrJx432MB5)",
@@ -1186,6 +1188,12 @@ local Window = KaiUI:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
+KaiUI:Notify({
+        Title = "APEX OT",
+        Content = "Script loaded successfully.",
+        SubContent = "🥕 Grow a Garden ", -- Optional
+        Duration = 12 -- Set to nil to make the notification not disappear
+    })
 --------------------------- TABS ------------------------------
 local MainTab = Window:AddTab({ Title = "Main", Icon = "home" })
 local EventTab = Window:AddTab({ Title = "Event", Icon = "swords" })
@@ -1402,7 +1410,12 @@ local IgnorePlant = MainTab:AddToggle("IgnorePlant", {
     })
 
 MainTab:AddSection("Instant SELL")
-
+MainTab:AddParagraph({
+        Title = "Hello! Read this",
+        Content = "Activating instant sell will automatically sells your item that is not favorited, If you enable this and your item is lost, don't blame us. Use instant sell wisely."
+    })
+        
+        
 --[[MainTab:AddButton({
         Title = "Sell All (INSTANT)",
         Callback = SellAll 
@@ -1607,3 +1620,24 @@ EventTab:AddToggle("", {
         bsb = Value
     end
 })
+
+
+----------- INTERFACE MANAGER -------------
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
