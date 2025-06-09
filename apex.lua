@@ -1403,14 +1403,15 @@ local IgnorePlant = MainTab:AddToggle("IgnorePlant", {
 
 MainTab:AddSection("Instant SELL")
 
-MainTab:AddButton({
+--[[MainTab:AddButton({
         Title = "Sell All (INSTANT)",
         Callback = SellAll 
     })
+]]
 MainTab:AddButton({
         Title = "Sell Pet",
         Description = "Sells all eligible pets in your backpack that are not favorited",
-    Callback = function()
+        Callback = function()
         local p = lp
         local b = p:WaitForChild("Backpack")
         local c = p.Character or p.CharacterAdded:Wait()
