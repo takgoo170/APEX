@@ -1498,7 +1498,7 @@ local CollectPollinated = EventTab:AddToggle("CollectPollinated", {
     Title = "Auto Collect Pollinated Fruits",
     Description = "Automatically collects pollinated fruits in Garden.",
     Callback = function(state)
-        AutoCollectPollinatedFruits = state
+        AutoCollectPollinatedFruits(state) = state
     end
 })
 
@@ -1561,7 +1561,7 @@ end
 
 local ativo = false
 EventTab:AddToggle("Auto Trade Machine", {
-    Title = "Auto Trade Pollinated",
+    Title = "Auto Trade Pollinated Fruits",
     Description = "Equips only Pollinated items and interacts with machine",
     Default = false,
     Callback = function(toggle)
