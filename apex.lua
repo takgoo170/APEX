@@ -1392,6 +1392,88 @@ local IgnoreMutation = MainTab:AddToggle("IgnoreMutation", {
     end
   })
 
+local IgnorePlant = MainTab:AddToggle("IgnorePlant", {
+        Title = "Ignore Every Plant",
+        Default = false,
+        Callback = function(state)
+        allPromptsDisabled = state
+        updatePromptsForMutations()
+        end
+    })
+
+MainTab:AddSection("Instant SELL")
+
+MainTab:AddButton({
+        Title = "Sell All (INSTANT)",
+        Callback = SellAll 
+    })
+MainTab:AddButton({
+        Title = "Sell Pet",
+        Description = "Sells all eligible pets in your backpack that are not favorited",
+    Callback = function()
+        local p = lp
+        local b = p:WaitForChild("Backpack")
+        local c = p.Character or p.CharacterAdded:Wait()
+        local pets = {}
+        for _, t in ipairs(b:GetChildren()) do
+            if t:IsA("Tool") and t:FindFirstChild("PetToolLocal") and string.match(t.Name, "%[Age%s%d+%]") then
+                if t:GetAttribute("Favorite") ~= true then
+                    t.Parent = c
+                    table.insert(pets, t)
+                end
+            end
+        end
+        c:PivotTo(CFrame.new(62, 3, 0))
+        task.wait(0.3)
+        local e = GameEvents:WaitForChild("SellPet_RE")
+        for _, t in ipairs(pets) do 
+            if t and t:IsDescendantOf(c) then 
+                e:FireServer(t) 
+            end 
+        end
+        KaiUI:Notify({
+            Title = "Pet Seller",
+            Content = "Pet selling process completed! Favorited pets we're ignored.",
+            Duration = 6
+        })
+    end
+})
+
+MainTab:AddSection("Other")
+local SelectMutation = MainTab:AddDropdown("SelectMutation", {
+        Title = "Select Mutation ( Auto Fav )",
+        Description = "Select a mutation to be added to FAVORITES.",
+        Values = mutationOptions,
+        Multi = true,
+        Default = {},
+        Callback = function(Options) 
+            selectedMutations = Options
+            if autoFavoriteEnabled then 
+                processBackpack() 
+            end 
+        end })
+    })
+
+local AutoFav = MainTab:AddToggle("AutoFav", {
+        Title = "Auto Favorite",
+        Description = "Automatically favorites the selected mutation",
+        Default = false,
+        Callback = function(Value) autoFavoriteEnabled = Value if Value then setupAutoFavorite() elseif connection then connection:Disconnect() connection = nil end end 
+})
+
+local UnFav = MainTab:AddButton({
+        Title = "Unfavorite all",
+        Description = "Unfavorites all items",
+        Callback = function() local backpack = lp:WaitForChild("Backpack") for _, tool in ipairs(backpack:GetChildren()) do local isFavorited = tool:GetAttribute("Favorite") or (tool:FindFirstChild("Favorite") and tool.Favorite.Value) if isFavorited then favoriteEvent:FireServer(tool) task.wait() end end end 
+})
+
+local oneclickplant = MainTab:AddToggle("oneclickplant", {
+        Title = "One Click Plant Remove",
+        Description = "CAUTION: Hope you don't delete something you needed.",
+        Default = false,
+        Callback = OneClickRemove
+})
+
 --------------- EVENT TAB ----------------
 local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
 local ativo = false
@@ -1455,7 +1537,7 @@ EventTab:AddToggle("Auto Trade Machine", {
 
 EventTab:AddButton({
     Title = "Open Honey Shop UI",
-    Description = "CLICK THIS IF YOU'LL GONNA CLOSE THE HONEY SHOP UI",
+    Description = "CLICK THIS TWICE IF YOU'LL GONNA CLOSE THE HONEY SHOP UI",
     Callback = function()
         local ui = game:GetService("Players").LocalPlayer.PlayerGui.HoneyEventShop_UI
         if ui then
@@ -1518,7 +1600,7 @@ end)
 
 EventTab:AddToggle("", {
     Title = "Buy Selected Item",
-    Description = "Buys a selected bee item.",
+    Description = "Buys a selected Bee item.",
     Default = false,
     Callback = function(Value)
         bsb = Value
