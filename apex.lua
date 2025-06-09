@@ -1491,7 +1491,6 @@ local oneclickplant = MainTab:AddToggle("oneclickplant", {
 ]]
 --------------- EVENT TAB ----------------
 local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
-local ativo = false
 
 -- Assuming you have a Fluent UI tab object named `FarmTab`
 
@@ -1560,6 +1559,7 @@ local function AutoCollectPollinatedFruits(state)
     end
 end
 
+local ativo = false
 EventTab:AddToggle("Auto Trade Machine", {
     Title = "Auto Trade Pollinated",
     Description = "Equips only Pollinated items and interacts with machine",
