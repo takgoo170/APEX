@@ -1905,13 +1905,15 @@ EventTab:AddToggle("Auto Trade Machine", {
 EventTab:AddButton({
     Title = "Teleport to Bee Event",
     Callback = function()
-        local player = Players.LocalPlayer
-            local character = player.Character
-            if character and character:FindFirstChild("HumanoidRootPart") then
-                character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(0, 5, 0))
-            else
-                warn("Character or HumanoidRootPart not found.")
-            end
+        local char = player.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = CFrame.new(
+            -99.6077271, 4.00001335, -9.807477,
+             0.9999156, 3.99543758e-08, 0.012991813,
+            -4.0002611e-08, 1, 3.4529124e-09,
+            -0.012991813, -3.97232736e-09, 0.9999156
+				)
+			end
 		end
 })
 EventTab:AddButton({
