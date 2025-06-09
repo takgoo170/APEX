@@ -2082,7 +2082,7 @@ local InfJump = PlayerTab:AddToggle("InfJump", {
 VisualTab:AddSection("Seed Spawner")
 local SeedNameInput = VisualTab:AddInput("SeedNameInput", {
 		Title = "Seed Name",
-		Default = "",
+		Default = "Beanstalk",
 		Placeholder = "Seed",
 		Numeric = false, -- Only allows numbers
                 Finished = false,
@@ -2093,7 +2093,7 @@ local SeedNameInput = VisualTab:AddInput("SeedNameInput", {
 
 local SeedQuantityInput = VisualTab:AddInput("SeedQuantityInput", {
 		Title = "Seed Quantity",
-		Default = "",
+		Default = "1",
 		Placeholder = "Amount",
 		Numeric = false, -- Only allows numbers
                 Finished = false,
