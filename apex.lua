@@ -1,6 +1,6 @@
 setclipboard("https://discord.gg/VrJx432MB5")
 
-local Players = game:GetService("Players")
+--[[local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local Lighting = game:GetService("Lighting")
 local player = Players.LocalPlayer
@@ -74,7 +74,7 @@ end
 wait(2)
 
 tweenOutAndDestroy()
-
+]]
 -- Services
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
