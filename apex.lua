@@ -379,12 +379,12 @@ local function Fly(state)
         bodyGyro = Instance.new("BodyGyro")
         bodyVelocity = Instance.new("BodyVelocity")
         bodyGyro.P = 9000
-        bodyGyro.maxTorque = Vector3.new(8999999488, 8999999488, 8999999488)
+        bodyGyro.maxTorque = Vector3.new(999999, 999999, 999999)
         bodyGyro.cframe = character.HumanoidRootPart.CFrame
         bodyGyro.Parent = character.HumanoidRootPart
         
         bodyVelocity.velocity = Vector3.new(0, 0, 0)
-        bodyVelocity.maxForce = Vector3.new(8999999488, 8999999488, 8999999488)
+        bodyVelocity.maxForce = Vector3.new(999999, 999999, 999999)
         bodyVelocity.Parent = character.HumanoidRootPart
         humanoid.PlatformStand = true
         
@@ -2070,6 +2070,13 @@ ShopTab:AddButton({
     })
 ---------------------- PLAYER TAB ----------------------
 PlayerTab:AddSection("Movement")
+local FlyToggle = PlayerTab:AddToggle("FlyToggle", {
+	Title = "Fly",
+	Default = false,
+	Callback = function(state)
+        Fly(state)
+    end
+})
 local NoClip = PlayerTab:AddToggle("NoClip", {
         Title = "No Clip",
         Default = false,
