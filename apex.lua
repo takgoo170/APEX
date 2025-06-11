@@ -14,7 +14,7 @@ local TeleportService = game:GetService("TeleportService")
 local Lighting = game:GetService("Lighting")
 local player = Players.LocalPlayer
 
-local blur = Instance.new("BlurEffect", Lighting)
+--[[local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
 TweenService:Create(blur, TweenInfo.new(0.5), {Size = 24}):Play()
 
@@ -110,6 +110,7 @@ subTweenIn:Play()
 wait(2)
 
 tweenOutAndDestroy()
+]]
 --[[local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
