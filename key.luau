@@ -18,10 +18,11 @@ local KeySystem = {}
 local EXPIRATION_TIME = 24 * 60 * 60 -- 24 hours in seconds
 
 local validKeys = {
-    -- Example keys
-    ["TEMPKEY1"] = { issued = os.time(), neverExpire = false },
-    ["TEMPKEY2"] = { issued = os.time() - 3600, neverExpire = false },
-    ["APEX-TEST"] = { issued = os.time(), neverExpire = true },
+-- APEX KEY
+    ["APEX_123011"] = { issued = os.time(), neverExpire = false },
+    ["APEX_24/7"] = { issued = os.time() - 3600, neverExpire = false },
+    ["APEX x Kai Hub"] = { issued = os.time(), neverExpire = true },
+    ["APEX_FREE"] = { issued = os.time(), neverExpire = true },
 }
 
 function KeySystem.isKeyValid(key)
@@ -74,7 +75,7 @@ local title = create("TextLabel", {
     Parent = frame,
     Text = "APEX OT | KEY SYSTEM",
     Font = Enum.Font.GothamBold,
-    TextSize = 24,
+    TextSize = 23,
     TextColor3 = Color3.fromRGB(220, 220, 220),
     BackgroundTransparency = 1,
     Size = UDim2.new(1, 0, 0, 50),
@@ -88,10 +89,10 @@ local closeButton = create("TextButton", {
     Parent = frame,
     Text = "X",
     Font = Enum.Font.GothamBold,
-    TextSize = 20,
+    TextSize = 15,
     TextColor3 = Color3.fromRGB(255, 0, 0),
     BackgroundColor3 = Color3.fromRGB(30, 30, 30),
-    Size = UDim2.new(0, 40, 0, 40),
+    Size = UDim2.new(0, 30, 0, 30),
     Position = UDim2.new(1, -50, 0, 5),
     AutoButtonColor = true,
 })
@@ -100,13 +101,13 @@ create("UICorner", {Parent = closeButton, CornerRadius = UDim.new(0, 8)})
 -- Minimize Button
 local minimizeButton = create("TextButton", {
     Parent = frame,
-    Text = "_",
+    Text = "—",
     Font = Enum.Font.GothamBold,
-    TextSize = 20,
+    TextSize = 15,
     TextColor3 = Color3.fromRGB(255, 255, 255),
     BackgroundColor3 = Color3.fromRGB(30, 30, 30),
-    Size = UDim2.new(0, 40, 0, 40),
-    Position = UDim2.new(1, -100, 0, 5),
+    Size = UDim2.new(0, 30, 0, 30),
+    Position = UDim2.new(1, -80, 0, 5),
     AutoButtonColor = true,
 })
 create("UICorner", {Parent = minimizeButton, CornerRadius = UDim.new(0, 8)})
@@ -120,7 +121,7 @@ local messageLabel = create("TextLabel", {
     TextColor3 = Color3.fromRGB(200, 50, 50),
     BackgroundTransparency = 1,
     Size = UDim2.new(1, -32, 0, 50),
-    Position = UDim2.new(0, 16, 1, -100),
+    Position = UDim2.new(0, 25, 1, -125),
     TextWrapped = true,
     TextXAlignment = Enum.TextXAlignment.Center,
 })
