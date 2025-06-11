@@ -1,4 +1,4 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/hungquan99/FluentUI/master/Addons/SaveManager.lua"))()
 
@@ -8,9 +8,9 @@ local minimizeUI = Enum.KeyCode.RightAlt
 
 -- 🟢 Create Main UI
 local Window = Fluent:CreateWindow({
-    Title = "Ringta Scripts",
-    SubTitle = "With BIGBACK",
-    TabWidth = 160,
+    Title = "Kai X Apex : Dead Rails",
+    SubTitle = "by Kai Hub and Apex!",
+    TabWidth = 155,
     Size = UDim2.fromOffset(480, 360),
     Acrylic = false,
     Theme = "Darker",
@@ -19,13 +19,13 @@ local Window = Fluent:CreateWindow({
 
 -- Tabs
 local Tabs = {
-    FarT = Window:AddTab({ Title = "Farm", Icon = "rbxassetid://121302760641013" }),
-    Ma = Window:AddTab({ Title = "Main", Icon = "rbxassetid://121302760641013" }),
-    Ite = Window:AddTab({ Title = "Items", Icon = "rbxassetid://121302760641013" }),
-    TpT = Window:AddTab({ Title = "Teleport", Icon = "rbxassetid://121302760641013" }),
+    FarT = Window:AddTab({ Title = "Farm", Icon = "sword" }),
+    Ma = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Ite = Window:AddTab({ Title = "Items", Icon = "swords" }),
+    TpT = Window:AddTab({ Title = "Teleport", Icon = "locate" }),
     Player = Window:AddTab({ Title = "Player", Icon = "rbxassetid://121302760641013" }),
-    Misc = Window:AddTab({ Title = "Misc", Icon = "rbxassetid://121302760641013" }),
-    Settings = Window:AddTab({ Title = "Setting", Icon = "rbxassetid://121302760641013" }),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "list" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
 }
 
 do
