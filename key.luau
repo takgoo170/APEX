@@ -6,7 +6,7 @@
 
 -- Services
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("User InputService")
+local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
 
 local player = Players.LocalPlayer
