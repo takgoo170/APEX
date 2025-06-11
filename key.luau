@@ -23,6 +23,8 @@ local validKeys = {
     ["APEX_24/7"] = { issued = os.time() - 3600, neverExpire = false },
     ["APEX x Kai Hub"] = { issued = os.time(), neverExpire = true },
     ["APEX_FREE"] = { issued = os.time(), neverExpire = true },
+    ["Kazuma"] = { issued = os.time(), neverExpire = true },
+    ["RoadTo1kMembers"] = { issued = os.time(), neverExpire = false },
 }
 
 function KeySystem.isKeyValid(key)
