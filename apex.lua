@@ -1284,6 +1284,60 @@ local function checkForMutations()
     end
 end
 
+----- BEE EVENT FUNCTIONS ------
+local function updatePollinatedList()
+    pollinatedTools = {}
+    for _, tool in ipairs(LocalPlayer.Backpack:GetChildren()) do
+        local weightObj = tool:FindFirstChild("Weight")
+        local weight = weightObj and weightObj:IsA("NumberValue") and weightObj.Value or 0
+
+        local favObj = tool:FindFirstChild("Favorite")
+        local isFav = favObj and favObj:IsA("BoolValue") and favObj.Value or false
+
+        if tool.Name:match("%[.-Pollinated.-%]") and weight >= 10 and not isFav then
+            table.insert(pollinatedTools, tool)
+        end
+    end
+end
+
+local function startHoneyFarm()
+    if not autoHoneyFarm then return end
+    
+    local jar = Workspace.Interaction.UpdateItems.HoneyEvent.HoneyCombpressor.Spout:WaitForChild("Jar")
+    
+    updatePollinatedList()
+    LocalPlayer.Backpack.ChildAdded:Connect(updatePollinatedList)
+    LocalPlayer.Backpack.ChildRemoved:Connect(updatePollinatedList)
+
+    local proximityPrompt = jar:FindFirstChild("HoneyCombpressorPrompt")
+    if proximityPrompt then
+        ReplicatedStorage.GameEvents.HoneyMachineService_RE:FireServer("MachineInteract")
+    end
+
+    RunService.RenderStepped:Connect(function()
+        if not autoHoneyFarm or busy then return end
+        busy = true
+
+        local statusText = Workspace.Interaction.UpdateItems.HoneyEvent.HoneyCombpressor.Sign.SurfaceGui.TextLabel.Text
+
+        if (not statusText:match("^%d+:0%d$") and not statusText:match("^%d+:%d%d$")) and not statusText:find("READY") then
+            if #pollinatedTools > 0 then
+                LocalPlayer.Character.Humanoid:EquipTool(pollinatedTools[math.random(#pollinatedTools)])
+            end
+            ReplicatedStorage.GameEvents.HoneyMachineService_RE:FireServer("MachineInteract")
+        end
+
+        task.wait(0.5)
+        busy = false
+    end)
+
+    jar.ChildAdded:Connect(function(child)
+        if autoHoneyFarm and child:IsA("ProximityPrompt") and child.Name == "HoneyCombpressorPrompt" then
+            ReplicatedStorage.GameEvents.HoneyMachineService_RE:FireServer("MachineInteract")
+            task.wait(1)
+        end
+    end)
+end
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -1799,6 +1853,18 @@ local oneclickplant = MainTab:AddToggle("oneclickplant", {
 
 --------------- EVENT TAB ----------------
 local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
+
+local FarmHoney = EventTab:AddToggle("FarmHoney", {
+	Title = "Auto Farm Honey",
+	Description = "",
+	Default = false,
+	Callback = function(state)
+        autoHoneyFarm = state
+        if state then
+            startHoneyFarm()
+        end
+     end
+})
 
 -- Assuming you have a Fluent UI tab object named `FarmTab`
 
