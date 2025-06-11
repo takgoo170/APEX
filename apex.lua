@@ -442,7 +442,7 @@ local function Fly(state)
     end
 end
 
-local function ToggleNoclip(state)
+--[[local function ToggleNoclip(state)
     noclip = state
 end
 
@@ -455,7 +455,25 @@ RunService.Stepped:Connect(function()
         end
     end
 end)
+]]
+local noclipEnabled = false
+local noclipConn = nil
 
+local function ToggleNoclip(state)
+    noclipEnabled = state
+    if noclipEnabled and not noclipConn then
+        noclipConn = RunService.Stepped:Connect(function()
+            for _, part in ipairs(char:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = false
+                end
+            end
+        end)
+    elseif not noclipEnabled and noclipConn then
+        noclipConn:Disconnect()
+        noclipConn = nil
+    end
+end
 local function ToggleInfJump(state)
     infJump = state
 end
