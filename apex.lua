@@ -1285,7 +1285,7 @@ local function checkForMutations()
 end
 
 ----- BEE EVENT FUNCTIONS ------
-local function updatePollinatedList()
+--[[local function updatePollinatedList()
     pollinatedTools = {}
     for _, tool in ipairs(LocalPlayer.Backpack:GetChildren()) do
         local weightObj = tool:FindFirstChild("Weight")
@@ -1338,6 +1338,7 @@ local function startHoneyFarm()
         end
     end)
 end
+]]
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
