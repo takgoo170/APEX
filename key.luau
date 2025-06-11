@@ -85,7 +85,7 @@ local title = create("TextLabel", {
 -- Message label for feedback
 local messageLabel = create("TextLabel", {
     Parent = frame,
-    Text = "",
+    Text = "JOIN TO OUR DISCORD SERVER TO GET A KEY.",
     Font = Enum.Font.Gotham,
     TextSize = 16,
     TextColor3 = Color3.fromRGB(200, 50, 50),
@@ -114,7 +114,7 @@ create("UICorner", {Parent = getKeyBtn, CornerRadius = UDim.new(0, 12)})
 -- Check Key Button
 local checkKeyBtn = create("TextButton", {
     Parent = frame,
-    Text = "Check Key",
+    Text = "Enter Key",
     Font = Enum.Font.GothamBold,
     TextSize = 20,
     TextColor3 = Color3.fromRGB(255, 255, 255),
