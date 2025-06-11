@@ -14,7 +14,7 @@ local StarterGui = game:GetService("StarterGui")
 local LocalPlayer = Players.LocalPlayer
 
 -- Create GUI
-local x2zu = UILibrary.Load("x2zu")
+local x2zu = UILibrary.Load("APEX OT | DOORS")
 
 -- GUI Tabs
 local InfoPage = x2zu.AddPage("Info")
