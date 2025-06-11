@@ -367,7 +367,7 @@ local function ToggleHarvest(state)
     end
 end
 
-local function Fly(state)
+--[[local function Fly(state)
     flyEnabled = state
     if flyEnabled then
         local character = lp.Character
@@ -435,6 +435,87 @@ local function Fly(state)
             end
         end
         
+        if flightConnection then
+            flightConnection:Disconnect()
+            flightConnection = nil
+        end
+    end
+end
+]]
+local flyEnabled = false
+local flySpeed = 48
+local bodyVelocity, bodyGyro
+local flightConnection
+
+local function Fly(state)
+    flyEnabled = state
+    if flyEnabled then
+        local character = lp.Character
+        if not character or not character:FindFirstChild("HumanoidRootPart") then return end
+
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if not humanoid then return end
+
+        bodyGyro = Instance.new("BodyGyro")
+        bodyVelocity = Instance.new("BodyVelocity")
+        bodyGyro.P = 9000
+        bodyGyro.MaxTorque = Vector3.new(999999, 999999, 999999)
+        bodyGyro.CFrame = character.HumanoidRootPart.CFrame
+        bodyGyro.Parent = character.HumanoidRootPart
+
+        bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+        bodyVelocity.MaxForce = Vector3.new(999999, 999999, 999999)
+        bodyVelocity.Parent = character.HumanoidRootPart
+
+        humanoid.PlatformStand = true
+
+        flightConnection = RunService.Heartbeat:Connect(function()
+            if not flyEnabled or not character:FindFirstChild("HumanoidRootPart") then
+                if flightConnection then flightConnection:Disconnect() end
+                return
+            end
+
+            local cam = workspace.CurrentCamera.CFrame
+            local moveVec = Vector3.new()
+
+            if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+                moveVec += cam.LookVector
+            end
+            if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+                moveVec -= cam.LookVector
+            end
+            if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+                moveVec -= cam.RightVector
+            end
+            if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+                moveVec += cam.RightVector
+            end
+            if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+                moveVec += Vector3.new(0, flySpeed, 0)
+            end
+            if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+                moveVec -= Vector3.new(0, flySpeed, 0)
+            end
+
+            if moveVec.Magnitude > 0 then
+                moveVec = moveVec.Unit * flySpeed
+            end
+
+            bodyVelocity.Velocity = moveVec
+            bodyGyro.CFrame = cam
+        end)
+    else
+        if bodyVelocity then bodyVelocity:Destroy() end
+        if bodyGyro then bodyGyro:Destroy() end
+
+        local character = lp.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.PlatformStand = false
+            end
+        end
+
         if flightConnection then
             flightConnection:Disconnect()
             flightConnection = nil
@@ -2085,6 +2166,22 @@ ShopTab:AddSection("Menu")
 ShopTab:AddButton({
         Title = "Open Seed Shop",
         Callback = OpenShop
+    })
+ShopTab:AddButton({
+	Title = "Open Gear Shop",
+	Callback = function(state)
+	local gear = lp.PlayerGui:FindFirstChild("Gear_Shop")
+    if gear then
+        gear.Enabled = state
+			end
+    })
+ShopTab:AddButton({
+	Title = "Open Daily Quest",
+	Callback = function(state)
+	local quest = lp.PlayerGui:FindFirstChild("DailyQuests_UI")
+    if quest then
+        quest.Enabled = state
+				end
     })
 ---------------------- PLAYER TAB ----------------------
 PlayerTab:AddSection("Movement")
