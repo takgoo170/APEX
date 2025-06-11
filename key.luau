@@ -6,7 +6,7 @@
 
 -- Services
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
+local UserInputService = game:GetService("User InputService")
 local StarterGui = game:GetService("StarterGui")
 
 local player = Players.LocalPlayer
@@ -65,6 +65,7 @@ local frame = create("Frame", {
     BorderSizePixel = 0,
     ClipsDescendants = true,
 })
+
 -- Rounded corners
 local uicorner = create("UICorner", {Parent = frame, CornerRadius = UDim.new(0, 16)})
 
@@ -81,6 +82,34 @@ local title = create("TextLabel", {
     TextScaled = false,
     TextWrapped = false,
 })
+
+-- Close Button
+local closeButton = create("TextButton", {
+    Parent = frame,
+    Text = "X",
+    Font = Enum.Font.GothamBold,
+    TextSize = 20,
+    TextColor3 = Color3.fromRGB(255, 0, 0),
+    BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+    Size = UDim2.new(0, 40, 0, 40),
+    Position = UDim2.new(1, -50, 0, 5),
+    AutoButtonColor = true,
+})
+create("UICorner", {Parent = closeButton, CornerRadius = UDim.new(0, 8)})
+
+-- Minimize Button
+local minimizeButton = create("TextButton", {
+    Parent = frame,
+    Text = "_",
+    Font = Enum.Font.GothamBold,
+    TextSize = 20,
+    TextColor3 = Color3.fromRGB(255, 255, 255),
+    BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+    Size = UDim2.new(0, 40, 0, 40),
+    Position = UDim2.new(1, -100, 0, 5),
+    AutoButtonColor = true,
+})
+create("UICorner", {Parent = minimizeButton, CornerRadius = UDim.new(0, 8)})
 
 -- Message label for feedback
 local messageLabel = create("TextLabel", {
@@ -233,6 +262,16 @@ keyTextBox.FocusLost:Connect(function(enterPressed)
         submitKeyBtn:CaptureFocus()
         submitKeyBtn.MouseButton1Click:Wait()
     end
+end)
+
+-- Close button functionality
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy() -- Close the GUI
+end)
+
+-- Minimize button functionality
+minimizeButton.MouseButton1Click:Connect(function()
+    frame.Visible = not frame.Visible -- Toggle visibility of the frame
 end)
 
 -- Center GUI on screen & make it responsive
