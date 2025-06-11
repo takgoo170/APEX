@@ -2167,7 +2167,7 @@ ShopTab:AddButton({
         Title = "Open Seed Shop",
         Callback = OpenShop
     })
-ShopTab:AddButton({
+--[[ShopTab:AddButton({
 	Title = "Open Gear Shop",
 	Callback = function(state)
 	local gear = lp.PlayerGui:FindFirstChild("Gear_Shop")
@@ -2183,6 +2183,7 @@ ShopTab:AddButton({
         quest.Enabled = state
 				end
     })
+]]
 ---------------------- PLAYER TAB ----------------------
 PlayerTab:AddSection("Movement")
 local FlyToggle = PlayerTab:AddToggle("FlyToggle", {
