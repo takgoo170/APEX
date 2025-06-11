@@ -11,7 +11,7 @@ local GuiService = game:GetService("GuiService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local HttpService = game:GetService("HttpService")
 local TeleportService = game:GetService("TeleportService")
-local Players = game:GetService("Players")
+--[[local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local sound = Instance.new("Sound")
@@ -22,7 +22,7 @@ sound.Looped = true
 sound.Parent = player:WaitForChild("PlayerGui")
 
 sound:Play()
-
+]]
 -- Player and Character
 local lp = Players.LocalPlayer
 local char = lp.Character or lp.CharacterAdded:Wait()
