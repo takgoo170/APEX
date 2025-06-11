@@ -1338,7 +1338,7 @@ local function startHoneyFarm()
         end
     end)
 end
-]]
+
 local LocalPlayer = game.Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -1399,7 +1399,7 @@ local function startHoneyFarm()
         end
     end)
 end
-
+]]
 
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
@@ -1916,18 +1916,6 @@ local oneclickplant = MainTab:AddToggle("oneclickplant", {
 
 --------------- EVENT TAB ----------------
 local section = EventTab:AddSection("🐝 BEE EVENT | HONEY")
-
-local FarmHoney = EventTab:AddToggle("FarmHoney", {
-	Title = "Auto Farm Honey",
-	Description = "",
-	Default = false,
-	Callback = function(state)
-        autoHoneyFarm = state
-        if state then
-            startHoneyFarm()
-        end
-     end
-})
 
 -- Assuming you have a Fluent UI tab object named `FarmTab`
 
