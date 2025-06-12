@@ -135,7 +135,7 @@ waitForPromise(loadingPromise)
 print("Loading completo! Agora executando o resto do script...")
 -- ... resto do seu código ...
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/redzlib_customized.lua"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
 
 local Window = redzlib:MakeWindow({
     Title = "APEX OT | BROOKHAVEN RP",
