@@ -49,7 +49,7 @@ local function createLoadingScreen()
     nameText.BackgroundTransparency = 1
     nameText.Font = Enum.Font.FredokaOne
     nameText.TextScaled = true
-    nameText.Text = "Verifying user: "..lp.Name.." (Account: "..tostring(lp.AccountAge).." days)"
+    nameText.Text = "Verifying user: "..lp.Name.." (Age: "..tostring(lp.AccountAge).." days)"
     nameText.Parent = frame
 
     local barBG = Instance.new("Frame")
@@ -157,14 +157,13 @@ local Tab2= Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "Home"})
 local Tab5 = Window:MakeTab({"Car", "Car"})
+local Tab12 = Window:MakeTab({"Teleport", "locate"})
 local Tab6 = Window:MakeTab({"RGB", "brush"})
 local Tab7 = Window:MakeTab({"Custom Music", "radio"})    
 local Tab8 = Window:MakeTab({"Music", "music"}) 
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
 local Tab11 = Window:MakeTab({"Scripts", "scroll"})
-local Tab12 = Window:MakeTab({"Teleport", "locate"})
-
 
 
 
