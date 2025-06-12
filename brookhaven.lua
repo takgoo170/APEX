@@ -1,4 +1,4 @@
----- LINE: 2731
+---- LINE: 3000+
 ---- LAST EDITED
 
 local Players = game:GetService("Players")
@@ -2423,7 +2423,7 @@ createSoundDropdown("Selecione um terror ou efeito", {
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
-                                          -- === Tab 8: Troll Musica === --
+                                          -- === Tab 8: Troll Music === --
 ---------------------------------------------------------------------------------------------------------------------------------
 
 local function tocarMusica(id)
@@ -2490,7 +2490,7 @@ local function createMusicDropdown(title, musicOptions, defaultOption)
     end
 
     Tab8:AddDropdown({
-        Name = title,
+        Name = "Select Sound",
         Description = "all",
         Default = defaultOption,
         Multi = false,
@@ -2922,7 +2922,7 @@ local function teleportToPlayer(playerName)
         local myHRP = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         local myHumanoid = LocalPlayer.Character:FindFirstChild("Humanoid")
         if not myHRP or not myHumanoid then
-            print("Seu personagem não está totalmente carregado para teletransporte.")
+            print("Your character is not fully charged for teleportation.")
             return
         end
 
@@ -2940,7 +2940,7 @@ local function teleportToPlayer(playerName)
             myHRP.CFrame = CFrame.new(targetPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 2, 0)) -- Leve elevação para evitar colisão com o chão
         end)
         if not success then
-            warn("Erro ao teletransportar: " .. tostring(errorMessage))
+            warn("Error: " .. tostring(errorMessage))
             return
         end
 
@@ -2976,8 +2976,8 @@ end)
 local valor_do_nome_do_joagdor
 
 local DropdownPlayerTab2 = Tab9:AddDropdown({
-    Name = "Selecionar Jogador",
-    Description = "Escolha um jogador para matar, puxar, visualizar ou aplicar fling",
+    Name = "Select Player",
+    Description = "Choose a player to kill, pull, view or fling",
     Default = "",
     Multi = false,
     Options = getPlayerNames(),
@@ -3015,7 +3015,7 @@ function UptadePlayers()
     DropdownPlayerTab2:Set(playerNames)
 end
 
-Tab9:AddButton({"Atualizar lista", function()
+Tab9:AddButton({"Update List", function()
     UptadePlayers()
 end})
 
@@ -3023,8 +3023,8 @@ UptadePlayers()
 
 
 Tab9:AddButton({
-    Title = "Teleportar para Jogador",
-    Desc = "Clique para teletransportar para o jogador selecionado",
+    Title = "Teleport to Player",
+    Desc = "Teleports your character to selected player's position.",
     Callback = function()
         local selectedPlayerName = valor_do_nome_do_joagdor
         if selectedPlayerName and selectedPlayerName ~= "" then
@@ -3039,8 +3039,8 @@ Tab9:AddButton({
 })
 
 local SpectateToggleTab10 = Tab9:AddToggle({
-    Name = "Visualizar Jogador",
-    Description = "Ativa/desativa a visualização do jogador selecionado",
+    Name = "Spectate Player",
+    Description = "Toggles display of selected player on/off",
     Default = false,
     Callback = function(state)
         if state then
@@ -3085,9 +3085,9 @@ updateDropdown(DropdownPlayerTab2, SpectateToggleTab10)
 local Section = Tab9:AddSection({"Kill"})
 
 local DropdownKillPullMethod = Tab9:AddDropdown({
-    Name = "Selecionar Método (Matar/Puxar)",
-    Description = "Escolha o método para matar ou puxar",
-    Options = {"Sofá", "Ônibus"},
+    Name = "Select Method",
+    Description = "Choose a Method",
+    Options = {"Sofa", "Bus"},
     Callback = function(value)
         selectedKillPullMethod = value
     end
