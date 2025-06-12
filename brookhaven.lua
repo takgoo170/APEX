@@ -149,7 +149,7 @@ local Window = redzlib:MakeWindow({
 })
 
 ----------------- THEME ----------------
-redzlib:SetTheme("Purple")
+
 
 
 local Tab1 = Window:MakeTab({"Info", "info"})
