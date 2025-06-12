@@ -11,8 +11,6 @@ local GuiService = game:GetService("GuiService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local HttpService = game:GetService("HttpService")
 local TeleportService = game:GetService("TeleportService")
-local Lighting = game:GetService("Lighting")
-local player = Players.LocalPlayer
 
 --[[local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
