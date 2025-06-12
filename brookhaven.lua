@@ -4817,14 +4817,14 @@ Tab11:AddButton({
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-                                          -- === Tab 12: Teleportes === --
+                                          -- === Tab 12: Teleport === --
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 -- Tab12: Teleportes
-
+Tab12:AddSection({"Teleport"})
 local teleportPlayer = game.Players.LocalPlayer
 local teleportLocation = "Main Square" -- Default value
 
@@ -4832,6 +4832,7 @@ local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
     ["Main Square"] = Vector3.new(-26.17, 3.48, -0.93),
     ["Bank"] = Vector3.new(1.99, 3.32, 236.65),
+    ["Police"] = Vector3.new(-120.03, 3.55, 8.58),
     ["Hospital"] = Vector3.new(-303.2, 3.40, 13.74),
     ["City Hall"] = Vector3.new(-354.65, 7.32, -102.16),
     ["Farm"] = Vector3.new(-766.41, 2.92, -61.10),
@@ -4839,6 +4840,11 @@ local locations = {
     ["Shopping"] = Vector3.new(151.05, 3.52, -190.64),
     ["Airport"] = Vector3.new(290.23, 4.32, 42.57),
     ["Hotel"] = Vector3.new(159.10, 3.32, 164.97),
+    ["School"] = Vector3.new(-302.11, 3.66, 212.59),
+    ["Fire Station"] = Vector3.new(-429.83, 3.46, -99.58),
+    ["Solar Panel"] = Vector3.new(409.34, 19.07, 820.19),
+    ["Campsite 1"] = Vector3.new(-352.33, 3.06, 555.47),
+    ["Campsite 2"] = Vector3.new(-128.29, 3.06, 1064.05),
     ["Seaside 1"] = Vector3.new(55.69, 2.94, -1403.60),
     ["Seaside 2"] = Vector3.new(42.39, 2.94, 1336.14)
 }
@@ -4852,6 +4858,7 @@ Tab12:AddDropdown({
         "Hill",
         "Main Square",
         "Bank",
+        "Police",
         "Hospital",
         "City Hall",
         "Farm",
@@ -4859,6 +4866,11 @@ Tab12:AddDropdown({
         "Shopping",
         "Airport",
         "Hotel",
+        "School",
+        "Fire Station",
+        "Solar Panel",
+        "Campsite 1",
+        "Campsite 2",
         "Seaside 1",
         "Seaside 2"
     },
