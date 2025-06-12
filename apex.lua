@@ -1883,7 +1883,15 @@ MainTab:AddButton({
 
 MainTab:AddSection("Other")
 -- Assuming you already defined:
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+
 local infiniteSprinklerEnabled = false
+local sprinklerConnection = nil
+
+-- Your cropSet and getPP should be defined elsewhere as in your original code
 
 local function sprinklerAction()
     local char = LocalPlayer.Character
@@ -1897,7 +1905,6 @@ local function sprinklerAction()
             if pp then
                 local dist = (pp.Position - root.Position).Magnitude
                 if dist <= range then
-                    local ReplicatedStorage = game:GetService("ReplicatedStorage")
                     local WaterEvent = ReplicatedStorage:FindFirstChild("WaterPlant")
                     if WaterEvent and WaterEvent:IsA("RemoteEvent") then
                         WaterEvent:FireServer(model)
@@ -1908,23 +1915,36 @@ local function sprinklerAction()
     end
 end
 
--- Example toggle callback integration with Fluent UI toggle:
+local function startSprinklerLoop()
+    if sprinklerConnection then return end
+    sprinklerConnection = RunService.Heartbeat:Connect(function()
+        if infiniteSprinklerEnabled then
+            sprinklerAction()
+        else
+            if sprinklerConnection then
+                sprinklerConnection:Disconnect()
+                sprinklerConnection = nil
+            end
+        end
+    end)
+end
+
+-- Assuming your toggle is already created as InfSprinkler
 local InfSprinkler = MainTab:AddToggle("InfSprinkler", {
-    Title = "Infinity Sprinkler",
-    Description = "",
-    Default = false,
-    Callback = function(state) -- state is true if toggled on, false if off
-        infiniteSprinklerEnabled = state
-        if state then
-            spawn(function()
-                while infiniteSprinklerEnabled do
-                    sprinklerAction()
-                    task.wait(1) -- wait 1 second between actions, adjust as needed
-                end
-            end)
+	Title = "Infinity Sprinkler",
+	Default = false
+})
+InfSprinkler:OnChanged(function(state)
+    infiniteSprinklerEnabled = state
+    if state then
+        startSprinklerLoop()
+    else
+        if sprinklerConnection then
+            sprinklerConnection:Disconnect()
+            sprinklerConnection = nil
         end
     end
-})
+end)
 local SelectMutation = MainTab:AddDropdown("SelectMutation", {
         Title = "Select Mutation ( Auto Fav )",
         Description = "Select a mutation to be added to FAVORITES.",
