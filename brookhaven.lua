@@ -849,7 +849,7 @@ end
 
 UptadePlayers()
 
-Tab3:AddButton({"Atualizar lista", function()
+Tab3:AddButton({"Update Player's List", function()
     UptadePlayers()
 end})
 
@@ -994,8 +994,8 @@ end
 -- Tabela de avatares
 AvatarManager.Avatares = {
     { Nome = "Gato de Manga", ID = 124948425515124 },
-    { Nome = "Tung Saur", ID = 117098257036480 },
-    { Nome = "Tralaleiro", ID = 99459753608381 },
+    { Nome = "Tung Tung Sahur", ID = 117098257036480 },
+    { Nome = "Tralalelo Tralala", ID = 99459753608381 },
     { Nome = "Monstro S.A", ID = 123609977175226 },
     { Nome = "Trenzinho", ID = 80468697076178 },
     { Nome = "Dino", ID = 11941741105 },
@@ -1228,7 +1228,7 @@ Tab3:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
                                           -- === Tab4: House === --
 ---------------------------------------------------------------------------------------------------------------------------------
-
+Tab4:AddSection({"Troll [ FUN ]"})
 Tab4:AddParagraph({
     Title = "TROLL HOUSE",
     Content = ""
@@ -1458,7 +1458,7 @@ Tab5:AddToggle({
             if self.LocalPlayer.Character and self.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                 originalPosition = self.LocalPlayer.Character.HumanoidRootPart.Position
             else
-                TeleportCarro:MostrarNotificacao("Personagem não encontrado!")
+                TeleportCarro:MostrarNotificacao("Character not found!")
                 return
             end
 
@@ -1467,7 +1467,7 @@ Tab5:AddToggle({
             spawn(function()
                 local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
                 if not vehiclesFolder then
-                    TeleportCarro:MostrarNotificacao("Pasta de veículos não encontrada!")
+                    TeleportCarro:MostrarNotificacao("Vehicle folder not found!")
                     return
                 end
 
@@ -1525,25 +1525,25 @@ Tab5:AddToggle({
     Callback = function(state)
         if state then
             if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-                TeleportCarro:MostrarNotificacao("Nenhum carro selecionado!")
+                TeleportCarro:MostrarNotificacao("No car selected!")
                 return
             end
 
             local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
             if not vehiclesFolder then
-                TeleportCarro:MostrarNotificacao("Pasta de veículos não encontrada!")
+                TeleportCarro:MostrarNotificacao("Vehicle folder not found!")
                 return
             end
 
             local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
             if not vehicle then
-                TeleportCarro:MostrarNotificacao("Carro selecionado não encontrado!")
+                TeleportCarro:MostrarNotificacao("Selected car not found!")
                 return
             end
 
             local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
             if not vehicleSeat then
-                TeleportCarro:MostrarNotificacao("Assento do carro não encontrado!")
+                TeleportCarro:MostrarNotificacao("Car seat not found!")
                 return
             end
 
@@ -1554,13 +1554,13 @@ Tab5:AddToggle({
             -- Ajustar a câmera para o assento do carro, mesmo se ocupado
             TeleportCarro.Camera.CameraSubject = vehicleSeat
             TeleportCarro.Camera.CameraType = Enum.CameraType.Follow
-            TeleportCarro:MostrarNotificacao("Câmera ajustada para o carro " .. _G.SelectedVehicle .. "!")
+            TeleportCarro:MostrarNotificacao("Camera adjusted to the car " .. _G.SelectedVehicle .. "!")
         else
             -- Restaurar a câmera ao estado original
             if TeleportCarro.OriginalCameraSubject then
                 TeleportCarro.Camera.CameraSubject = TeleportCarro.OriginalCameraSubject
                 TeleportCarro.Camera.CameraType = TeleportCarro.OriginalCameraType or Enum.CameraType.Custom
-                TeleportCarro:MostrarNotificacao("Câmera restaurada ao normal!")
+                TeleportCarro:MostrarNotificacao("Camera restored to normal!")
                 TeleportCarro.OriginalCameraSubject = nil
                 TeleportCarro.OriginalCameraType = nil
             end
@@ -1584,30 +1584,30 @@ Tab5:AddButton({
     Description = "Teleports the selected car to the void",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-            TeleportCarro:MostrarNotificacao("Nenhum carro selecionado!")
+            TeleportCarro:MostrarNotificacao("No car selected!")
             return
         end
 
         local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Pasta de veículos não encontrada!")
+            TeleportCarro:MostrarNotificacao("Vehicle folder not found!")
             return
         end
 
         local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
         if not vehicle then
-            TeleportCarro:MostrarNotificacao("Carro selecionado não encontrado!")
+            TeleportCarro:MostrarNotificacao("Selected car not found!")
             return
         end
 
         local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
         if not vehicleSeat then
-            TeleportCarro:MostrarNotificacao("Assento do carro não encontrado!")
+            TeleportCarro:MostrarNotificacao("Car seat not found!")
             return
         end
 
         if vehicleSeat.Occupant then
-            TeleportCarro:MostrarNotificacao("O kill car não foi possível, há alguém sentado no assento do motorista!")
+            TeleportCarro:MostrarNotificacao("The kill car was not possible, there is someone sitting in the driver's seat!")
             return
         end
 
@@ -1615,7 +1615,7 @@ Tab5:AddButton({
         if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personagem do jogador não encontrado!")
+            TeleportCarro:MostrarNotificacao("Player character not found!")
             return
         end
 
@@ -1623,10 +1623,10 @@ Tab5:AddButton({
         local success = TeleportCarro:TeleportToSeat(vehicleSeat, vehicle)
         if success then
             TeleportCarro:TeleportToVoid(vehicle)
-            TeleportCarro:MostrarNotificacao("Carro " .. _G.SelectedVehicle .. " foi teleportado para o void!")
+            TeleportCarro:MostrarNotificacao("Car " .. _G.SelectedVehicle .. " was teleported to the void!")
             TeleportCarro:ExitCarAndReturn(originalPos)
         else
-            TeleportCarro:MostrarNotificacao("Falha ao sentar no carro!")
+            TeleportCarro:MostrarNotificacao("Failed to sit in the car!")
         end
         TeleportCarro:ToggleFallDamage(false)
     end
@@ -1638,30 +1638,30 @@ Tab5:AddButton({
     Description = "Teleports the selected car to your position",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
-            TeleportCarro:MostrarNotificacao("Nenhum carro selecionado!")
+            TeleportCarro:MostrarNotificacao("No car selected!")
             return
         end
 
         local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Pasta de veículos não encontrada!")
+            TeleportCarro:MostrarNotificacao("Vehicle folder not found!")
             return
         end
 
         local vehicle = vehiclesFolder:FindFirstChild(_G.SelectedVehicle)
         if not vehicle then
-            TeleportCarro:MostrarNotificacao("Carro selecionado não encontrado!")
+            TeleportCarro:MostrarNotificacao("Selected car not found!")
             return
         end
 
         local vehicleSeat = vehicle:FindFirstChildWhichIsA("VehicleSeat", true)
         if not vehicleSeat then
-            TeleportCarro:MostrarNotificacao("Assento do carro não encontrado!")
+            TeleportCarro:MostrarNotificacao("Car seat not found!")
             return
         end
 
         if vehicleSeat.Occupant then
-            TeleportCarro:MostrarNotificacao("O teleporte do carro não foi possível, há alguém sentado no assento do motorista!")
+            TeleportCarro:MostrarNotificacao("Car teleportation failed, there is someone sitting in the driver's seat!")
             return
         end
 
@@ -1669,7 +1669,7 @@ Tab5:AddButton({
         if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personagem do jogador não encontrado!")
+            TeleportCarro:MostrarNotificacao("Player character not found!")
             return
         end
 
@@ -1677,10 +1677,10 @@ Tab5:AddButton({
         local success = TeleportCarro:TeleportToSeat(vehicleSeat, vehicle)
         if success then
             TeleportCarro:TeleportToPlayer(vehicle, originalPos)
-            TeleportCarro:MostrarNotificacao("Carro " .. _G.SelectedVehicle .. " foi teleportado para você!")
+            TeleportCarro:MostrarNotificacao("Car " .. _G.SelectedVehicle .. " was teleported to you!")
             TeleportCarro:ExitCarAndReturn(originalPos)
         else
-            TeleportCarro:MostrarNotificacao("Falha ao sentar no carro!")
+            TeleportCarro:MostrarNotificacao("Failed to sit in the car!")
         end
         TeleportCarro:ToggleFallDamage(false)
     end
@@ -1695,13 +1695,13 @@ Tab5:AddButton({
         if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             originalPos = TeleportCarro.LocalPlayer.Character.HumanoidRootPart.Position
         else
-            TeleportCarro:MostrarNotificacao("Personagem do jogador não encontrado!")
+            TeleportCarro:MostrarNotificacao("Player character not found!")
             return
         end
 
         local vehiclesFolder = TeleportCarro.Workspace:FindFirstChild("Vehicles")
         if not vehiclesFolder then
-            TeleportCarro:MostrarNotificacao("Pasta de veículos não encontrada!")
+            TeleportCarro:MostrarNotificacao("Vehicle folder not found!")
             return
         end
 
@@ -1720,23 +1720,23 @@ Tab5:AddButton({
                 if success then
                     TeleportCarro:TeleportToPlayer(car, originalPos)
                     TeleportCarro:ExitCarAndReturn(originalPos)
-                    TeleportCarro:MostrarNotificacao("Carro " .. car.Name .. " foi teleportado para você!")
+                    TeleportCarro:MostrarNotificacao("Car " .. car.Name .. " was teleported to you!")
                     task.wait(1)
                 else
-                    TeleportCarro:MostrarNotificacao("Falha ao sentar no carro " .. car.Name .. "!")
+                    TeleportCarro:MostrarNotificacao("Failed to sit in the car " .. car.Name .. "!")
                 end
             else
                 if vehicleSeat then
-                    TeleportCarro:MostrarNotificacao("Carro " .. car.Name .. " ignorado: alguém está no assento do motorista!")
+                    TeleportCarro:MostrarNotificacao("Car " .. car.Name .. " ignored: someone is in the driver's seat!")
                 else
-                    TeleportCarro:MostrarNotificacao("Carro " .. car.Name .. " ignorado: assento não encontrado!")
+                    TeleportCarro:MostrarNotificacao("Car " .. car.Name .. " ignored: seat not found!")
                 end
             end
         end
 
         TeleportCarro:ToggleFallDamage(false)
         if #cars == 0 then
-            TeleportCarro:MostrarNotificacao("Nenhum carro disponível para teleportar!")
+            TeleportCarro:MostrarNotificacao("No car available to teleport!")
         end
     end
 })
@@ -2123,7 +2123,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
     end
 
     Tab7:AddDropdown({
-        Name = title,
+        Name = "Select a Sound",
         Description = "Choose a sound to play on the server",
         Default = defaultOption,
         Multi = false,
@@ -2138,7 +2138,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
     })
 
     Tab7:AddButton({
-        Name = "Play Selected Sound",
+        Name = title,
         Description = "",
         Callback = function()
             if selectedSoundID then
@@ -2169,7 +2169,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
 end
 
 -- Dropdown "Memes"
-createSoundDropdown("Selecione um meme", {
+createSoundDropdown("Select a Meme Sound", {
     ["Memes"] = {
         {name = "pankapakan", id = "122547522269143"}, 
        
@@ -2339,7 +2339,7 @@ createSoundDropdown("Selecione um meme", {
 local Section = Tab7:AddSection({"Throw Effect on Server"})
 
 -- Dropdown "Efeito/Terror"
-createSoundDropdown("Selecione um terror ou efeito", {
+createSoundDropdown("Select a Loud Sound", {
     ["efeito/terror"] = {
         {name = "jumpscar", id = "91784486966761"},
         {name = "n se preocupe", id = "87041057113780"},
@@ -3333,8 +3333,8 @@ sitCheckConnection = RunService.Heartbeat:Connect(function()
 end)
 
 Tab9:AddButton({
-    Name = "Matar",
-    Description = "Inicia o matar com o método selecionado",
+    Name = "Auto Kill",
+    Description = "Starts killing with the selected method",
     Callback = function()
         if isFollowingKill or isFollowingPull or running then return end
         if not selectedPlayer or not selectedKillPullMethod then return end
@@ -3347,8 +3347,8 @@ Tab9:AddButton({
 })
 
 Tab9:AddButton({
-    Name = "Puxar",
-    Description = "Inicia o puxar com o método selecionado",
+    Name = "Auto Pull",
+    Description = "Starts pulling with the selected method",
     Callback = function()
         if isFollowingKill or isFollowingPull or running then return end
         if not selectedPlayer or not selectedKillPullMethod or selectedKillPullMethod ~= "Sofá" then return end
@@ -3357,8 +3357,8 @@ Tab9:AddButton({
 })
 
 Tab9:AddButton({
-    Name = "Parar (Matar ou Puxar)",
-    Description = "Para o movimento de matar ou puxar",
+    Name = "Stop Movement [ KILL/PULL ]",
+    Description = "For the kill or pull movement",
     Callback = function()
         isFollowingKill = false
         isFollowingPull = false
@@ -3400,8 +3400,8 @@ Tab9:AddButton({
 local Section = Tab9:AddSection({" flings"})
 
 local DropdownFlingMethod = Tab9:AddDropdown({
-    Name = "Selecionar Método de Fling",
-    Description = "Escolha o método para aplicar fling",
+    Name = "Select Fling Method",
+    Description = "Choose the method to apply fling",
     Options = {"Sofá", "Ônibus", "Bola", "Bola V2", "Barco", "Caminhão"},
     Callback = function(value)
         selectedFlingMethod = value
@@ -4296,8 +4296,8 @@ end
  
                 
 flingToggle = Tab9:AddToggle({
-    Name = "Ativar Fling",
-    Description = "Ativa ou desativa o fling com o método selecionado",
+    Name = "Activate Fling",
+    Description = "Enables or disables fling with the selected method",
     Default = false,
     Callback = function(state)
         if state then
@@ -4324,7 +4324,7 @@ flingToggle = Tab9:AddToggle({
     end
 })
 
-local Section = Tab9:AddSection({" fling ALL e desligue os RGB antes de usar"})
+local Section = Tab9:AddSection({"ALL"})
 
 -- Variáveis globais no início do Tab2
 local Players = game:GetService("Players")
@@ -4387,12 +4387,12 @@ end
 
 -- TextBox para excluir jogador
 Tab9:AddTextBox({
-    Name = "adicionar jogador na whaitelist",
-    Description = "Digite parte do nome do jogador",
-    PlaceholderText = "Ex.: rt para (player123)",
+    Name = "Whitelist Player",
+    Description = "Enter part of the player's name",
+    PlaceholderText = "Ex.: rt to (player123)",
     Callback = function(Value)
         if Value == "" then
-            showNotification("Nenhuma Ação", "Digite um nome para adicionar um jogador.", nil)
+            showNotification("No Action", "Enter a name to add a player.", nil)
             return
         end
 
@@ -4401,44 +4401,44 @@ Tab9:AddTextBox({
             -- Verifica se o jogador já está excluído
             for _, excluded in ipairs(excludedPlayers) do
                 if excluded == player then
-                    showNotification("Jogador Já esta na whaitelist", "Jogador " .. player.Name .. " já foi adicionado.", getPlayerThumbnail(player.UserId))
+                    showNotification("Player is already on the whitelist", "Player " .. player.Name .. " has already been added.", getPlayerThumbnail(player.UserId))
                     return
                 end
             end
             table.insert(excludedPlayers, player)
             local thumbnail = getPlayerThumbnail(player.UserId)
-            showNotification("Jogador adicionado", "Jogador " .. player.Name .. " foi removido dos flings.", thumbnail)
+            showNotification("Player added", "Player " .. player.Name .. " was removed from the flings.", thumbnail)
         else
-            showNotification("Jogador Não Encontrado", "Nenhum jogador encontrado com '" .. Value .. "'.", nil)
+            showNotification("Player Not Found", "No players found with '" .. Value .. "'.", nil)
         end
     end
 })
 
 -- Botão para verificar jogadores excluídos
-Tab9:AddButton({"Verificar Excluídos", function()
+Tab9:AddButton({"Check Excluded Player", function()
     if #excludedPlayers == 0 then
-        showNotification("Nenhum na whaitelist", "Nenhum jogador está removido dos flings.", nil)
+        showNotification("None in the whitelist", "No player is removed from flings.", nil)
         return
     end
     for i, player in ipairs(excludedPlayers) do
         local thumbnail = getPlayerThumbnail(player.UserId)
-        showNotification("Jogador adicionado " .. i, "Jogador " .. player.Name .. " está removido dos flings.", thumbnail)
+        showNotification("Player added " .. i, "Player " .. player.Name .. " is removed from the flings.", thumbnail)
         task.wait(0.5) -- Pequeno atraso entre notificações para evitar sobreposição
     end
 end})
 
 -- Botão para remover todos os jogadores excluídos
-Tab9:AddButton({"Remover Excluídos", function()
+Tab9:AddButton({"Remove Player", function()
     if #excludedPlayers == 0 then
-        showNotification("Nenhum removido", "Nenhum jogador para remover da whaitelist.", nil)
+        showNotification("None removed", "No players to remove from whitelist.", nil)
         return
     end
     excludedPlayers = {}
-    showNotification("whaitelists Removidas", "Todos os jogadores foram removidos da whaitelist.", nil)
+    showNotification("Whitelist Removed", "All players have been removed from the whitelist.", nil)
 end})
 
 -- Bola Fling Orbitando
-Tab9:AddButton({"Bola Fling Orbitando", function()
+Tab9:AddButton({"Orbiting Fling Ball", function()
     if orbitando then return end
     if not equipBola() then return end
     task.wait(0.5)
@@ -4484,7 +4484,7 @@ Tab9:AddButton({"Bola Fling Orbitando", function()
 end})
 
 -- Fling Bola ALL V1
-Tab9:AddButton({"Fling Bola ALL V1", function()
+Tab9:AddButton({"Fling Ball ALL V1", function()
     if allFling then return end
     if not equipBola() then return end
     task.wait(0.5)
@@ -4606,7 +4606,7 @@ Tab9:AddButton({"Fling Bola ALL V1", function()
 end})
 
 -- Fling Bola ALL V2
-Tab9:AddButton({"Fling Bola ALL V2", function()
+Tab9:AddButton({"Fling Ball ALL V2", function()
     if allFling2 then return end
     if not equipBola() then return end
     task.wait(0.5)
@@ -4699,7 +4699,7 @@ Tab9:AddButton({"Fling Bola ALL V2", function()
 end})
 
 -- Parar Tudo
-Tab9:AddButton({"Parar Tudo", function()
+Tab9:AddButton({"Stop Everything", function()
     -- Parar Orbitando
     orbitando = false
     if orbitConn then
@@ -4729,7 +4729,7 @@ Tab9:AddButton({"Parar Tudo", function()
     end
     soccerBall = nil
     originalProperties = nil
-    showNotification("Tudo Parado", "Todas as funções foram desativadas.", nil)
+    showNotification("Everything Stopped", "All functions have been disabled.", nil)
 end})
 
 
@@ -4767,7 +4767,7 @@ Tab11:AddButton({
 
 
 Tab11:AddButton({
-    Name = "Buraco Negro",
+    Name = "Black Hole",
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Bac0nHck/Scripts/main/BringFlingPlayers"))("More Scripts: t.me/arceusxscripts")
@@ -4777,7 +4777,7 @@ Tab11:AddButton({
 local Section = Tab11:AddSection({"esse system broochk e voidProtection"})
 
 Tab11:AddButton({
-    Name = "System Broochk",
+    Name = "System Broken",
     Description = "Universal",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
@@ -4827,41 +4827,41 @@ Tab11:AddButton({
 -- Tab12: Teleportes
 
 local teleportPlayer = game.Players.LocalPlayer
-local teleportLocation = "Morro" -- Valor padrão
+local teleportLocation = "Main Square" -- Default value
 
 local locations = {
-    ["Morro"] = Vector3.new(-348.64, 65.94, -458.08),
-    ["Praça"] = Vector3.new(-26.17, 3.48, -0.93),
-    ["Banco"] = Vector3.new(1.99, 3.32, 236.65),
+    ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
+    ["Main Square"] = Vector3.new(-26.17, 3.48, -0.93),
+    ["Bank"] = Vector3.new(1.99, 3.32, 236.65),
     ["Hospital"] = Vector3.new(-303.2, 3.40, 13.74),
-    ["Prefeitura"] = Vector3.new(-354.65, 7.32, -102.16),
-    ["Fazenda"] = Vector3.new(-766.41, 2.92, -61.10),
-    ["Mercado"] = Vector3.new(16.31, 3.32, -107.07),
+    ["City Hall"] = Vector3.new(-354.65, 7.32, -102.16),
+    ["Farm"] = Vector3.new(-766.41, 2.92, -61.10),
+    ["Market"] = Vector3.new(16.31, 3.32, -107.07),
     ["Shopping"] = Vector3.new(151.05, 3.52, -190.64),
-    ["Aeroporto"] = Vector3.new(290.23, 4.32, 42.57),
+    ["Airport"] = Vector3.new(290.23, 4.32, 42.57),
     ["Hotel"] = Vector3.new(159.10, 3.32, 164.97),
-    ["Beira-mar 1"] = Vector3.new(55.69, 2.94, -1403.60),
-    ["Beira-mar 2"] = Vector3.new(42.39, 2.94, 1336.14)
+    ["Seaside 1"] = Vector3.new(55.69, 2.94, -1403.60),
+    ["Seaside 2"] = Vector3.new(42.39, 2.94, 1336.14)
 }
 
 Tab12:AddDropdown({
-    Name = "Locais de Brookhaven",
-    Description = "Selecione um local para teleportar",
+    Name = "Brookhaven Locations",
+    Description = "Select a location to teleport to",
     Default = teleportLocation,
     Multi = false,
     Options = {
-        "Morro",
-        "Praça",
-        "Banco",
+        "Hill",
+        "Main Square",
+        "Bank",
         "Hospital",
-        "Prefeitura",
-        "Fazenda",
-        "Mercado",
+        "City Hall",
+        "Farm",
+        "Market",
         "Shopping",
-        "Aeroporto",
+        "Airport",
         "Hotel",
-        "Beira-mar 1",
-        "Beira-mar 2"
+        "Seaside 1",
+        "Seaside 2"
     },
     Callback = function(value)
         teleportLocation = value
@@ -4869,8 +4869,8 @@ Tab12:AddDropdown({
 })
 
 Tab12:AddButton({
-    Name = "Teleportar",
-    Description = "Teleporta para o local selecionado",
+    Name = "Teleport",
+    Description = "Teleports to the selected location",
     Callback = function()
         if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
             local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
