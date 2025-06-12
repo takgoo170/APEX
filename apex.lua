@@ -1883,9 +1883,6 @@ MainTab:AddButton({
 
 MainTab:AddSection("Other")
 -- Assuming you already defined:
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local LocalPlayer = Players.LocalPlayer
 
 local infiniteSprinklerEnabled = false
