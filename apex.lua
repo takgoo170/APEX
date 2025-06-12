@@ -1882,66 +1882,6 @@ MainTab:AddButton({
 })
 
 MainTab:AddSection("Other")
--- Assuming you already defined:
-local LocalPlayer = Players.LocalPlayer
-
-local infiniteSprinklerEnabled = false
-local sprinklerConnection = nil
-
--- Your cropSet and getPP should be defined elsewhere as in your original code
-
-local function sprinklerAction()
-    local char = LocalPlayer.Character
-    local root = char and char:FindFirstChild("HumanoidRootPart")
-    if not root then return end
-
-    local range = 15
-    for _, model in ipairs(workspace:GetDescendants()) do
-        if model:IsA("Model") and cropSet[model.Name:lower()] then
-            local pp = getPP(model)
-            if pp then
-                local dist = (pp.Position - root.Position).Magnitude
-                if dist <= range then
-                    local WaterEvent = ReplicatedStorage:FindFirstChild("WaterPlant")
-                    if WaterEvent and WaterEvent:IsA("RemoteEvent") then
-                        WaterEvent:FireServer(model)
-                    end
-                end
-            end
-        end
-    end
-end
-
-local function startSprinklerLoop()
-    if sprinklerConnection then return end
-    sprinklerConnection = RunService.Heartbeat:Connect(function()
-        if infiniteSprinklerEnabled then
-            sprinklerAction()
-        else
-            if sprinklerConnection then
-                sprinklerConnection:Disconnect()
-                sprinklerConnection = nil
-            end
-        end
-    end)
-end
-
--- Assuming your toggle is already created as InfSprinkler
-local InfSprinkler = MainTab:AddToggle("InfSprinkler", {
-	Title = "Infinity Sprinkler",
-	Default = false
-})
-InfSprinkler:OnChanged(function(state)
-    infiniteSprinklerEnabled = state
-    if state then
-        startSprinklerLoop()
-    else
-        if sprinklerConnection then
-            sprinklerConnection:Disconnect()
-            sprinklerConnection = nil
-        end
-    end
-end)
 local SelectMutation = MainTab:AddDropdown("SelectMutation", {
         Title = "Select Mutation ( Auto Fav )",
         Description = "Select a mutation to be added to FAVORITES.",
