@@ -38,7 +38,7 @@ local function createLoadingScreen()
     image.Size = UDim2.new(0, 300, 0, 300)
     image.Position = UDim2.new(0.5, -150, 0.35, -150)
     image.BackgroundTransparency = 1
-    image.Image = "rbxassetid://75732220851513"
+    image.Image = "rbxassetid://15860246232"
     image.Parent = frame
 
     local nameText = Instance.new("TextLabel")
@@ -144,8 +144,8 @@ local Window = redzlib:MakeWindow({
   })
 
   Window:AddMinimizeButton({
-    Button = { Image = "rbxassetid://89018617324929", BackgroundTransparency = 0 },
-    Corner = { CornerRadius = UDim.new(35, 1) },
+    Button = { Image = "rbxassetid://15860246232", BackgroundTransparency = 0 },
+    Corner = { CornerRadius = UDim.new(25, 1) },
 })
 
 ----------------- THEME ----------------
