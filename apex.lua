@@ -2416,7 +2416,7 @@ VisualTab:AddButton({
 })
 ]]
 ----------- INTERFACE MANAGER -------------
---[[SaveManager:SetLibrary(Fluent)
+SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
