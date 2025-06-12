@@ -2416,8 +2416,8 @@ VisualTab:AddButton({
 })
 ]]
 ----------- INTERFACE MANAGER -------------
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
+SaveManager:SetLibrary(KaiUI)
+InterfaceManager:SetLibrary(KaiUI)
 
 -- Ignore keys that are used by ThemeManager.
 -- (we dont want configs to save themes, do we?)
@@ -2431,6 +2431,6 @@ SaveManager:SetIgnoreIndexes({})
 -- and game configs in a separate folder per game
 InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
-]]
+
 InterfaceManager:BuildInterfaceSection(Tabs.MiscTab)
 SaveManager:BuildConfigSection(Tabs.MiscTab)
