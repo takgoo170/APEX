@@ -215,7 +215,7 @@ local Paragraph = Tab1:AddParagraph({"Executor", executorName})
 
 local Section = Tab1:AddSection({"APEX OT: version 1.2"})
 
-local Paragraph = Tab1:AddParagraph({"Developer", "Takgoo \n ?????"})
+local Paragraph = Tab1:AddParagraph({"Developer", "Takgoo \n APEX TEAM"})
 
 
   
@@ -341,7 +341,7 @@ Tab2:AddTextBox({
 
 -- Botão para ativar/desativar headsit
 -- Botão para ativar/desativar headsit (versão simplificada)
-Tab2:AddButton({"", function()
+Tab2:AddButton({"Activate Headsit", function()
     if not selectedPlayerName then
     
         return
