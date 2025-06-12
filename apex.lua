@@ -1882,6 +1882,49 @@ MainTab:AddButton({
 })
 
 MainTab:AddSection("Other")
+-- Assuming you already defined:
+local infiniteSprinklerEnabled = false
+
+local function sprinklerAction()
+    local char = LocalPlayer.Character
+    local root = char and char:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+
+    local range = 15
+    for _, model in ipairs(workspace:GetDescendants()) do
+        if model:IsA("Model") and cropSet[model.Name:lower()] then
+            local pp = getPP(model)
+            if pp then
+                local dist = (pp.Position - root.Position).Magnitude
+                if dist <= range then
+                    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+                    local WaterEvent = ReplicatedStorage:FindFirstChild("WaterPlant")
+                    if WaterEvent and WaterEvent:IsA("RemoteEvent") then
+                        WaterEvent:FireServer(model)
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- Example toggle callback integration with Fluent UI toggle:
+local InfSprinkler = MainTab:AddToggle("InfSprinkler", {
+    Title = "Infinity Sprinkler",
+    Description = "",
+    Default = false,
+    Callback = function(state) -- state is true if toggled on, false if off
+        infiniteSprinklerEnabled = state
+        if state then
+            spawn(function()
+                while infiniteSprinklerEnabled do
+                    sprinklerAction()
+                    task.wait(1) -- wait 1 second between actions, adjust as needed
+                end
+            end)
+        end
+    end
+})
 local SelectMutation = MainTab:AddDropdown("SelectMutation", {
         Title = "Select Mutation ( Auto Fav )",
         Description = "Select a mutation to be added to FAVORITES.",
