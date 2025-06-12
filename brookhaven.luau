@@ -1,3 +1,6 @@
+---- LINE: 2731
+---- LAST EDITED
+
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
@@ -46,7 +49,7 @@ local function createLoadingScreen()
     nameText.BackgroundTransparency = 1
     nameText.Font = Enum.Font.FredokaOne
     nameText.TextScaled = true
-    nameText.Text = "Verificando usuário: "..lp.Name.." (Conta: "..tostring(lp.AccountAge).." dias)"
+    nameText.Text = "Verifying user: "..lp.Name.." (Account: "..tostring(lp.AccountAge).." days)"
     nameText.Parent = frame
 
     local barBG = Instance.new("Frame")
@@ -101,8 +104,8 @@ local function createLoadingScreen()
             
             -- Exibe a notificação de boas-vindas
             StarterGui:SetCore("SendNotification", {
-                Title = "Coquette Hub",
-                Text = "Bem-vindo à Coquette Hub ",
+                Title = "APEX OT",
+                Text = "Welcome to APEX OT ",
                 Duration = 4
             })
             
@@ -135,8 +138,8 @@ print("Loading completo! Agora executando o resto do script...")
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
 
 local Window = redzlib:MakeWindow({
-    Title = "Coquette Hub 3.7_Nova_era",
-    SubTitle = "by Lolytadev ",
+    Title = "APEX OT | BROOKHAVEN",
+    SubTitle = "by Kai and Apex Team ",
     SaveFolder = "teste"
   })
 
@@ -158,7 +161,7 @@ local Tab8 = Window:MakeTab({"Music", "music"})
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
 local Tab11 = Window:MakeTab({"Scripts", "scroll"})
-local Tab12 = Window:MakeTab({"Teleportes", "map-pin"})
+local Tab12 = Window:MakeTab({"Teleport", "locate"})
 
 
 
@@ -167,16 +170,23 @@ local Tab12 = Window:MakeTab({"Teleportes", "map-pin"})
 --------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 1: credits === --
 ---------------------------------------------------------------------------------------------------------------------------------
-Tab1:AddSection({"Créditos do Hub"})
+Tab1:AddSection({"APEX TEAM"})
 
 Tab1:AddDiscordInvite({
-    Name = "Coquette Studio",
-    Description = "https://discord.gg/3JuzpSsWMy",
-    Logo = "rbxassetid://134568674618533",
-    Invite = "https://discord.gg/3JuzpSsWMy",
+    Name = "APEX OT | COMMUNITY",
+    Description = "Join to our discord community for more updates!",
+    Logo = "",
+    Invite = "https://discord.gg/VrJx432MB5",
 })
 
+Tab1:AddSection({"KAI TEAM"})
 
+Tab1:AddDiscordInvite({
+    Name = "KAI HUB | COMMUNITY",
+    Description = "Join to Kai Hub Community!",
+    Logo = "",
+    Invite = "https://discord.gg/wDMPK3QAmY",
+})
   
 
 local function detectExecutor()
@@ -193,21 +203,21 @@ local function detectExecutor()
     elseif getexecutorname then
         return getexecutorname()
     else
-        return "Executor Desconhecido"
+        return "Executor Unknown"
     end
 end
 
 local executorName = detectExecutor()
 
-local Paragraph = Tab1:AddParagraph({"Execultor", executorName})
+local Paragraph = Tab1:AddParagraph({"Executor", executorName})
 
-local Section = Tab1:AddSection({"versao do Hub 3.7"})
+local Section = Tab1:AddSection({"APEX OT: version 1.2"})
 
-local Paragraph = Tab1:AddParagraph({"Criadores", "Lolyta \n ?????"})
+local Paragraph = Tab1:AddParagraph({"Developer", "Takgoo \n ?????"})
 
 
   
-  Tab1:AddButton({
+ --[[ Tab1:AddButton({
     Name = " - Copiar @ do TikTok",
     Callback = function()
       setclipboard("@lolytauwu") -- Copia o @
@@ -215,14 +225,14 @@ local Paragraph = Tab1:AddParagraph({"Criadores", "Lolyta \n ?????"})
       
     end
   })
-
+]]
  ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 2: Fun === --
 -----------------------------------------------------------------------------------------------------------------------------------
 
 
 
-local Section = Tab2:AddSection({"Player Character"})
+local Section = Tab2:AddSection({"Player"})
 
 
 local Players = game:GetService("Players")
@@ -236,13 +246,13 @@ local function headsitOnPlayer(targetPlayer)
     local humanoid = character:FindFirstChildOfClass("Humanoid")
 
     if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
-        warn("Jogador alvo sem cabeça ou personagem.")
+        warn("Headless target player or character.")
         return false
     end
     local targetHead = targetPlayer.Character.Head
     local localRoot = character:FindFirstChild("HumanoidRootPart")
     if not localRoot then
-        warn("Seu personagem não tem HumanoidRootPart.")
+        warn("Your character does not have HumanoidRootPart.")
         return false
     end
 
@@ -263,7 +273,7 @@ local function headsitOnPlayer(targetPlayer)
         humanoid.Sit = true
     end
 
-    print("Headsit ativado em " .. targetPlayer.Name)
+    print("Headsit activated " .. targetPlayer.Name)
     return true
 end
 
@@ -282,7 +292,7 @@ local function removeHeadsit()
         humanoid.Sit = false
     end
 
-    print("Headsit desativado.")
+    print("Headsit deactivated")
 end
 
 -- Função para encontrar jogador por nome parcial
@@ -304,8 +314,8 @@ local function notifyPlayerSelected(player)
     local content, _ = Players:GetUserThumbnailAsync(player.UserId, thumbType, thumbSize)
 
     StarterGui:SetCore("SendNotification", {
-        Title = "Player Selecionado",
-        Text = player.Name .. " foi selecionado!",
+        Title = "Selected Player",
+        Text = player.Name .. " was selected!",
         Icon = content,
         Duration = 5
     })
@@ -313,16 +323,16 @@ end
 
 -- TextBox para digitar nome do player
 Tab2:AddTextBox({
-    Name = "Nome do Jogador",
-    Description = "Digite parte do nome",
-    PlaceholderText = "ex: lo → Lolyta",
+    Name = "Player Name",
+    Description = "",
+    PlaceholderText = "ex: yourname123",
     Callback = function(Value)
         local foundPlayer = findPlayerByPartialName(Value)
         if foundPlayer then
             selectedPlayerName = foundPlayer.Name
             notifyPlayerSelected(foundPlayer)
         else
-            warn("Nenhum jogador encontrado com esse nome.")
+            warn("No player found with that name.")
         end
     end
 })
@@ -348,12 +358,12 @@ end})
 
 
 
-
+Tab2:AddSection({"Movement"})
 Tab2:AddSlider({
-    Name = "Speed Player",
+    Name = "Walkspeed",
     Increase = 1,
     MinValue = 16,
-    MaxValue = 888,
+    MaxValue = 999,
     Default = 16,
     Callback = function(Value)
         local player = game.Players.LocalPlayer
@@ -367,7 +377,7 @@ Tab2:AddSlider({
  })
  
  Tab2:AddSlider({
-    Name = "Jumppower",
+    Name = "Jump Power",
     Increase = 1,
     MinValue = 50,
     MaxValue = 500,
@@ -406,7 +416,8 @@ Tab2:AddSlider({
  end)
 
  Tab2:AddButton({
-    Name = "Reset Speed/Gravity/Jumppower.✅",
+    Name = "Reset Movement Settings",
+    Description = "Resets back your Walkspeed, Jump Power, Gravity.",
     Callback = function()
         -- Resetar Speed
         local player = game.Players.LocalPlayer
@@ -524,8 +535,8 @@ end
 
 -- Configuração do toggle
 local NoclipToggle = Tab2:AddToggle({
-    Name = "Ultimate Noclip",
-    Description = "Noclip + Controle de bolas integrado",
+    Name = "No Clip",
+    Description = "",
     Default = false
 })
 
@@ -571,7 +582,7 @@ local antiSitEnabled = false
 
 Tab2:AddToggle({
     Name = "Anti-Sit",
-    Description = "Impede o jogador de sentar",
+    Description = "Prevents the player from sitting down",
     Default = false,
     Callback = function(state)
         antiSitEnabled = state
@@ -638,16 +649,16 @@ local selectedColor = "RGB Suave"
 
 -- Botão para Fly GUI
 Tab2:AddButton({
-    Name = "Ativar Fly GUI",
-    Description = "Carrega um GUI de fly universal",
+    Name = "Fly",
+    Description = "Loads a universal fly GUI",
     Callback = function()
         local success, _ = pcall(function()
             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-gui-v3-30439"))()
         end)
 
         game.StarterGui:SetCore("SendNotification", {
-            Title = success and "Sucesso" or "Erro",
-            Text = success and "Fly GUI carregado!" or "Falha ao carregar o Fly GUI.",
+            Title = success and "Success!" or "Error!",
+            Text = success and "Fly GUI Loaded!" or "Fly GUI can't be loaded.",
             Duration = 5
         })
     end
@@ -658,11 +669,11 @@ local Section = Tab2:AddSection({"ESP"})
 
 -- Dropdown de cor
 Tab2:AddDropdown({
-    Name = "Cor do ESP",
+    Name = "ESP Color",
     Default = "RGB ",
     Options = {
-        "RGB", "Branco", "Preto", "Vermelho",
-        "Verde", "Azul", "Amarelo", "Rosa", "Roxo"
+        "RGB", "White", "Black", "Red",
+        "Green", "Blue", "Yellow", "Rose", "Purple"
     },
     Callback = function(value)
         selectedColor = value
@@ -674,21 +685,21 @@ local function getESPColor()
     if selectedColor == "RGB" then
         local h = (tick() % 5) / 5
         return Color3.fromHSV(h, 1, 1)
-    elseif selectedColor == "Preto" then
+    elseif selectedColor == "Black" then
         return Color3.fromRGB(0, 0, 0)
-    elseif selectedColor == "Branco" then
+    elseif selectedColor == "White" then
         return Color3.fromRGB(255, 255, 255)
-    elseif selectedColor == "Vermelho" then
+    elseif selectedColor == "Red" then
         return Color3.fromRGB(255, 0, 0)
-    elseif selectedColor == "Verde" then
+    elseif selectedColor == "Green" then
         return Color3.fromRGB(0, 255, 0)
-    elseif selectedColor == "Azul" then
+    elseif selectedColor == "Blue" then
         return Color3.fromRGB(0, 170, 255)
-    elseif selectedColor == "Amarelo" then
+    elseif selectedColor == "Yellow" then
         return Color3.fromRGB(255, 255, 0)
-    elseif selectedColor == "Rosa" then
+    elseif selectedColor == "Rose" then
         return Color3.fromRGB(255, 105, 180)
-    elseif selectedColor == "Roxo" then
+    elseif selectedColor == "Purple" then
         return Color3.fromRGB(128, 0, 128)
     end
     return Color3.new(1, 1, 1)
@@ -741,8 +752,8 @@ end
 
 -- Toggle de ativação do ESP
 local Toggle1 = Tab2:AddToggle({
-    Name = "ESP Ativado",
-    Description = "Mostra nome e idade da conta dos jogadores.",
+    Name = "Activate ESP",
+    Description = "Shows the players current position and account info.",
     Default = false
 })
 Toggle1:Callback(function(value)
@@ -819,7 +830,7 @@ local function GetPlayerNames()
 end
 
 local Dropdown = Tab3:AddDropdown({
-    Name = "Players List",
+    Name = "Player List",
     Description = "",
     Options = GetPlayerNames(),
     Default = "",
@@ -958,7 +969,7 @@ Tab3:AddButton({
 })
 
 ------------------------------------------------------------------------------------------------------------------------------------
-local Section = Tab3:AddSection({"Roupas 3D"})
+local Section = Tab3:AddSection({"3D Clothing"})
 
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -971,7 +982,7 @@ AvatarManager.ReplicatedStorage = ReplicatedStorage
 function AvatarManager:MostrarNotificacao(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Aviso",
+            Title = "Notice",
             Text = mensagem,
             Duration = 5
         })
@@ -1026,21 +1037,21 @@ function AvatarManager:EquiparAvatar(avatarName)
                 return self.ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Wear"):InvokeServer(unpack(args))
             end)
             if success then
-                self:MostrarNotificacao("Avatar " .. avatarName .. " equipado com sucesso!")
+                self:MostrarNotificacao("Avatar " .. avatarName .. " equipped successfully!")
             else
-                self:MostrarNotificacao("Falha ao equipar o avatar " .. avatarName .. "!")
+                self:MostrarNotificacao("Failed to equip avatar " .. avatarName .. "!")
             end
             return
         end
     end
-    self:MostrarNotificacao("Avatar " .. avatarName .. " não encontrado!")
+    self:MostrarNotificacao("Avatar " .. avatarName .. " not found!")
 end
 
 -- Tab3: Opção de Avatar
 -- Dropdown para avatares
 local AvatarDropdown = Tab3:AddDropdown({
-    Name = "assesorios 3D",
-    Description = "Selecione  para equipar",
+    Name = "3D Accessories",
+    Description = "Select to equip",
     Default = nil,
     Options = AvatarManager:GetAvatarNames(),
     Callback = function(avatarSelecionado)
@@ -1050,8 +1061,8 @@ local AvatarDropdown = Tab3:AddDropdown({
 
 -- Botão para equipar avatar
 Tab3:AddButton({
-    Name = "equipar ",
-    Description = "Equipar selecionado",
+    Name = "Equip ",
+    Description = "Equip selected",
     Callback = function()
         if not _G.SelectedAvatar or _G.SelectedAvatar == "" then
             AvatarManager:MostrarNotificacao("Nenhum avatar selecionado!")
@@ -1066,7 +1077,7 @@ local Section = Tab3:AddSection({"Avatar Editor"})
 -- Botão para equipar partes do corpo
 
 Tab3:AddParagraph({
-    Title = "aviso vai resetar seu avatar",
+    Title = "⚠️ WARNING! THIS WILL RESET YOUR AVATAR!!",
     Content = ""
 })
 
@@ -1088,14 +1099,14 @@ Tab3:AddButton({
             :WaitForChild("Remotes")
             :WaitForChild("ChangeCharacterBody")
             :InvokeServer(unpack(args))
-        print("Todas as partes do corpo equipadas!")
+        print("All body parts equipped!")
     end
 })
 
 ---------------------------------------------------------------------------------------------------
 
 Tab3:AddButton({
-    Name = "mini garanhao",
+    Name = "Mini Stallion",
     Callback = function()
         local args = {
             {
@@ -1111,14 +1122,14 @@ Tab3:AddButton({
             :WaitForChild("Remotes")
             :WaitForChild("ChangeCharacterBody")
             :InvokeServer(unpack(args))
-        print("Todas as partes do corpo equipadas!")
+        print("All body parts equipped!")
     end
 })
 
 ---------------------------------------------------------------------------------------------------
 
 Tab3:AddButton({
-    Name = "stick",
+    Name = "Stick",
     Callback = function()
         local args = {
             {
@@ -1134,7 +1145,7 @@ Tab3:AddButton({
             :WaitForChild("Remotes")
             :WaitForChild("ChangeCharacterBody")
             :InvokeServer(unpack(args))
-        print("Todas as partes do corpo equipadas!")
+        print("All body parts equipped!")
     end
 })
 
@@ -1208,8 +1219,8 @@ Tab3:AddButton({
 })
 
 Tab3:AddParagraph({
-    Title = "vai ter mais coisas aqui na proxima atualizaçao",
-    Content = ""
+    Title = "MORE FUN FUNCTION NEXT UPDATE!",
+    Content = "TINATAMAD NA KASI AKO — DEVELOPER"
 })
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -1217,14 +1228,14 @@ Tab3:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
 
 Tab4:AddParagraph({
-    Title = "Funções para você usar em você",
+    Title = "TROLL HOUSE",
     Content = ""
 })
 
 -- Botão para remover ban de todas as casas
 Tab4:AddButton({
-    Name = "Remover Ban de Todas as Casas",
-    Description = "Tenta remover o ban de todas as casas ",
+    Name = "Remove Ban from All Houses",
+    Description = "Try to remove the ban from all houses ",
     Callback = function()
         local successCount = 0
         local failCount = 0
@@ -1256,22 +1267,22 @@ Tab4:AddButton({
         end
         if successCount > 0 then
             game.StarterGui:SetCore("SendNotification", {
-                Title = "Sucesso",
-                Text = "Bans removidos de " .. successCount .. " casas!",
+                Title = "SUCCESS!",
+                Text = "Bans has been removed! " .. successCount .. " house!",
                 Duration = 5
             })
         end
         if failCount > 0 then
             game.StarterGui:SetCore("SendNotification", {
-                Title = "Aviso",
-                Text = "Falha ao remover bans de " .. failCount .. " casas.",
+                Title = "Notice!",
+                Text = "Failed to remove bans from " .. failCount .. " house.",
                 Duration = 5
             })
         end
         if successCount == 0 and failCount == 0 then
             game.StarterGui:SetCore("SendNotification", {
-                Title = "Aviso",
-                Text = "Nenhum ban encontrado para remover.",
+                Title = "Notice!",
+                Text = "No ban found to remove.",
                 Duration = 5
             })
         end
@@ -1279,7 +1290,7 @@ Tab4:AddButton({
 })
 
 Tab4:AddParagraph({
-    Title = "to sem ideias para colocar aqui._.",
+    Title = "We recommend to turn on No Clip function in Player Movement Section.",
     Content = ""
 })
 
@@ -1289,7 +1300,7 @@ Tab4:AddParagraph({
                                           -- === Tab 5: Car === --
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local Section = Tab5:AddSection({"all car functions"})
+local Section = Tab5:AddSection({"Cars"})
 
 
 local Players = game:GetService("Players")
@@ -1308,7 +1319,7 @@ TeleportCarro.Camera = Camera
 function TeleportCarro:MostrarNotificacao(mensagem)
     pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Aviso",
+            Title = "NOTICE!",
             Text = mensagem,
             Duration = 5
         })
@@ -1335,13 +1346,13 @@ end
 -- Função para teleportar o jogador para o assento do carro
 function TeleportCarro:TeleportToSeat(seat, car)
     if not self.LocalPlayer.Character or not self.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        self:MostrarNotificacao("Personagem não encontrado!")
+        self:MostrarNotificacao("Character not found!")
         return false
     end
     local humanoid = self.LocalPlayer.Character.Humanoid
     local rootPart = self.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     if not rootPart then
-        self:MostrarNotificacao("Parte raiz do personagem não encontrada!")
+        self:MostrarNotificacao("Character root part not found!")
         return false
     end
 
@@ -1359,7 +1370,7 @@ end
 -- Função para teleportar o carro para o void com delay
 function TeleportCarro:TeleportToVoid(car)
     if not car then
-        self:MostrarNotificacao("Veículo inválido!")
+        self:MostrarNotificacao("Invalid vehicle!")
         return
     end
     if not car.PrimaryPart then
@@ -1367,7 +1378,7 @@ function TeleportCarro:TeleportToVoid(car)
         if body and body:IsA("BasePart") then
             car.PrimaryPart = body
         else
-            self:MostrarNotificacao("Parte principal do veículo não encontrada!")
+            self:MostrarNotificacao("Main part of vehicle not found!")
             return
         end
     end
@@ -1379,7 +1390,7 @@ end
 -- Função para teleportar o carro para a posição do jogador com delay
 function TeleportCarro:TeleportToPlayer(car, playerPos)
     if not car then
-        self:MostrarNotificacao("Veículo inválido!")
+        self:MostrarNotificacao("Invalid vehicle!")
         return
     end
     if not car.PrimaryPart then
@@ -1387,7 +1398,7 @@ function TeleportCarro:TeleportToPlayer(car, playerPos)
         if body and body:IsA("BasePart") then
             car.PrimaryPart = body
         else
-            self:MostrarNotificacao("Parte principal do veículo não encontrada!")
+            self:MostrarNotificacao("Main part of vehicle not found!")
             return
         end
     end
@@ -1426,15 +1437,15 @@ function TeleportCarro:AtualizarListaCarros()
 end
 
 -- Parágrafo
-Tab5:AddParagraph({
-    Title = "use o void protection",
+--[[Tab5:AddParagraph({
+    Title = "",
     Content = ""
 })
-
+]]
 -- Toggle para matar todos os carros
 Tab5:AddToggle({
-    Name = "Matar todos os carros do server",
-    Description = "Teleporta os carros para o void",
+    Name = "Troll All Cars",
+    Description = "Teleports cars to the void",
     Default = false,
     Callback = function(state)
         local originalPosition
@@ -1491,12 +1502,12 @@ Tab5:AddToggle({
     end
 })
 
-local Section = Tab5:AddSection({"functions dos carro"})
+local Section = Tab5:AddSection({"Other Car Functions"})
 
 -- Criar o dropdown
 local Dropdown = Tab5:AddDropdown({
-    Name = "Selecionar Carro do Jogador",
-    Description = "Selecione o carro de um jogador",
+    Name = "Select Player Car",
+    Description = "Select a player's car",
     Default = nil,
     Options = TeleportCarro:AtualizarListaCarros(),
     Callback = function(carroSelecionado)
@@ -1506,8 +1517,8 @@ local Dropdown = Tab5:AddDropdown({
 
 -- Toggle para ver a câmera do carro selecionado
 Tab5:AddToggle({
-    Name = "Ver Câmera do Carro Selecionado",
-    Description = "Foca a câmera no carro selecionado",
+    Name = "FOV of Selected Car",
+    Description = "Focus the camera on the selected car.",
     Default = false,
     Callback = function(state)
         if state then
@@ -1563,12 +1574,12 @@ TeleportCarro.Workspace:WaitForChild("Vehicles").ChildRemoved:Connect(function()
     Dropdown:Set(TeleportCarro:AtualizarListaCarros())
 end)
 
-local Section = Tab5:AddSection({"functions kill e trazer"})
+local Section = Tab5:AddSection({"Menu"})
 
 -- Botão para destruir carro selecionado
 Tab5:AddButton({
-    Name = "Destruir Carro Selecionado",
-    Description = "Teleporta o carro selecionado para o void",
+    Name = "Troll Selected Car",
+    Description = "Teleports the selected car to the void",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
             TeleportCarro:MostrarNotificacao("Nenhum carro selecionado!")
@@ -1621,8 +1632,8 @@ Tab5:AddButton({
 
 -- Botão para trazer carro selecionado
 Tab5:AddButton({
-    Name = "Trazer Carro Selecionado",
-    Description = "Teleporta o carro selecionado para sua posição",
+    Name = "Bring Selected Car",
+    Description = "Teleports the selected car to your position",
     Callback = function()
         if not _G.SelectedVehicle or _G.SelectedVehicle == "" then
             TeleportCarro:MostrarNotificacao("Nenhum carro selecionado!")
@@ -1675,8 +1686,8 @@ Tab5:AddButton({
 
 -- Botão para trazer todos os carros
 Tab5:AddButton({
-    Name = "Trazer Todos os Carros",
-    Description = "Teleporta todos os carros do servidor para sua posição",
+    Name = "Bring All Cars",
+    Description = "Teleports all cars on the server to your position",
     Callback = function()
         local originalPos
         if TeleportCarro.LocalPlayer.Character and TeleportCarro.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
@@ -1747,7 +1758,7 @@ end)
                                                    -- === Tab 6: RGB === --
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local Section = Tab6:AddSection({""})
+local Section = Tab6:AddSection({"RGB"})
 
 
 
@@ -1756,8 +1767,8 @@ local Section = Tab6:AddSection({""})
 local rgbSpeed = 1
 
 Tab6:AddSlider({
-    Name = "Velocidade RGB",
-    Description = "Aumenta a velocidade do efeito RGB",
+    Name = "RGB Speed",
+    Description = "Increase the speed of the RGB effect",
     Min = 1,
     Max = 5,
     Increase = 1,
@@ -1783,12 +1794,12 @@ local function fireServer(eventName, args)
     end
 end
 
-local Section = Tab6:AddSection({"RGB para usar em você"})
+local Section = Tab6:AddSection({""})
 
 -- Nome + Bio RGB  juntos
 local nameBioRGBActive = false
 Tab6:AddToggle({
-    Name = "Nome + Bio RGB ",
+    Name = "Name + Bio RGB ",
     Default = false,
     Callback = function(state)
         nameBioRGBActive = state
@@ -1830,8 +1841,8 @@ end)
 
 
 local ToggleCabelo = Tab6:AddToggle({
-    Name = "RGB Cabelo",
-    Description = "RGB  no cabelo",
+    Name = "RGB Hair",
+    Description = "RGB in hair",
     Default = false
 })
 ToggleCabelo:Callback(function(Value)
@@ -1849,13 +1860,13 @@ end)
 
 
 
-local Section = Tab6:AddSection({"veiculos e casa"})
+local Section = Tab6:AddSection({"Vehicles & Houses"})
 
 
 
 local ToggleCasa = Tab6:AddToggle({
-    Name = "RGB Casa",
-    Description = "RGB  na casa",
+    Name = "RGB House",
+    Description = "RGB in house",
     Default = false
 })
 ToggleCasa:Callback(function(Value)
@@ -1875,8 +1886,8 @@ end)
 -- Carro RGB 
 local carRGBActive = false
 Tab6:AddToggle({
-    Name = "Carro RGB  (Premium)",
-    Description = "Altera a cor do carro com RGB contínuo. Pode causar kick se não for premium!",
+    Name = "RGB Car (Premium)",
+    Description = "Changes the color of the car with continuous RGB. May cause kick if not Premium!",
     Default = false,
     Callback = function(state)
         carRGBActive = state
@@ -1894,8 +1905,8 @@ Tab6:AddToggle({
 
 
 local ToggleBicicleta = Tab6:AddToggle({
-    Name = "RGB Bicicleta",
-    Description = "RGB na bicicleta",
+    Name = "RGB Bicycle",
+    Description = "RGB in Bicycle",
     Default = false
 })
 ToggleBicicleta:Callback(function(Value)
@@ -1913,14 +1924,14 @@ end)
 
 
 
-local Section = Tab6:AddSection({"itens/tool"})
+local Section = Tab6:AddSection({"Items & Tools"})
 
 
 -- NOVO TOGGLE: Rádio RGB
 local radioRGBActive = false
 Tab6:AddToggle({
-    Name = "Rádio RGB  ",
-    Description = "Altera a cor do rádio com RGB contínuo",
+    Name = "RGB Radio",
+    Description = "Changes the color of the radio with continuous RGB",
     Default = false,
     Callback = function(state)
         radioRGBActive = state
@@ -1944,8 +1955,8 @@ Tab6:AddToggle({
 })
 
 local ToggleMegafone = Tab6:AddToggle({
-    Name = "RGB Megafone",
-    Description = "RGB  no megafone",
+    Name = "RGB Megaphone",
+    Description = "RGB on the megaphone",
     Default = false
 })
 ToggleMegafone:Callback(function(Value)
@@ -1974,8 +1985,8 @@ ToggleMegafone:Callback(function(Value)
 end)
 
 local ToggleRosquinha = Tab6:AddToggle({
-    Name = "RGB Rosquinha",
-    Description = "RGB  na rosquinha",
+    Name = "RGB Donut",
+    Description = "RGB on a donut",
     Default = false
 })
 ToggleRosquinha:Callback(function(Value)
@@ -2014,10 +2025,10 @@ local loopAtivo = false
 local InputID = ""
 
 Tab7:AddTextBox({
-    Name = "Insira o ID Audio All",
-    Description = "Digite o ID do som que deseja tocar",
+    Name = "Audio ID",
+    Description = "Enter the ID of the sound you want to play",
     Default = "",
-    PlaceholderText = "Exemplo: 6832470734",
+    PlaceholderText = "Example: 1234567890",
     ClearTextOnFocus = true,
     Callback = function(text)
         InputID = tonumber(text)
@@ -2035,8 +2046,8 @@ local function fireServer(eventName, args)
 end
 
 Tab7:AddButton({
-    Name = "Tocar Som",
-    Description = "Clique para tocar a música inserida",
+    Name = "Play Sound",
+    Description = "Click to play the inserted music",
     Callback = function()
         if InputID then
             fireServer("1Gu1nSound1s", {Workspace, InputID, 1})
@@ -2052,7 +2063,7 @@ Tab7:AddButton({
 
 Tab7:AddToggle({
     Name = "Loop",
-    Description = "Ative para colocar o som em loop",
+    Description = "Activate to loop the selected sound",
     Default = false,
     Callback = function(state)
         loopAtivo = state
@@ -2111,7 +2122,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
 
     Tab7:AddDropdown({
         Name = title,
-        Description = "Escolha um som para tocar no servidor",
+        Description = "Choose a sound to play on the server",
         Default = defaultOption,
         Multi = false,
         Options = musicNames,
@@ -2125,8 +2136,8 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
     })
 
     Tab7:AddButton({
-        Name = "Tocar Som Selecionado",
-        Description = "Clique para tocar o som do dropdown",
+        Name = "Play Selected Sound",
+        Description = "",
         Callback = function()
             if selectedSoundID then
                 playSound(selectedSoundID, currentVolume, currentPitch)
@@ -2137,7 +2148,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
     local dropdownLoopActive = false
     Tab7:AddToggle({
         Name = "Loop",
-        Description = "Ativa o loop do som selecionado",
+        Description = "Loop the selected sound",
         Default = false,
         Callback = function(state)
             dropdownLoopActive = state
@@ -2166,7 +2177,7 @@ createSoundDropdown("Selecione um meme", {
         {name = "Hommmm ", id = "133135656929513"},
         {name = "gemido1", id = "105263704862377"},
         {name = " gemido2", id = "92186909873950"},
-        {name = "sus sex", id = "128137573022197"},
+        {name = "sus", id = "128137573022197"},
         {name = "gemido estranho", id = "131219411501419"},
         {name = "gemido kawai", id = "100409245129170"},
         {name = "Hentai wiaaaaan", id = "88332347208779"},
@@ -2203,7 +2214,7 @@ createSoundDropdown("Selecione um meme", {
         {name = "GoGogo gogogo", id = "103262503950995"},
         {name = "Toma jack", id = "132603645477541"},
         {name = "Toma jackV2", id = "100446887985203"},
-        {name = "Toma jack no sol quente", id = "97476487963273"},
+        {name = "Toma jackV3", id = "97476487963273"},
         {name = "ifood", id = "133843750864059"},
         {name = "pelo geito ela ta querendo ram", id = "94395705857835"},
         {name = "lula vai todo mundo", id = "136804576009416"},
@@ -2213,7 +2224,7 @@ createSoundDropdown("Selecione um meme", {
         {name = "sai dai lava prato", id = "101232400175829"},
         {name = "se e loko numconpeça", id = "78442476709262"},
         {name = "mita sequer que eu too uma", id = "94889439372168"},
-        {name = "Hoje vou ser tua mulher e tu", id = "90844637105538"},
+        {name = "Today I will be your wife and you", id = "90844637105538"},
         {name = "Deita aqui eu mandei vc deitar sirens", id = "100291188941582"},
         {name = "miau", id = "131804436682424"},
         {name = "skibidi", id = "128771670035179"},
@@ -2222,7 +2233,7 @@ createSoundDropdown("Selecione um meme", {
         {name = "vai corinthians!!....", id = "127012936767471"},
         {name = "my sigman", id = "103431815659907"},
         {name = "mama", id = "106850066985594"},
-        {name = "OH MY GOD", id = "73349649774476"},
+        {name = "OMG", id = "73349649774476"},
         {name = "aahhh plankton meme", id = "95982351322190"},
         {name = "CHINABOY", id = "84403553163931"},
         {name = "PASTOR MIRIM E A LÍNGUA DOS ANJOS", id = "71153532555470"},
@@ -2323,7 +2334,7 @@ createSoundDropdown("Selecione um meme", {
 
 
 
-local Section = Tab7:AddSection({" tacar o terror ou efeito no server"})
+local Section = Tab7:AddSection({"Throw Effect on Server"})
 
 -- Dropdown "Efeito/Terror"
 createSoundDropdown("Selecione um terror ou efeito", {
@@ -2450,8 +2461,8 @@ local function isValidMusicId(value)
 end
 
 Tab8:AddTextBox({
-    Name = "ID da música",
-    PlaceholderText = "Digite o ID e pressione Enter",
+    Name = "Song ID",
+    PlaceholderText = "Enter the ID",
     Callback = function(value)
         if value and value ~= "" then
             tocarMusica(tostring(value))
@@ -2721,8 +2732,8 @@ createMusicDropdown("Phonk", {
 }, "Option 1")
 
 Tab8:AddButton({
-    Name = "Stop",
-    Description = "ALL music",
+    Name = "Stop Music",
+    Description = "Stops all music",
     Callback = function()
         tocarMusica("")
     end
