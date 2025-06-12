@@ -135,10 +135,10 @@ waitForPromise(loadingPromise)
 print("Loading completo! Agora executando o resto do script...")
 -- ... resto do seu código ...
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/redzlib_customized.lua"))()
 
 local Window = redzlib:MakeWindow({
-    Title = "APEX OT | BROOKHAVEN",
+    Title = "APEX OT | BROOKHAVEN RP",
     SubTitle = "by Kai and Apex Team ",
     SaveFolder = "teste"
   })
@@ -148,15 +148,17 @@ local Window = redzlib:MakeWindow({
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
+----------------- THEME ----------------
+redzlib:SetTheme("Purple")
 
 
-local Tab1 = Window:MakeTab({"Credits", "info"})
-local Tab2= Window:MakeTab({"Fun", "fun"})
+local Tab1 = Window:MakeTab({"Info", "info"})
+local Tab2= Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "Home"})
 local Tab5 = Window:MakeTab({"Car", "Car"})
 local Tab6 = Window:MakeTab({"RGB", "brush"})
-local Tab7 = Window:MakeTab({"Music All", "radio"})    
+local Tab7 = Window:MakeTab({"Custom Music", "radio"})    
 local Tab8 = Window:MakeTab({"Music", "music"}) 
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
