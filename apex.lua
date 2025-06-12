@@ -1501,7 +1501,7 @@ local function startHoneyFarm()
 end
 ]]
 
--- Create a BlurEffect
+--[[ Create a BlurEffect
 local blur = Instance.new("BlurEffect", Lighting)
 blur.Size = 0
 TweenService:Create(blur, TweenInfo.new(0.5), {Size = 24}):Play()
@@ -1603,6 +1603,7 @@ subTweenIn:Play()
 wait(2)
 
 tweenOutAndDestroy()
+]]
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
