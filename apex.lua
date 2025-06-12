@@ -1405,8 +1405,6 @@ end
 
 -------- UI -------- 
 local KaiUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/Beta_Kai_Scripts/refs/heads/main/Beta.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = KaiUI:CreateWindow({
     Title = "Apex OT | Grow a Garden",
     SubTitle = "by Apex Team | (discord.gg/VrJx432MB5)",
@@ -2416,8 +2414,8 @@ VisualTab:AddButton({
 })
 ]]
 ----------- INTERFACE MANAGER -------------
-SaveManager:SetLibrary(KaiUI)
-InterfaceManager:SetLibrary(KaiUI)
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
 -- (we dont want configs to save themes, do we?)
