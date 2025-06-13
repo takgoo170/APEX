@@ -2,7 +2,7 @@
 
 -- Hệ thống kiểm soát logs
 local LogSystem = {
-    Enabled = true, -- Mặc định bật logs
+    Enabled = true, -- Logs enabled by default
     WarningsEnabled = true -- Mặc định bật cả warnings
 }
 
@@ -40,7 +40,7 @@ if not success then
 end
 
 if not Fluent then
-    error("Không thể tải thư viện Fluent. Vui lòng kiểm tra kết nối internet hoặc executor.")
+    error("Unable to load Fluent library. Please check your internet connection or executor.")
     return
 end
 
@@ -128,7 +128,7 @@ ConfigSystem.SaveConfig = function()
         ConfigSystem.LastSaveTime = currentTime
         ConfigSystem.PendingSave = false
     else
-        warn("Lưu cấu hình thất bại:", err)
+        warn("Save configuration failed:", err)
     end
 end
 
@@ -200,8 +200,8 @@ local autoJoinStoryLoop = nil
 
 -- Tạo Window
 local Window = Fluent:CreateWindow({
-    Title = "x2zu | Anime Saga",
-    SubTitle = "",
+    Title = "APEX OT | ANIME SAGA",
+    SubTitle = "by Apex Team",
     TabWidth = 140,
     Size = UDim2.fromOffset(450, 350),
     Acrylic = true,
@@ -212,13 +212,13 @@ local Window = Fluent:CreateWindow({
 -- Tạo tab Info
 local InfoTab = Window:AddTab({
     Title = "Info",
-    Icon = "rbxassetid://7733964719"
+    Icon = "info"
 })
 
 -- Tạo tab Play
 local PlayTab = Window:AddTab({
     Title = "Play",
-    Icon = "rbxassetid://7743871480"
+    Icon = "swords"
 })
 
 -- Thêm hỗ trợ Logo khi minimize
@@ -268,7 +268,7 @@ task.spawn(function()
     end)
     
     if not success then
-        warn("Lỗi khi tạo nút Logo UI: " .. tostring(errorMsg))
+        warn("Error creating Logo UI button: " .. tostring(errorMsg))
     end
 end)
 
@@ -276,16 +276,16 @@ end)
 Window:SelectTab(1) -- Chọn tab đầu tiên (Info)
 
 -- Thêm section thông tin trong tab Info
-local InfoSection = InfoTab:AddSection("Thông tin")
+local InfoSection = InfoTab:AddSection("Information")
 
 InfoSection:AddParagraph({
     Title = "Anime Saga",
-    Content = "Phiên bản: 1.0 Beta\nTrạng thái: Hoạt động"
+    Content = "Version: 1.0 Beta\nStatus: Active"
 })
 
 InfoSection:AddParagraph({
-    Title = "Người phát triển",
-    Content = "Script được phát triển bởi Dương Tuấn và ghjiukliop"
+    Title = "Developer",
+    Content = "Takgoo"
 })
 
 -- Thêm section Story trong tab Play
@@ -325,11 +325,11 @@ local function joinStory()
         local mapNames = {"Leaf Village", "Marine Island", "Red Light District", "West City"}
         local difficultyNames = {"Normal", "Hard", "Nightmare"}
         
-        print("Đã tham gia Story: " .. mapNames[selectedMap] .. " - Act " .. selectedAct .. " - " .. difficultyNames[selectedDifficulty])
+        print("Joined Story: " .. mapNames[selectedMap] .. " - Act " .. selectedAct .. " - " .. difficultyNames[selectedDifficulty])
     end)
     
     if not success then
-        warn("Lỗi khi tham gia Story: " .. tostring(err))
+        warn("Error when joining Story: " .. tostring(err))
         return false
     end
     
@@ -359,7 +359,7 @@ StorySection:AddDropdown("MapDropdown", {
         selectedMap = mapIndex[Value]
         ConfigSystem.CurrentConfig.SelectedMap = selectedMap
         ConfigSystem.SaveConfig()
-        print("Đã chọn map: " .. Value .. " (index: " .. selectedMap .. ")")
+        print("Map selected: " .. Value .. " (index: " .. selectedMap .. ")")
     end
 })
 
@@ -393,7 +393,7 @@ StorySection:AddDropdown("DifficultyDropdown", {
         selectedDifficulty = difficultyIndex[Value]
         ConfigSystem.CurrentConfig.SelectedDifficulty = selectedDifficulty
         ConfigSystem.SaveConfig()
-        print("Đã chọn difficulty: " .. Value .. " (index: " .. selectedDifficulty .. ")")
+        print("Difficulty selected: " .. Value .. " (index: " .. selectedDifficulty .. ")")
     end
 })
 
@@ -407,14 +407,14 @@ StorySection:AddToggle("AutoJoinStoryToggle", {
         ConfigSystem.SaveConfig()
         
         if autoJoinStoryEnabled then
-            print("Auto Join Story đã được bật")
+            print("Auto Join Story is enabled")
             
             -- Thực hiện tham gia Story ngay lập tức
             spawn(function()
                 if not isPlayerInMap() then
                     joinStory()
                 else
-                    print("Đang ở trong map, Auto Join Story sẽ hoạt động khi bạn rời khỏi map")
+                    print("While in the map, Auto Join Story will work when you leave the map")
                 end
             end)
             
@@ -427,14 +427,15 @@ StorySection:AddToggle("AutoJoinStoryToggle", {
                 end
             end)
         else
-            print("Auto Join Story đã được tắt")
+            print("Auto Join Story has been turned off")
         end
     end
 })
 
 -- Thêm nút Join Story ngay lập tức
 StorySection:AddButton({
-    Title = "Join Story Now",
+    Title = "Join Story",
+    Description = "Join the story now.",
     Callback = function()
         joinStory()
     end
@@ -450,19 +451,19 @@ local SettingsSection = SettingsTab:AddSection("Thiết lập")
 
 -- Dropdown chọn theme
 SettingsSection:AddDropdown("ThemeDropdown", {
-    Title = "Chọn Theme",
+    Title = "Select Theme",
     Values = {"Dark", "Light", "Darker", "Aqua", "Amethyst"},
     Multi = false,
     Default = ConfigSystem.CurrentConfig.UITheme or "Dark",
     Callback = function(Value)
         ConfigSystem.CurrentConfig.UITheme = Value
         ConfigSystem.SaveConfig()
-        print("Đã chọn theme: " .. Value)
+        print("Theme selected: " .. Value)
     end
 })
 
 -- Thêm section Redeem Codes
-local RedeemSection = SettingsTab:AddSection("Redeem Codes")
+local RedeemSection = SettingsTab:AddSection("Codes")
 
 -- Nút Redeem All Codes
 RedeemSection:AddButton({
@@ -498,7 +499,7 @@ RedeemSection:AddButton({
             end
             
             -- Hiển thị thông báo khi đã redeem xong tất cả codes
-            print("Đã redeem tất cả các codes!")
+            print("Redeemed all codes!")
         end)
     end
 })
@@ -507,7 +508,7 @@ RedeemSection:AddButton({
 local customCodeInput = nil
 customCodeInput = RedeemSection:AddInput("CustomCodeInput", {
     Title = "Custom Code",
-    Placeholder = "Nhập code tại đây",
+    Placeholder = "Enter code here",
     Numeric = false,
     Finished = true,
     Callback = function(Value)
@@ -520,13 +521,13 @@ customCodeInput = RedeemSection:AddInput("CustomCodeInput", {
             end)
             
             if success then
-                print("Đã redeem code: " .. Value)
+                print("Code redeemed: " .. Value)
                 -- Reset input box sau khi redeem
                 if customCodeInput and customCodeInput.Set then
                     customCodeInput:Set("")
                 end
             else
-                warn("Lỗi khi redeem code " .. Value .. ": " .. tostring(err))
+                warn("Error redeeming code " .. Value .. ": " .. tostring(err))
             end
         end
     end
@@ -570,19 +571,19 @@ SaveManager:SetFolder("HTHubAS/" .. playerName)
 
 -- Thêm thông tin vào tab Settings
 SettingsTab:AddParagraph({
-    Title = "Cấu hình tự động",
-    Content = "Cấu hình của bạn đang được tự động lưu theo tên nhân vật: " .. playerName
+    Title = "Auto Configuration",
+    Content = "Your configuration is being automatically saved under character name.: " .. playerName
 })
 
 SettingsTab:AddParagraph({
-    Title = "Phím tắt",
-    Content = "Nhấn LeftControl để ẩn/hiện giao diện"
+    Title = "Shortcuts",
+    Content = "Press LeftControl to hide/show the interface"
 })
 
--- Thực thi tự động lưu cấu hình
+-- Execute auto-save configuration
 AutoSaveConfig()
 
--- Thiết lập events
+-- Set up events
 setupSaveEvents()
 
-print("HT Hub | Anime Saga đã được tải thành công!")
+print("Apex OT | Anime Saga has been downloaded successfully!")
