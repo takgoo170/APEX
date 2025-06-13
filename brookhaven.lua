@@ -2168,7 +2168,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
 end
 
 -- Dropdown "Memes"
-createSoundDropdown("Select a Meme Sound", {
+createSoundDropdown("Play Selected Meme Sound", {
     ["Memes"] = {
         {name = "pankapakan", id = "122547522269143"}, 
        
@@ -2181,9 +2181,9 @@ createSoundDropdown("Select a Meme Sound", {
         {name = "sus", id = "128137573022197"},
         {name = "gemido estranho", id = "131219411501419"},
         {name = "gemido kawai", id = "100409245129170"},
-        {name = "Hentai wiaaaaan", id = "88332347208779"},
-        {name = "iamete cunasai", id = "108494476595033"},
-        {name = "dodichan onnn...", id = "134640594695384"},
+        {name = "Yaaaaa~~", id = "88332347208779"},
+        {name = "yamete kudasai", id = "108494476595033"},
+        {name = "ruby chann haii...", id = "134640594695384"},
         {name = "Loly gemiD0", id = "119277017538197"},
          {name = "ai poison", id = "115870718113313"},
          {name = "chegachega SUS", id = "77405864184828"},
@@ -2212,7 +2212,7 @@ createSoundDropdown("Select a Meme Sound", {
     
 
 
-        {name = "GoGogo gogogo", id = "103262503950995"},
+        {name = "GokGokGokGok", id = "103262503950995"},
         {name = "Toma jack", id = "132603645477541"},
         {name = "Toma jackV2", id = "100446887985203"},
         {name = "Toma jackV3", id = "97476487963273"},
@@ -2299,18 +2299,18 @@ createSoundDropdown("Select a Meme Sound", {
         {name = "iraaaa", id = "136752451575091"},
         {name = "não fica se achando muito não", id = "101588606280167"},
        
-        {name = "WhatsApp notificaçaoV1", id = "107004225739474"},
-        {name = "WhatsApp notificaçaoV2", id = "18850631582"},
-        {name = "SamsungV1", id = "123767635061073"},
-        {name = "SamsungV2", id = "96579234730244"}, 
+        {name = "WhatsApp notification V1", id = "107004225739474"},
+        {name = "WhatsApp notification V2", id = "18850631582"},
+        {name = "Samsung V1", id = "123767635061073"},
+        {name = "Samsung V2", id = "96579234730244"}, 
         {name = "Shiiii", id = "120566727202986"},
         {name = "ai_tomaa miku", id = "139770074770361"},
         {name = "Miku Miku", id = "72812231495047"},
-        {name = "kuru_kuru", id = "122465710753374"},
+        {name = "kuru kuru", id = "122465710753374"},
         {name = "PM ROCAM", id = "96161547081609"},
         {name = "cavalo!!", id = "78871573440184"},
         {name = "deixa os garoto brinca", id = "80291355054807"},
-        {name = "flamengo", id = "137774355552052"},
+        {name = "flameeeengo", id = "137774355552052"},
         {name = "sai do mei satnas", id = "127944706557246"},
         {name = "namoral agora e a hora", id = "120677947987369"},
         {name = "n pode me chutar pq seu celebro e burro", id = "82284055473737"},
@@ -2335,13 +2335,13 @@ createSoundDropdown("Select a Meme Sound", {
 
 
 
-local Section = Tab7:AddSection({"Throw Effect on Server"})
+local Section = Tab7:AddSection({"Loud Sound"})
 
 -- Dropdown "Efeito/Terror"
-createSoundDropdown("Select a Loud Sound", {
+createSoundDropdown("Play Selected Loud Sound", {
     ["efeito/terror"] = {
-        {name = "jumpscar", id = "91784486966761"},
-        {name = "Buong Bansa", id = "5807190725"},
+        {name = "jumpscare", id = "91784486966761"},
+        {name = "Buong Bansa [ WALANG PAKE ]", id = "5807190725"},
         {name = "n se preocupe", id = "87041057113780"},
         {name = "eles estao todos mortos", id = "70605158718179"},
 
@@ -2418,7 +2418,7 @@ createSoundDropdown("Select a Loud Sound", {
         {name = "", id = ""},
         {name = "", id = ""}
     }
-}, "jumpscar")
+}, "jumpscare")
 
 
 
@@ -3397,7 +3397,7 @@ Tab9:AddButton({
     end
 })
 
-local Section = Tab9:AddSection({" flings"})
+local Section = Tab9:AddSection({"Fling"})
 
 local DropdownFlingMethod = Tab9:AddDropdown({
     Name = "Select Fling Method",
