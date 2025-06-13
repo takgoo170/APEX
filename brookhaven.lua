@@ -2341,6 +2341,7 @@ local Section = Tab7:AddSection({"Throw Effect on Server"})
 createSoundDropdown("Select a Loud Sound", {
     ["efeito/terror"] = {
         {name = "jumpscar", id = "91784486966761"},
+        {name = "Buong Bansa", id = "5807190725"},
         {name = "n se preocupe", id = "87041057113780"},
         {name = "eles estao todos mortos", id = "70605158718179"},
 
