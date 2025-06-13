@@ -734,8 +734,8 @@ local function updateESP(player)
             textLabel.BackgroundTransparency = 1
             textLabel.TextStrokeTransparency = 0.5
             textLabel.Font = Enum.Font.SourceSansBold
-            textLabel.TextSize = 14
-            textLabel.Text = player.Name .. " | " .. player.AccountAge .. " dias"
+            textLabel.TextSize = 12
+            textLabel.Text = player.Name .. " | " .. player.AccountAge .. " days"
             textLabel.TextColor3 = getESPColor()
 
             billboardGuis[player] = billboard
@@ -998,26 +998,26 @@ AvatarManager.Avatares = {
     { Nome = "Monstro S.A", ID = 123609977175226 },
     { Nome = "Trenzinho", ID = 80468697076178 },
     { Nome = "Dino", ID = 11941741105 },
-    { Nome = "Pou idoso", ID = 15742966010  },
+    { Nome = "Pou", ID = 15742966010  },
     { Nome = "Coco/boxt@", ID = 77013984520332  },
     { Nome = "Coelho", ID = 71797333686800  },
     { Nome = "Hipopótamo", ID = 73215892129281 },
-    { Nome = "Ratatui", ID = 108557570415453 },
+    { Nome = "Ratatuli", ID = 108557570415453 },
     { Nome = "Galinha", ID = 71251793812515 },
-    { Nome = "Pepa pig", ID = 92979204778377 },
-    { Nome = "pinguin", ID = 94944293759578 },
+    { Nome = "Peppa pig", ID = 92979204778377 },
+    { Nome = "Penguin", ID = 94944293759578 },
     { Nome = "Sid", ID = 87442757321244 },
     { Nome = "puga grande", ID = 111436158728716 },
-    { Nome = "SHREK AMALDIÇOADO", ID = 120960401202173 },
+    { Nome = "SHREK CURSED", ID = 120960401202173 },
     { Nome = "mosquito grande", ID = 108052868536435 },
-    { Nome = "Noob Invertido", ID = 106596990206151 },
-    { Nome = "Pato(a)", ID = 135132836238349 },
+    { Nome = "Noob Reversed", ID = 106596990206151 },
+    { Nome = "Duck", ID = 135132836238349 },
     { Nome = "Cachorro Chihuahua", ID = 18656467256 },
-    { Nome = "Gato sla", ID = 18994959003 },
-    { Nome = "Gato fei ", ID = 77506186615650 },
+    { Nome = "Cat sla", ID = 18994959003 },
+    { Nome = "Cat fei ", ID = 77506186615650 },
     { Nome = "Inpostor", ID = 18234669337 },
-    { Nome = "Simon amarelo", ID = 75183593514657 },
-    { Nome = "Simon azul", ID = 76155710249925 }
+    { Nome = "Simon yellow", ID = 75183593514657 },
+    { Nome = "Simon blue", ID = 76155710249925 }
     
 }
 -- Função para obter os nomes dos avatares para o dropdown
@@ -1088,8 +1088,8 @@ Tab3:AddButton({
     Callback = function()
         local args = {
             {
-                117101023704825, -- Perna Direita
-                125767940563838,  -- Perna Esquerda
+                117101023704825, -- Right Leg
+                125767940563838,  -- Left Leg
                 137301494386930,  -- Braço Direito
                 87357384184710,  -- Braço Esquerdo
                 133391239416999, -- Torso
@@ -1227,7 +1227,7 @@ Tab3:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
                                           -- === Tab4: House === --
 ---------------------------------------------------------------------------------------------------------------------------------
-Tab4:AddSection({"Troll [ FUN ]"})
+Tab4:AddSection({"Troll Houses [ FUN ]"})
 Tab4:AddParagraph({
     Title = "TROLL HOUSE",
     Content = ""
@@ -1283,7 +1283,7 @@ Tab4:AddButton({
         if successCount == 0 and failCount == 0 then
             game.StarterGui:SetCore("SendNotification", {
                 Title = "Notice!",
-                Text = "No ban found to remove.",
+                Text = "No ban house records found.",
                 Duration = 5
             })
         end
@@ -1301,7 +1301,7 @@ Tab4:AddParagraph({
                                           -- === Tab 5: Car === --
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local Section = Tab5:AddSection({"Cars"})
+local Section = Tab5:AddSection({"All"})
 
 
 local Players = game:GetService("Players")
@@ -1773,7 +1773,7 @@ Tab6:AddSlider({
     Min = 1,
     Max = 5,
     Increase = 1,
-    Default = 3,
+    Default = 2,
     Callback = function(Value)
         rgbSpeed = Value
     end
@@ -2021,7 +2021,17 @@ end)
 ---------------------------------------------------------------------------------------------------------------------------------
                                                 -- === Tab 7: Music All === --
 ---------------------------------------------------------------------------------------------------------------------------------
-
+Tab7:AddSection({"NOTICE!"})
+Tab7:AddParagraph({
+    Title = "⚠️ Meme Sound contains a little sus audio."
+})
+Tab7:AddParagraph({
+    Title = "⚠️ Loud Sound contains a super loud sound, be careful when playing it!"
+})
+Tab7:AddParagraph({
+    Title = "⚠️ Sounds can be heard by all user in the server."
+})
+Tab7:AddSection({"Global Audio/Sound"})
 local loopAtivo = false
 local InputID = ""
 
@@ -2056,7 +2066,7 @@ Tab7:AddButton({
             globalSound.SoundId = "rbxassetid://" .. InputID
             globalSound.Looped = false
             globalSound:Play()
-            task.wait(3)
+            task.wait(15)
             globalSound:Destroy()
         end
     end
@@ -2089,6 +2099,7 @@ Tab7:AddToggle({
     end
 })
 
+Tab7:AddSection({"Meme Sound"})
 -- Dropdowns para Tab6
 local function createSoundDropdown(title, musicOptions, defaultOption)
     local musicNames = {}
@@ -2116,7 +2127,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
         globalSound.Looped = false
         globalSound:Play()
         task.spawn(function()
-            task.wait(3)
+            task.wait(5)
             globalSound:Destroy()
         end)
     end
@@ -2159,7 +2170,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
                         if selectedSoundID then
                             playSound(selectedSoundID, currentVolume, currentPitch)
                         end
-                        task.wait(1)
+                        task.wait(2)
                     end
                 end)
             end
@@ -2172,19 +2183,19 @@ createSoundDropdown("Play Selected Meme Sound", {
     ["Memes"] = {
         {name = "pankapakan", id = "122547522269143"}, 
        
-        {name = "Gemido ultra rápido", id = "128863565301778"},
+        {name = "Ultra fast Moan", id = "128863565301778"},
         {name = "vai g0z@?", id = "116293771329297"},
         {name = "G0z33iiii", id = "93462644278510"},
         {name = "Hommmm ", id = "133135656929513"},
-        {name = "gemido1", id = "105263704862377"},
-        {name = " gemido2", id = "92186909873950"},
+        {name = "moan 1", id = "105263704862377"},
+        {name = "moan 2", id = "92186909873950"},
         {name = "sus", id = "128137573022197"},
-        {name = "gemido estranho", id = "131219411501419"},
-        {name = "gemido kawai", id = "100409245129170"},
-        {name = "Yaaaaa~~", id = "88332347208779"},
+        {name = "strange moan", id = "131219411501419"},
+        {name = "kawai moan", id = "100409245129170"},
+        {name = "Yaaaaahhhh~~", id = "88332347208779"},
         {name = "yamete kudasai", id = "108494476595033"},
         {name = "ruby chann haii...", id = "134640594695384"},
-        {name = "Loly gemiD0", id = "119277017538197"},
+        {name = "Loly Moan", id = "119277017538197"},
          {name = "ai poison", id = "115870718113313"},
          {name = "chegachega SUS", id = "77405864184828"},
          {name = "uwu", id = "76820720070248"},
@@ -2261,12 +2272,12 @@ createSoundDropdown("Play Selected Meme Sound", {
         {name = "fiui OLHA MENSAGEM", id = "121668429878811"},
         {name = "tooomeee", id = "128319664118768"},
         {name = "risada de ladrao", id = "133065882609605"},
-        {name = "E o PIX nada ainda", id = "113831443375212"},
-        {name = "Vo nada vo nada", id = "89093085290586"},
-        {name = "Eli gosta", id = "105012436535315"},
-        {name = "um cavalo de tres pernas?", id = "8164241439"},
+        {name = "And PIX still nothing", id = "113831443375212"},
+        {name = "I'm not doing anything 2x", id = "89093085290586"},
+        {name = "Eli likes", id = "105012436535315"},
+        {name = "a three-legged horse?", id = "8164241439"},
         {name = "voces sao um bado de fdp", id = "8232773326"},
-        {name = "HAHA TROLLEI ATÉ VOCÊ", id = "7021794555"},
+        {name = "HAHA I TROLLED YOU!", id = "7021794555"},
         {name = "", id = ""},
         {name = "", id = ""},
         {name = "", id = ""},
@@ -2293,11 +2304,11 @@ createSoundDropdown("Play Selected Meme Sound", {
 
         {name = "sai", id = "121169949217007"},
         {name = "risada boa dms", id = "127589011971759"},
-        {name = "vacilo perna de pau", id = "106809680656199"},
+        {name = "wooden leg vacillation", id = "106809680656199"},
         {name = "gomo gomo no!!!", id = "137067472449625"},
         {name = "arroto", id = "140203378050178"},
         {name = "iraaaa", id = "136752451575091"},
-        {name = "não fica se achando muito não", id = "101588606280167"},
+        {name = "Don't think too highly of yourself", id = "101588606280167"},
        
         {name = "WhatsApp notification V1", id = "107004225739474"},
         {name = "WhatsApp notification V2", id = "18850631582"},
@@ -2319,7 +2330,7 @@ createSoundDropdown("Play Selected Meme Sound", {
         {name = "Tu e um beta", id = "130233956349541"},
         {name = "Porfavor n tira eu nao", id = "85321374020324"},
         {name = "Olá beleza vc pode me dá muitos", id = "74235334504693"},
-        {name = "Discord sus", id = "122662798976905"},
+        {name = "Discord Notification", id = "122662798976905"},
         {name = "rojao apito", id = "6549021381"},
         {name = "off", id = "1778829098"},
         {name = "Kazuma kazuma", id = "127954653962405"},
@@ -2329,7 +2340,7 @@ createSoundDropdown("Play Selected Meme Sound", {
         {name = "busss", id = "139841197791567"},
         {name = "Estourado wItb", id = "137478052262430"},
         {name = "sla", id = "116672405522828"},
-        {name = "HA HA HA", id = "138236682866721"}
+        {name = "HA HA HA HA", id = "138236682866721"}
     }
 }, "pankapakan")
 
@@ -2345,16 +2356,16 @@ createSoundDropdown("Play Selected Loud Sound", {
         {name = "n se preocupe", id = "87041057113780"},
         {name = "eles estao todos mortos", id = "70605158718179"},
 
-        {name = "gritoestourado", id = "7520729342"},
-        {name = "gritomedo", id = "113029085566978"},
+        {name = "screamburst", id = "7520729342"},
+        {name = "screamfear", id = "113029085566978"},
         {name = "Nukesiren", id = "9067330158"},
         {name = "nuclear sirenv2", id = "675587093"},
-        {name = "Alertescola", id = "6607047008"},
-        {name = "Memealertsiren", id = "8379374771"},
+        {name = "School Alert", id = "6607047008"},
+        {name = "Loud Siren Alert", id = "8379374771"},
         {name = "sirenv3", id = "6766811806"},
         {name = "Alarm estourAAAA...", id = "93354528379052"},
         {name = "MegaMan Alarm", id = "1442382907"},
-        {name = "Alarm bookhaven", id = "1526192493"},
+        {name = "Alarm brookhaven", id = "1526192493"},
         {name = "", id = ""},
         {name = "", id = ""},
         {name = "", id = ""},
@@ -2368,8 +2379,8 @@ createSoundDropdown("Play Selected Loud Sound", {
 
 
 
-        {name = "alet malaysia", id = "7714172940"},
-        {name = "Risada", id = "79191730206814"},
+        {name = "Alert Malaysia", id = "7714172940"},
+        {name = "Laughter", id = "79191730206814"},
         {name = "Hahahah", id = "90096947219465"},
         {name = "scream", id = "314568939"},
         {name = "Terrified meme scream", id = "5853668794"},
@@ -2391,11 +2402,11 @@ createSoundDropdown("Play Selected Loud Sound", {
         {name = "Jumpscare Scream", id = "6150329916"},
         {name = "FNaF: Security Breach", id = "2050522547"},
         {name = "llllllll", id = "5029269312"},
-        {name = "loud jumpscare", id = "7236490488"},
+        {name = "LOUD jumpscare", id = "7236490488"},
         {name = "fnaf", id = "6982454389"},
         {name = "Pinkamena Jumpscare 1", id = "192334186"},
         {name = "Ennard Jumpscare 2", id = "629526707"},
-        {name = "a sla medo dino", id = "125506416092123"},
+        {name = "to sla fear dino", id = "125506416092123"},
         {name = "Backrooms Bacteria Pitfalls ", id = "81325342128575"},
         
         {name = "error Infinite", id = "3893790326"},
@@ -2509,7 +2520,7 @@ end
 -- Dropdown "Forró"
 createMusicDropdown("Forró", {
     ["forro"] = {
-        {name = "forró ja cansou", id = "74812784884330"},
+        {name = "forró is already tired", id = "74812784884330"},
         {name = "lenbro ate hoje", id = "71531533552899"},
         {name = "escolha certa", id = "107088620814881"},
         {name = "forró da rezenha", id = "120973520531216"},
