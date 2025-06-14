@@ -124,6 +124,9 @@ end
 -- Roblox Lua script to send execution info to Discord via webhook
 -- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
 
+-- Roblox Lua script to send execution info to Discord via webhook
+-- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
+
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 
@@ -156,39 +159,39 @@ local function sendDiscordLog(player)
     local executorName = detectExecutor()
 
     local embed = {
-        title = "Script Executed Logger - W APEX OT",
+        title = "Script Executed",
         color = 0x3498db, -- Blue color
         fields = {
             {
-                name = "[🎮] Game",
+                name = "Game",
                 value = "```" .. game.Name .. " (PlaceId: " .. tostring(game.PlaceId) .. ")```",
                 inline = false
             },
             {
-                name = "[👤] Account Name",
+                name = "Account Name",
                 value = "```" .. player.Name .. "```",
                 inline = true
             },
             {
-                name = "[🔗] User  Id",
+                name = "User  Id",
                 value = "```" .. tostring(player.UserId) .. "```",
                 inline = true
             },
             {
-                name = "[📜] Server Job ID",
+                name = "Server Job ID",
                 value = "```" .. game.JobId .. "```",
                 inline = false
             },
             {
-                name = "[💻] Executor Used",
+                name = "Executor Used",
                 value = "```" .. executorName .. "```",
                 inline = false
             }
         },
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
         footer = {
-            text = "Made by: Takgoo | Apex OT Script Log",
-            icon_url = "https://cdn.discordapp.com/attachments/1379631851919904809/1380513278232494120/Picsart_25-06-06_07-46-42-243.png?ex=6847726e&is=684620ee&hm=9142c841bca382f6f39bcaac025fc2b47776ab7c00c334e4636fdfeff59ac253&"
+            text = "Made by: Takgoo",
+            icon_url = "https://i.imgur.com/4M34hi2.png"
         }
     }
 
@@ -206,6 +209,8 @@ local function sendDiscordLog(player)
 
     if not success then
         warn("Failed to send Discord log: " .. tostring(err))
+    else
+        print("Discord log sent successfully!")
     end
 end
 
