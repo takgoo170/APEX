@@ -4932,7 +4932,7 @@ Tab12:AddButton({
 })
 
 Tab12:AddSection({"Premium Teleport"})
-local teleportPlayer = game.Players.LocalPlayer
+local teleportPlayerPremium = game.Players.LocalPlayer
 local premiumLocation = "Police Helicopter" -- Default value
 
 local premium_locations = {
@@ -4956,9 +4956,9 @@ Tab12:AddButton({
     Name = "Teleport",
     Description = "Teleports to the selected premium location",
     Callback = function()
-        if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
-            local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if teleportPlayerPremium.Character and teleportPlayerPremium.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = teleportPlayerPremium.Character.HumanoidRootPart
+            local humanoid = teleportPlayerPremium.Character:FindFirstChildOfClass("Humanoid")
             local pos = premium_locations[premiumLocation]
             if pos then
                 pcall(function()
@@ -4981,7 +4981,7 @@ Tab12:AddButton({
 })
 
 Tab12:AddSection({"Subway Teleport"})
-local teleportPlayer = game.Players.LocalPlayer
+local teleportPlayerSubway = game.Players.LocalPlayer
 local subwayLocation = "Blackhawk Subway" -- Default value
 
 local Subway_TP = {
@@ -5011,9 +5011,9 @@ Tab12:AddButton({
     Name = "Teleport",
     Description = "Teleports to the selected subway location",
     Callback = function()
-        if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
-            local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if teleportPlayerSubway.Character and teleportPlayerSubway.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = teleportPlayerSubway.Character.HumanoidRootPart
+            local humanoid = teleportPlayerSubway.Character:FindFirstChildOfClass("Humanoid")
             local pos = Subway_TP[subwayLocation]
             if pos then
                 pcall(function()
