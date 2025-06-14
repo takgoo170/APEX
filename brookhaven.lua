@@ -4999,7 +4999,7 @@ Tab12:AddDropdown({
             "Crown Pointe: Subway",
             "Lake Madison: Subway",
             "Downtown: Subway"
-        }
+        },
         Callback = function(value)
             subwayLocation = value
         end
