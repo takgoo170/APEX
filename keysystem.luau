@@ -124,102 +124,89 @@ end
 -- Roblox Lua script to send execution info to Discord via webhook
 -- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
 
--- Roblox Lua script to send execution info to Discord via webhook
--- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
-
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
--- Discord Webhook URL (Replace this with your actual webhook)
+-- Your webhook URL
 local webhookUrl = "https://discord.com/api/webhooks/1383492519819612250/MLMPB16V8oksbyb_YiKbS-M7pLThXSGyV8gi13Z3EFxkmoYfqPAOmBT4omsOQfHromdu"
 
--- Function to detect executor
 local function detectExecutor()
     if identifyexecutor then
         return identifyexecutor()
-    elseif syn then
-        return "Synapse X"
     elseif KRNL_LOADED then
         return "KRNL"
     elseif is_sirhurt_closure then
         return "SirHurt"
-    elseif pebc_execute then
-        return "ProtoSmasher"
-    elseif getexecutorname then
-        return getexecutorname()
+    elseif syn then
+        return "Synapse X"
+    elseif isexecutorclosure then
+        return "Electron"
     else
-        return "Executor Unknown"
+        return "Unknown"
     end
 end
 
--- Function to send a log message to Discord as an embed
-local function sendDiscordLog(player)
-    if not player then return end
+local function createJoinScript()
+    return string.format('game:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s")', game.PlaceId, game.JobId)
+end
 
-    local executorName = detectExecutor()
+-- Roblox avatar headshot URL
+local function getAvatarUrl(userId)
+    return "https://www.roblox.com/headshot-thumbnail/image?userId=" .. tostring(userId) .. "&width=420&height=420&format=png"
+end
 
-    local embed = {
-        title = "Script Executed",
-        color = 0x3498db, -- Blue color
-        fields = {
-            {
-                name = "Game",
-                value = "```" .. game.Name .. " (PlaceId: " .. tostring(game.PlaceId) .. ")```",
-                inline = false
+local function sendLog()
+    local data = {
+        ["content"] = "**[Script Logger Triggered]**",
+        ["embeds"] = {{
+            ["title"] = "User Executed Script | Apex OT Script",
+            ["color"] = #8808ec,
+            ["fields"] = {
+                {
+                    ["name"] = "[👤] Account Name",
+                    ["value"] = "```" .. LocalPlayer.Name .. "```",
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "[💻] Executor Used",
+                    ["value"] = "```" .. detectExecutor() .. "```",
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "[🎮] Current Game",
+                    ["value"] = string.format("```%s (https://www.roblox.com/games/%s)```", game.Name or "Unknown", game.PlaceId),
+                    ["inline"] = false
+                },
+                {
+                    ["name"] = "[🔗] Job Id",
+                    ["value"] = "```" .. game.JobId .. "```",
+                    ["inline"] = false
+                },
+                {
+                    ["name"] = "[📜] Join Script",
+                    ["value"] = "```lua\n" .. createJoinScript() .. "\n```",
+                    ["inline"] = false
+                }
             },
-            {
-                name = "Account Name",
-                value = "```" .. player.Name .. "```",
-                inline = true
+            ["thumbnail"] = {
+                ["url"] = getAvatarUrl(LocalPlayer.UserId)
             },
-            {
-                name = "User  Id",
-                value = "```" .. tostring(player.UserId) .. "```",
-                inline = true
+            ["footer"] = {
+                ["text"] = "Made by: Takgoo | Apex OT Script Logger"
             },
-            {
-                name = "Server Job ID",
-                value = "```" .. game.JobId .. "```",
-                inline = false
-            },
-            {
-                name = "Executor Used",
-                value = "```" .. executorName .. "```",
-                inline = false
-            }
-        },
-        timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
-        footer = {
-            text = "Made by: Takgoo",
-            icon_url = "https://i.imgur.com/4M34hi2.png"
-        }
+            ["timestamp"] = DateTime.now():ToIsoDate()
+        }}
     }
-
-    local payload = {
-        embeds = {embed},
-        username = "Script Logger",
-        avatar_url = "https://i.imgur.com/4M34hi2.png" -- optional avatar
-    }
-
-    local jsonPayload = HttpService:JSONEncode(payload)
 
     local success, err = pcall(function()
-        HttpService:PostAsync(webhookUrl, jsonPayload, Enum.HttpContentType.ApplicationJson)
+        HttpService:PostAsync(webhookUrl, HttpService:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
     end)
 
     if not success then
-        warn("Failed to send Discord log: " .. tostring(err))
-    else
-        print("Discord log sent successfully!")
+        warn("[Logger] Failed to send webhook: ", err)
     end
 end
 
--- Automatically send log when player joins and script runs
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Wait()
-    sendDiscordLog(player)
-end)
-
--- Alternatively, for local player in a LocalScript use:
--- local player = Players.LocalPlayer
--- sendDiscordLog(player)
+-- Run logger
+sendLog()
