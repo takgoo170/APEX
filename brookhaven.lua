@@ -4839,8 +4839,6 @@ Tab11:AddButton({
 Tab12:AddSection({"Teleportation"})
 local teleportPlayer = game.Players.LocalPlayer
 local teleportLocation = "Main Square" -- Default value
-local premiumLocation = "Police Helicopter" -- Default value
-local subwayLocation = "Blackhawk Subway" -- Default value
 
 local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
@@ -4934,6 +4932,9 @@ Tab12:AddButton({
 })
 
 Tab12:AddSection({"Premium Teleport"})
+local teleportPlayer = game.Players.LocalPlayer
+local premiumLocation = "Police Helicopter" -- Default value
+
 local premium_locations = {
     ["Police Helicopter"] = Vector3.new(-127.95, 46.34, 34.83)
 }
@@ -4980,6 +4981,9 @@ Tab12:AddButton({
 })
 
 Tab12:AddSection({"Subway Teleport"})
+local teleportPlayer = game.Players.LocalPlayer
+local subwayLocation = "Blackhawk Subway" -- Default value
+
 local Subway_TP = {
             ["Blackhawk: Subway"] = Vector3.new(-183.91, -14.99, 354.68),
             ["Crown Pointe: Subway"] = Vector3.new(-238.16, 47.65, -429.55),
