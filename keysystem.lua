@@ -1,3 +1,9 @@
+if game.PlaceId == 126884695634066 then
+    GAG = true
+elseif game.PlaceId == 4924922222 then
+    Brookhaven = true
+end
+
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local Lighting = game:GetService("Lighting")
@@ -105,4 +111,11 @@ subTweenIn:Play()
 wait(2)
 
 tweenOutAndDestroy()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/apex.lua"))()
+
+if GAG then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/apex.lua"))()
+end
+
+if Brookhaven then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/brookhaven.lua"))()
+end
