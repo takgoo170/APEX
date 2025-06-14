@@ -4836,9 +4836,11 @@ Tab11:AddButton({
 
 
 -- Tab12: Teleportes
-Tab12:AddSection({"Teleport"})
+Tab12:AddSection({"Teleportation"})
 local teleportPlayer = game.Players.LocalPlayer
 local teleportLocation = "Main Square" -- Default value
+local premiumLocation = "Police Helicopter" -- Default value
+local subwayLocation = "Blackhawk Subway" -- Default value
 
 local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
@@ -4859,6 +4861,8 @@ local locations = {
     ["Auto Repair Shop"] = Vector3.new(8.32, 2.41, -339.34),
     ["Burger Barn"] = Vector3.new(152.21, 3.41, 55.40),
     ["Club Brooks"] = Vector3.new(-70, 18, -131),
+    ["Droneview"] = Vector3.new(-667.03, 249.17, 757.77),
+    ["Lake Madison"] = Vector3.new(-222.88, 9.28, 768.09),
     ["Campsite 1"] = Vector3.new(-352.33, 3.06, 555.47),
     ["Campsite 2"] = Vector3.new(-128.29, 3.06, 1064.05),
     ["Seaside 1"] = Vector3.new(55.69, 2.94, -1403.60),
@@ -4889,6 +4893,8 @@ Tab12:AddDropdown({
         "Auto Repair Shop",
         "Burger Barn",
         "Club Brooks",
+        "Droneview",
+        "Lake Madison",
         "Campsite 1",
         "Campsite 2",
         "Seaside 1",
@@ -4907,6 +4913,104 @@ Tab12:AddButton({
             local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
             local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
             local pos = locations[teleportLocation]
+            if pos then
+                pcall(function()
+                    if humanoid then
+                        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+                        humanoid.WalkSpeed = 0
+                    end
+                    humanoidRootPart.Anchored = true
+                    humanoidRootPart.CFrame = CFrame.new(pos)
+                    task.wait(0.4)
+                    humanoidRootPart.Anchored = false
+                    if humanoid then
+                        humanoid.WalkSpeed = 16
+                        humanoid:ChangeState(Enum.HumanoidStateType.Running)
+                    end
+                end)
+            end
+        end
+    end
+})
+
+Tab12:AddSection({"Premium Teleport"})
+local premium_locations = {
+    ["Police Helicopter"] = Vector3.new(-127.95, 46.34, 34.83)
+}
+
+Tab12:AddDropdown({
+    Name = "Premium Locations",
+    Description = "Select a premium location to teleport to",
+    Default = premiumLocation,
+    Multi = false,
+    Options = {
+            "Police Helicopter"
+        },
+    Callback = function(value)
+            premiumLocation = value
+        end
+    })
+        
+Tab12:AddButton({
+    Name = "Teleport",
+    Description = "Teleports to the selected premium location",
+    Callback = function()
+        if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
+            local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
+            local pos = premium_locations[premiumLocation]
+            if pos then
+                pcall(function()
+                    if humanoid then
+                        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+                        humanoid.WalkSpeed = 0
+                    end
+                    humanoidRootPart.Anchored = true
+                    humanoidRootPart.CFrame = CFrame.new(pos)
+                    task.wait(0.4)
+                    humanoidRootPart.Anchored = false
+                    if humanoid then
+                        humanoid.WalkSpeed = 16
+                        humanoid:ChangeState(Enum.HumanoidStateType.Running)
+                    end
+                end)
+            end
+        end
+    end
+})
+
+Tab12:AddSection({"Subway Teleport"})
+local Subway_TP = {
+            ["Blackhawk: Subway"] = Vector3.new(-183.91, -14.99, 354.68),
+            ["Crown Pointe: Subway"] = Vector3.new(-238.16, 47.65, -429.55),
+            ["Lake Madison: Subway"] = Vector3.new(8.01, -15.05, 1016.47),
+            ["Downtown: Subway"] = Vector3.new(23.59, -14.65, 78.88)
+}
+
+Tab12:AddDropdown({
+        Name = "Subway Teleport",
+        Description = "Select a subway to teleport to",
+        Default = subwayLocation,
+        Multi = false,
+        Options = {
+            "Blackhawk: Subway",
+            "Crown Pointe: Subway",
+            "Lake Madison: Subway",
+            "Downtown: Subway"
+        }
+        Callback = function(value)
+            subwayLocation = value
+        end
+    })
+
+Tab12:AddButton({
+    Name = "Teleport",
+    Description = "Teleports to the selected subway location",
+    Callback = function()
+        if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
+            local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
+            local pos = Subway_TP[subwayLocation]
             if pos then
                 pcall(function()
                     if humanoid then
