@@ -2127,7 +2127,7 @@ local function createSoundDropdown(title, musicOptions, defaultOption)
         globalSound.Looped = false
         globalSound:Play()
         task.spawn(function()
-            task.wait(5)
+            task.wait(10)
             globalSound:Destroy()
         end)
     end
@@ -2278,15 +2278,15 @@ createSoundDropdown("Play Selected Meme Sound", {
         {name = "a three-legged horse?", id = "8164241439"},
         {name = "voces sao um bado de fdp", id = "8232773326"},
         {name = "HAHA I TROLLED YOU!", id = "7021794555"},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
+        {name = "Rick Roll w/ twist", id = "7992960012"},
+        {name = "FERRARI", id = "153619739"},
+        {name = "Rick Rolled", id = "736341259"},
+        {name = "Fart", id = "6695903063"},
+        {name = "SPEEDRUN", id = "7774708196"},
+        {name = "SUIIIIII~", id = "7681560017"},
+        {name = "spongebob", id = "8904888220"},
+        {name = "BONK", id = "4164190231"},
+        {name = "Squid Game (game 1)", id = "7535587224"},
         {name = "", id = ""},
         {name = "", id = ""},
         
@@ -2366,9 +2366,9 @@ createSoundDropdown("Play Selected Loud Sound", {
         {name = "Alarm estourAAAA...", id = "93354528379052"},
         {name = "MegaMan Alarm", id = "1442382907"},
         {name = "Alarm brookhaven", id = "1526192493"},
-        {name = "", id = ""},
-        {name = "", id = ""},
-        {name = "", id = ""},
+        {name = "John Laugh", id = "6882766712"},
+        {name = "Flight Laugh", id = "1569053161"},
+        {name = "Timmer Shiawase", id = "5409360995"},
         {name = "", id = ""},
         {name = "", id = ""},
         {name = "", id = ""},
