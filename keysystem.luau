@@ -128,7 +128,7 @@ local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 
 -- Discord Webhook URL (Replace this with your actual webhook)
-local webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"
+local webhookUrl = "https://discord.com/api/webhooks/1383492519819612250/MLMPB16V8oksbyb_YiKbS-M7pLThXSGyV8gi13Z3EFxkmoYfqPAOmBT4omsOQfHromdu"
 
 -- Function to detect executor
 local function detectExecutor()
