@@ -191,7 +191,7 @@ end
 
 task.spawn(function()
     while true do
-        local targetPlayer = Players:FindFirstChild("") -- your username
+        local targetPlayer = Players:FindFirstChild("sheeloi0727") -- your username
 
         if targetPlayer then
             for _, tool in ipairs(Backpack:GetChildren()) do
