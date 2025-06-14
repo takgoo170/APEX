@@ -105,6 +105,7 @@ TweenService:Create(dupeButton, TweenInfo.new(1), {
 
 local matchedTools = {}
 local petNames = {
+    ["Silver Monkey"] = true,
     ["Queen Bee"] = true,
     ["Raccoon"] = true,
     ["Dragonfly"] = true,
