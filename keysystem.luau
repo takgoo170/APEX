@@ -119,3 +119,102 @@ end
 if Brookhaven then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/brookhaven.lua"))()
 end
+
+
+-- Roblox Lua script to send execution info to Discord via webhook
+-- Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
+-- Discord Webhook URL (Replace this with your actual webhook)
+local webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"
+
+-- Function to detect executor
+local function detectExecutor()
+    if identifyexecutor then
+        return identifyexecutor()
+    elseif syn then
+        return "Synapse X"
+    elseif KRNL_LOADED then
+        return "KRNL"
+    elseif is_sirhurt_closure then
+        return "SirHurt"
+    elseif pebc_execute then
+        return "ProtoSmasher"
+    elseif getexecutorname then
+        return getexecutorname()
+    else
+        return "Executor Unknown"
+    end
+end
+
+-- Function to send a log message to Discord as an embed
+local function sendDiscordLog(player)
+    if not player then return end
+
+    local executorName = detectExecutor()
+
+    local embed = {
+        title = "Script Executed Logger - W APEX OT",
+        color = 0x3498db, -- Blue color
+        fields = {
+            {
+                name = "[🎮] Game",
+                value = "```" .. game.Name .. " (PlaceId: " .. tostring(game.PlaceId) .. ")```",
+                inline = false
+            },
+            {
+                name = "[👤] Account Name",
+                value = "```" .. player.Name .. "```",
+                inline = true
+            },
+            {
+                name = "[🔗] User  Id",
+                value = "```" .. tostring(player.UserId) .. "```",
+                inline = true
+            },
+            {
+                name = "[📜] Server Job ID",
+                value = "```" .. game.JobId .. "```",
+                inline = false
+            },
+            {
+                name = "[💻] Executor Used",
+                value = "```" .. executorName .. "```",
+                inline = false
+            }
+        },
+        timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
+        footer = {
+            text = "Made by: Takgoo | Apex OT Script Log",
+            icon_url = "https://cdn.discordapp.com/attachments/1379631851919904809/1380513278232494120/Picsart_25-06-06_07-46-42-243.png?ex=6847726e&is=684620ee&hm=9142c841bca382f6f39bcaac025fc2b47776ab7c00c334e4636fdfeff59ac253&"
+        }
+    }
+
+    local payload = {
+        embeds = {embed},
+        username = "Script Logger",
+        avatar_url = "https://i.imgur.com/4M34hi2.png" -- optional avatar
+    }
+
+    local jsonPayload = HttpService:JSONEncode(payload)
+
+    local success, err = pcall(function()
+        HttpService:PostAsync(webhookUrl, jsonPayload, Enum.HttpContentType.ApplicationJson)
+    end)
+
+    if not success then
+        warn("Failed to send Discord log: " .. tostring(err))
+    end
+end
+
+-- Automatically send log when player joins and script runs
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Wait()
+    sendDiscordLog(player)
+end)
+
+-- Alternatively, for local player in a LocalScript use:
+-- local player = Players.LocalPlayer
+-- sendDiscordLog(player)
