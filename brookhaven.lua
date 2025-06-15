@@ -160,6 +160,7 @@ local Tab4 = Window:MakeTab({"House", "Home"})
 local Tab5 = Window:MakeTab({"Car", "Car"})
 local Tab12 = Window:MakeTab({"Teleport", "locate"})
 local Tab6 = Window:MakeTab({"RGB", "brush"})
+local Tab13 = Window:MakeTab({"Visual", "star"})
 local Tab7 = Window:MakeTab({"Custom Music", "radio"})    
 local Tab8 = Window:MakeTab({"Music", "music"}) 
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
@@ -5030,6 +5031,52 @@ Tab12:AddButton({
                     end
                 end)
             end
+        end
+    end
+})
+
+--=========================== TAB 13 : VISUAL =======================================
+Tab13:AddParagraph({"Idk what to put", "Idk" })
+
+Tab13:AddSection({"Visual Gamepass"})
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local remoteEvent = ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Player1sCa1r")
+
+Tab1:AddToggle({
+    Name = "Car Fire",
+    Description = "Enable the premium function pass, only works if you're in a car",
+    Default = false,
+    Callback = function(isOn)
+        if isOn then
+            -- Activate fire on the car
+            local args = {"Fire"}
+            remoteEvent:FireServer(unpack(args))
+            print("Car fire activated")
+        else
+            -- Deactivate fire on the car
+            local args = {"Stop"}
+            remoteEvent:FireServer(unpack(args))
+            print("Car fire deactivated")
+        end
+    end
+})
+
+-- Add the toggle to your UI
+Tab1:AddToggle({
+    Name = "Car Speed [ 200 ]",
+    Description = "Enable the Speed pass function, only works if you're in a car",
+    Default = false,
+    Callback = function(isOn)
+        if isOn then
+            -- Activate speed boost
+            local args = {"200PlayerGiveSpeed", "200"}
+            remoteEvent:FireServer(unpack(args))
+            print("Speed boost activated")
+        else
+            -- Deactivate speed boost
+            local args = {"200PlayerGiveSpeed", "0"} -- Adjust if a different command is needed to stop
+            remoteEvent:FireServer(unpack(args))
+            print("Speed boost deactivated")
         end
     end
 })
