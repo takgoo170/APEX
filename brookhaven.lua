@@ -5042,39 +5042,55 @@ Tab13:AddSection({"Visual Gamepass"})
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local remoteEvent = ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Player1sCa1r")
 
-local CarFireToggle = Tab13:AddToggle({
+Tab13:AddButton({
     Name = "Car Fire",
-    Description = "Enable the premium function pass, only works if you're in a car",
-    Default = false,
-    Callback = function(isOn)
-        if isOn then
-            -- Activate fire on the car
+    Description = "Activate or deactivate fire on the car when clicked",
+    Callback = function()
+        -- Track fire toggle state globally
+        if _G.fireActive == nil then
+            _G.fireActive = false
+        end
+
+        _G.fireActive = not _G.fireActive
+
+        if _G.fireActive then
+            -- Activate fire
             local args = {"Fire"}
             remoteEvent:FireServer(unpack(args))
-            print("Car fire activated")
+            print("Fire activated")
         else
-            -- Deactivate fire on the car
+            -- Deactivate fire - if you know the exact command, replace here; else skip or send "Stop"
             local args = {"Stop"}
             remoteEvent:FireServer(unpack(args))
-            print("Car fire deactivated")
+            print("Fire deactivated")
         end
     end
 })
+-- UI Tab object from your UI library
 
--- Add the toggle to your UI
-local CarSpeedToggle = Tab13:AddToggle({
+Tab13:AddButton({
     Name = "Car Speed [ 200 ]",
-    Description = "Enable the Speed pass function, only works if you're in a car",
-    Default = false,
-    Callback = function(isOn)
-        if isOn then
+    Description = "Activate or deactivate speed pass function when clicked",
+    Callback = function()
+        -- Example toggle behavior on button click:
+        -- You can track state externally or toggle each click
+        -- Here is a simple toggle state using a local variable
+        
+        -- Store toggle state outside the function scope
+        if _G.speedBoostActive == nil then
+            _G.speedBoostActive = false
+        end
+        
+        _G.speedBoostActive = not _G.speedBoostActive
+        
+        if _G.speedBoostActive then
             -- Activate speed boost
             local args = {"200PlayerGiveSpeed", "200"}
             remoteEvent:FireServer(unpack(args))
             print("Speed boost activated")
         else
             -- Deactivate speed boost
-            local args = {"200PlayerGiveSpeed", "0"} -- Adjust if a different command is needed to stop
+            local args = {"200PlayerGiveSpeed", "0"}
             remoteEvent:FireServer(unpack(args))
             print("Speed boost deactivated")
         end
