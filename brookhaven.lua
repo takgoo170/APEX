@@ -5042,7 +5042,7 @@ Tab13:AddSection({"Visual Gamepass"})
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local remoteEvent = ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Player1sCa1r")
 
-Tab1:AddToggle({
+local CarFireToggle = Tab13:AddToggle({
     Name = "Car Fire",
     Description = "Enable the premium function pass, only works if you're in a car",
     Default = false,
@@ -5062,7 +5062,7 @@ Tab1:AddToggle({
 })
 
 -- Add the toggle to your UI
-Tab1:AddToggle({
+local CarSpeedToggle = Tab13:AddToggle({
     Name = "Car Speed [ 200 ]",
     Description = "Enable the Speed pass function, only works if you're in a car",
     Default = false,
