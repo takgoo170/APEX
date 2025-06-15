@@ -1,6 +1,7 @@
 ---- LINE: 3000+
 ---- LAST EDITED
 
+print("Join: discord.gg/wDMPK3QAmY")
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
@@ -132,7 +133,7 @@ local loadingPromise = createLoadingScreen()
 waitForPromise(loadingPromise)
 
 -- SEU CÓDIGO ABAIXO AQUI
-print("Loading completo! Agora executando o resto do script...")
+print("Loading complete! Now running the script...")
 -- ... resto do seu código ...
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
@@ -163,7 +164,7 @@ local Tab7 = Window:MakeTab({"Custom Music", "radio"})
 local Tab8 = Window:MakeTab({"Music", "music"}) 
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
-local Tab11 = Window:MakeTab({"Scripts", "scroll"})
+local Tab11 = Window:MakeTab({"More Scripts", "scroll"})
 
 
 
@@ -189,7 +190,7 @@ Tab1:AddDiscordInvite({
     Invite = "https://discord.gg/wDMPK3QAmY",
 })
   
-
+Tab1:AddSection({"Executor Info"})
 local function detectExecutor()
     if identifyexecutor then
         return identifyexecutor()
