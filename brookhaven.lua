@@ -1,14 +1,19 @@
 ---- LINE: 3000+
 ---- LAST EDITED
 
+print("Apex OT executed! expect 2s to load fully.")
 print("Join: discord.gg/wDMPK3QAmY")
+print("Found some bugs? Just reset your character or report it to our community server.")
+
+-- Services / Service nganiiii~
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 local StarterGui = game:GetService("StarterGui")
 local lp = Players.LocalPlayer
 
--- Função que cria a tela de loading e retorna uma promise
+
+-- Function that creates the loading screen and returns a promise
 local function createLoadingScreen()
     local promise = {}
     promise.completed = false
@@ -134,6 +139,8 @@ waitForPromise(loadingPromise)
 
 -- SEU CÓDIGO ABAIXO AQUI
 print("Loading complete! Now running the script...")
+print("Loaded successfully! Enjoy using our script!")
+
 -- ... resto do seu código ...
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
@@ -146,7 +153,7 @@ local Window = redzlib:MakeWindow({
 
   Window:AddMinimizeButton({
     Button = { Image = "rbxassetid://15860246232", BackgroundTransparency = 0 },
-    Corner = { CornerRadius = UDim.new(25, 1) },
+    Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
 ----------------- THEME ----------------
@@ -4752,6 +4759,10 @@ end})
 ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 10: lag server === --
 ---------------------------------------------------------------------------------------------------------------------------------
+Tab10:AddSection({"Lag Server"})
+Tab10:AddParagraph({"HEY!", "This function is currently unavailable for now due to some bugs."})
+
+
 
 
 
@@ -4760,6 +4771,18 @@ end})
 ----------------------------------------------------------------------------------------------------------------------------------------------
                                                -- === Tab 11: Scripts === --
 ----------------------------------------------------------------------------------------------------------------------------------------------
+Tab11:AddButton({
+    Name = "Kai Hub",
+    Description = "Universal",
+    Callback = function()
+
+    end
+})
+
+
+
+
+
 
 Tab11:AddButton({
     Name = "FE Jerk Off Hub Matrix",
@@ -4842,7 +4865,7 @@ Tab12:AddSection({"Teleportation"})
 local teleportPlayer = game.Players.LocalPlayer
 local teleportLocation = "Main Square" -- Default value
 local premiumLocation = "Police Helicopter" -- Default value
-local subwayLocation = "Blackhawk Subway" -- Default value
+local subwayLocation = "Blackhawk: Subway" -- Default value
 
 local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
@@ -5036,7 +5059,7 @@ Tab12:AddButton({
 })
 
 --=========================== TAB 13 : VISUAL =======================================
-Tab13:AddParagraph({"Idk what to put", "Idk" })
+Tab13:AddParagraph({"Idk what to put", "di ko ngani alam kung ano ang ilalagay nganiiiii~~" })
 
 Tab13:AddSection({"Visual Gamepass"})
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -5096,3 +5119,9 @@ Tab13:AddButton({
         end
     end
 })
+
+Tab13:AddParagraph({"More function here soon!", "Mag hintay kayo! Nasa school pa 'yung developer oh"})
+Tab13:AddParagraph({"If any function didn't work, report directly.", "report agad ya! 'wag ng patumpik-tumpik pa."})
+
+
+
