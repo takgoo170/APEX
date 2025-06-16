@@ -161,6 +161,7 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab1 = Window:MakeTab({"Info", "info"})
+local Tab14 = Window:MakeTab({"Updates", "hammer"})
 local Tab2= Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
 local Tab4 = Window:MakeTab({"House", "Home"})
@@ -219,11 +220,11 @@ end
 
 local executorName = detectExecutor()
 
-local Paragraph = Tab1:AddParagraph({"Executor", executorName})
+local Paragraph = Tab1:AddParagraph({"💻 Executor", executorName})
 
 local Section = Tab1:AddSection({"APEX OT: version 1.2"})
 
-local Paragraph = Tab1:AddParagraph({"Developer", "Takgoo \n APEX TEAM"})
+local Paragraph = Tab1:AddParagraph({"🔨 Developer", "Takgoo \n APEX TEAM"})
 
 
   
@@ -5123,5 +5124,9 @@ Tab13:AddButton({
 Tab13:AddParagraph({"More function here soon!", "Mag hintay kayo! Nasa school pa 'yung developer oh"})
 Tab13:AddParagraph({"If any function didn't work, report directly.", "report agad ya! 'wag ng patumpik-tumpik pa."})
 
-
+--============================= TAB 14 : UPDATES ======================================--
+Tab14:AddSection({"Updates Logs"})
+Tab14:AddParagraph({"Updates [ v1.2 ]", " + New Teleportation \n + Police Station [ Teleport ] \n + Fire Station [ Teleport ] \n + Campsite 1 [ Teleport ] \n + Campsite 2 [ Teleport ] \n + Solar Panel [ Teleport ] \n + Airport [ Teleport ] \n + Motel [ Teleport ] \n + Bank [ Teleport ] \n + Grocery [ Teleport ] \n + Hospital [ Teleport ] \n + Seaside 1 [ Teleport ] \n + Seaside 2 [ Teleport ] \n + City Hall [ Teleport ] \n + Main Square [ Teleport ] \n + Fixed Remove Ban House [ 100% working ] \n + Fixed Meme Sound not playing \n + Fixed Walkspeed Slider \n + Fixed some bugs"
+Tab14:AddParagraph({"Updates [ v1.2.5 ]", "+ Added Fly GUI \n + Added No Clip \n + Added Infinite Jump \n + Added ESP RGB \n + Added Anti Sit \n + Added Bring Car \n + Added Troll Selected Car \n + Added Troll All Car \n + Added Fling \n + Added Music [ ID ] \n + Added Copy Avatar \n + Added Troll Players \n + Added Scripts Tab [ UNIVERSALS ] \n + Removed Lag Server [ ISSUES Found ] \n + Removed Some Functions [ ISSUES Found ] \n + Fixed Teleportation \n + Fixed Everything"
+Tab14:AddParagraph({"Updates [ v1.2.7 ]", "+ Added Buong Bansa [ Walang Pake ] Meme Sound \n + Added Teleportation \n + Food Mart \n + Auto Shop/Mall \n + Club Brooks \n + Burger Barn \n + Fixed Music Not Playing \n + Fixed Fly Not Loading \n + Fixed Reset Movement Setting \n + Fixed Copy Avatar Not Copying \n + Fixed Equip Accessories Not Equipping \n + Fixed Troll Car Not Finding A Car \n + Fixed Teleport to Player \n + Fixed Updates List [ including player's list ] \n + Fixed ESP super laggy [ FREEZE ] \n + Fixed Fling \n + Fixed RGB changing color"
 
