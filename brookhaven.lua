@@ -1238,9 +1238,7 @@ Tab3:AddParagraph({
                                           -- === Tab4: House === --
 ---------------------------------------------------------------------------------------------------------------------------------
 Tab4:AddSection({"Troll Houses [ FUN ]"})
-Tab4:AddParagraph({
-    Title = "⚠️ If bugs occurs, please reset your character.",
-    Content = "if bugs isn't able to be fixed by resetting character, try to report it on our community server."
+Tab4:AddParagraph({"⚠️ If bugs occurs, please reset your character.", "if bugs isn't able to be fixed by resetting character, try to report it on our community server."
 })
 
 -- Botão para remover ban de todas as casas
@@ -1300,9 +1298,7 @@ Tab4:AddButton({
     end
 })
 
-Tab4:AddParagraph({
-    Title = "We recommend to turn on No Clip function in Player Movement Section.",
-    Content = "ONLY IF REMOVE BAN HOUSE IS NOT WORKING!"
+Tab4:AddParagraph({"We recommend to turn on No Clip function in Player Movement Section.", "ONLY IF REMOVE BAN HOUSE IS NOT WORKING!"
 })
 
 
@@ -1312,7 +1308,7 @@ Tab4:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
 
 local Section = Tab5:AddSection({"All"})
-local Tab5:AddParagraph({"READ THIS!", "If the troll cars don't work, maybe someone is in the driver's seat of the car, which is why it doesn't work."})
+Tab5:AddParagraph({"READ THIS!", "If the troll cars don't work, maybe someone is in the driver's seat of the car, which is why it doesn't work."})
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
