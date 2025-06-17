@@ -2076,7 +2076,7 @@ Tab7:AddButton({
             globalSound.SoundId = "rbxassetid://" .. InputID
             globalSound.Looped = false
             globalSound:Play()
-            task.wait(15)
+            task.wait(30)
             globalSound:Destroy()
         end
     end
@@ -5127,7 +5127,7 @@ Tab13:AddParagraph({"If any function didn't work, report directly.", "report aga
 --============================= TAB 14 : UPDATES ======================================--
 Tab14:AddSection({"NOTICE"})
 Tab14:AddParagraph({"🔔 REMINDER: Latest updates are based on date released."})
-Tab14:AddParagraph({"Current Version: 1.2.7"})
+Tab14:AddParagraph({"✅ Current Version: 1.2.7"})
 Tab14:AddSection({"Updates Logs"})
 Tab14:AddParagraph({"📜 Updates [ v1.2 ] - June 13, 2025", "+ New Teleportation \n + Police Station [ Teleport ] \n + Fire Station [ Teleport ] \n + Campsite 1 [ Teleport ] \n + Campsite 2 [ Teleport ] \n + Solar Panel [ Teleport ] \n + Airport [ Teleport ] \n + Motel [ Teleport ] \n + Bank [ Teleport ] \n + Grocery [ Teleport ] \n + Hospital [ Teleport ] \n + Seaside 1 [ Teleport ] \n + Seaside 2 [ Teleport ] \n + City Hall [ Teleport ] \n + Main Square [ Teleport ] \n + Fixed Remove Ban House [ 100% working ] \n + Fixed Meme Sound not playing \n + Fixed Walkspeed Slider \n + Fixed some bugs"})
 Tab14:AddParagraph({"📜 Updates [ v1.2.5 ] - June 13, 2025", "+ Added Fly GUI \n + Added No Clip \n + Added Infinite Jump \n + Added ESP RGB \n + Added Anti Sit \n + Added Bring Car \n + Added Troll Selected Car \n + Added Troll All Car \n + Added Fling \n + Added Music [ ID ] \n + Added Copy Avatar \n + Added Troll Players \n + Added Scripts Tab [ UNIVERSALS ] \n + Removed Lag Server [ ISSUES Found ] \n + Removed Some Functions [ ISSUES Found ] \n + Fixed Teleportation \n + Fixed Everything"})
