@@ -866,7 +866,7 @@ Players.PlayerAdded:Connect(UptadePlayers)
 Players.PlayerRemoving:Connect(UptadePlayers)
 
 Tab3:AddButton({
-    Name = "Copy Avatar",
+    Name = "Copy Avatar [BETA]",
     Callback = function()
         if not Target then return end
 
@@ -1239,14 +1239,14 @@ Tab3:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
 Tab4:AddSection({"Troll Houses [ FUN ]"})
 Tab4:AddParagraph({
-    Title = "TROLL HOUSE",
-    Content = ""
+    Title = "⚠️ If bugs occurs, please reset your character.",
+    Content = "if bugs isn't able to be fixed by resetting character, try to report it on our community server."
 })
 
 -- Botão para remover ban de todas as casas
 Tab4:AddButton({
     Name = "Remove Ban from All Houses",
-    Description = "Try to remove the ban from all houses ",
+    Description = "Remove ban's house.",
     Callback = function()
         local successCount = 0
         local failCount = 0
@@ -1285,14 +1285,14 @@ Tab4:AddButton({
         end
         if failCount > 0 then
             game.StarterGui:SetCore("SendNotification", {
-                Title = "Notice!",
+                Title = "Failed!",
                 Text = "Failed to remove bans from " .. failCount .. " house.",
                 Duration = 5
             })
         end
         if successCount == 0 and failCount == 0 then
             game.StarterGui:SetCore("SendNotification", {
-                Title = "Notice!",
+                Title = "Hey!",
                 Text = "No ban house records found.",
                 Duration = 5
             })
@@ -1302,7 +1302,7 @@ Tab4:AddButton({
 
 Tab4:AddParagraph({
     Title = "We recommend to turn on No Clip function in Player Movement Section.",
-    Content = ""
+    Content = "ONLY IF REMOVE BAN HOUSE IS NOT WORKING!"
 })
 
 
@@ -1312,7 +1312,7 @@ Tab4:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
 
 local Section = Tab5:AddSection({"All"})
-
+local Tab5:AddParagraph({"READ THIS!", "If the troll cars don't work, maybe someone is in the driver's seat of the car, which is why it doesn't work."})
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -1517,7 +1517,7 @@ local Section = Tab5:AddSection({"Other Car Functions"})
 
 -- Criar o dropdown
 local Dropdown = Tab5:AddDropdown({
-    Name = "Select Player Car",
+    Name = "Select Player's Car",
     Description = "Select a player's car",
     Default = nil,
     Options = TeleportCarro:AtualizarListaCarros(),
@@ -2366,16 +2366,16 @@ createSoundDropdown("Play Selected Loud Sound", {
         {name = "n se preocupe", id = "87041057113780"},
         {name = "eles estao todos mortos", id = "70605158718179"},
 
-        {name = "screamburst", id = "7520729342"},
-        {name = "screamfear", id = "113029085566978"},
-        {name = "Nukesiren", id = "9067330158"},
-        {name = "nuclear sirenv2", id = "675587093"},
+        {name = "Scream Burst", id = "7520729342"},
+        {name = "Scream Fear", id = "113029085566978"},
+        {name = "Nuke Siren v1", id = "9067330158"},
+        {name = "Nuclear Siren v2", id = "675587093"},
         {name = "School Alert", id = "6607047008"},
         {name = "Loud Siren Alert", id = "8379374771"},
-        {name = "sirenv3", id = "6766811806"},
+        {name = "Nuclear Siren v3", id = "6766811806"},
         {name = "Alarm estourAAAA...", id = "93354528379052"},
         {name = "MegaMan Alarm", id = "1442382907"},
-        {name = "Alarm brookhaven", id = "1526192493"},
+        {name = "Alarm Brookhaven Bank", id = "1526192493"},
         {name = "John Laugh", id = "6882766712"},
         {name = "Flight Laugh", id = "1569053161"},
         {name = "Timmer Shiawase", id = "5409360995"},
