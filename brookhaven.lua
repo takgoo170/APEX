@@ -1761,6 +1761,43 @@ TeleportCarro.LocalPlayer.CharacterAdded:Connect(function(character)
     end
 end)
 
+Tab5:AddSection({"Spawn Car"})
+local carList = {
+    "SchoolBus", "SmartCar", "FarmTruck", "Cadillac", "Excavator",
+    "Jeep", "NascarTruck", "TowTruck", "Snowplow", "MilitaryTruck",
+    "Tank", "Limo", "FireTruck"
+}
+
+local spamCarsActive = false
+
+local function spawnCar(carName)
+    local args = {
+        [1] = "PickingCar",
+        [2] = carName
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1Ca1r"):FireServer(unpack(args))
+end
+
+Tab5:AddToggle({
+    Name = "Spam Cars",
+    Description = "spawns a random car super fast",
+    Default = false,
+    Callback = function(state)
+        spamCarsActive = state
+        if spamCarsActive then
+            task.spawn(function()
+                while spamCarsActive do
+                    for _, carName in ipairs(carList) do
+                        if not spamCarsActive then break end
+                        spawnCar(carName)
+                        wait(0.4)
+                    end
+                end
+            end)
+        end
+    end
+})
+
 ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 6: RGB === --
 ---------------------------------------------------------------------------------------------------------------------------------
