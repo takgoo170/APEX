@@ -4,9 +4,9 @@ local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao14
 workspace.FallenPartsDestroyHeight = -math.huge
 
 local Window = Libary:MakeWindow({
-    Title = "Chaos Hub | Brookhaven RP ",
-    SubTitle = "by: Luscaa and venom",
-    LoadText = "Carregando Chaos Hub",
+    Title = "APEX OT | Brookhaven RP ",
+    SubTitle = "by: Takgoo",
+    LoadText = "APEX OT",
     Flags = "ChaosHub_Broookhaven"
 })
 Window:AddMinimizeButton({
