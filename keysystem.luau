@@ -120,7 +120,7 @@ if Brookhaven then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/APEX/refs/heads/main/brookhaven.lua"))()
 end
 
-local HttpService = game:GetService("HttpService")
+--[[local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 
@@ -210,3 +210,103 @@ request({
         }}
     })
 })
+]]
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+if getgenv().LoggerRan then return end
+getgenv().LoggerRan = true
+
+local embedFields = {}
+
+-- 👤 Account
+table.insert(embedFields, {
+    name = "[👤] Account",
+    value = "```" .. Player.Name .. "```",
+    inline = true
+})
+
+-- 💻 Executor
+table.insert(embedFields, {
+    name = "[💻] Executor",
+    value = "```" .. (identifyexecutor and identifyexecutor() or "Unknown") .. "```",
+    inline = true
+})
+
+-- 🎮 Game Detection via PlaceId
+local placeId = game.PlaceId
+local gameName = "Unknown Game"
+local gameIcon = "❓"
+local themeColor = 0x7289DA
+
+if placeId == 126884695634066 then
+    gameName = "Grow A Garden 🌱"
+    gameIcon = "🪴"
+    themeColor = 0x57F287 -- green
+elseif placeId == 4924922222 then
+    gameName = "Brookhaven 🏡RP"
+    gameIcon = "🏡"
+    themeColor = 0x3498DB -- blue
+end
+
+table.insert(embedFields, {
+    name = "[🎮] Game",
+    value = "```" .. gameName .. "```",
+    inline = false
+})
+
+-- 🌐 Server Job ID
+table.insert(embedFields, {
+    name = "[📜] Server Job ID",
+    value = "```" .. tostring(game.JobId) .. "```",
+    inline = false
+})
+
+-- 🔗 Join Script
+local teleportScript = string.format(
+    "game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s')",
+    placeId, game.JobId
+)
+
+table.insert(embedFields, {
+    name = "[🔗] Join Script",
+    value = "```lua\n" .. teleportScript .. "\n```",
+    inline = false
+})
+
+-- 🖼 Avatar thumbnail
+local avatarUrl = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. Player.UserId .. "&size=420x420&format=Png&isCircular=false"
+
+-- 📤 Send to webhook
+local success, response = pcall(function()
+    return request({
+        Url = "https://discord.com/api/webhooks/1385478371722661958/XXEq_Qwo7n2nwl-9meDn0kbZz6eeJaX6omZM0RQ7GyN2GJ4mE9LgV50SDrbZF-q6HD9z",
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = HttpService:JSONEncode({
+            embeds = {{
+                title = gameIcon .. " Execution Logger",
+                description = "Execution details of a user:",
+                color = themeColor,
+                fields = embedFields,
+                thumbnail = {
+                    url = avatarUrl
+                },
+                footer = {
+                    text = "Made by: Takgoo | 🔔 Logger System for Apex OT"
+                },
+                timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
+            }}
+        })
+    })
+end)
+
+if success then
+    print("Message sent successfully to the webhook.")
+else
+    print("Error sending message to the webhook: " .. tostring(response))
+end
