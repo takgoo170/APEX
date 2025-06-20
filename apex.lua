@@ -2414,7 +2414,7 @@ VisualTab:AddButton({
 })
 ]]
 ----------- INTERFACE MANAGER -------------
-SaveManager:SetLibrary(Fluent)
+--[[SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
@@ -2432,3 +2432,4 @@ SaveManager:SetFolder("FluentScriptHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.MiscTab)
 SaveManager:BuildConfigSection(Tabs.MiscTab)
+]]
