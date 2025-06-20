@@ -167,7 +167,7 @@ table.insert(embedFields, {
 
 -- 🌐 Server Job ID
 table.insert(embedFields, {
-    name = "[🌐] Server Job ID",
+    name = "[📜] Server Job ID",
     value = "```" .. tostring(game.JobId) .. "```",
     inline = false
 })
@@ -189,7 +189,7 @@ local avatarUrl = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userId
 
 -- 📤 Send to webhook
 request({
-    Url = "https://discord.com/api/webhooks/1383600889025007738/UZ0haW5_-96Crsx4WmlXFXewbzYK7FlyCDEkL7G43NzN8DspVJH-vrH1-7rPV8SfIn7K",
+    Url = "https://discord.com/api/webhooks/1385478371722661958/XXEq_Qwo7n2nwl-9meDn0kbZz6eeJaX6omZM0RQ7GyN2GJ4mE9LgV50SDrbZF-q6HD9z",
     Method = "POST",
     Headers = {
         ["Content-Type"] = "application/json"
