@@ -149,7 +149,7 @@ local gameName = "Unknown Game"
 local gameIcon = "❓"
 local themeColor = 0x7289DA
 
-if placeId == 13772394625 then
+if placeId == 126884695634066 then
     gameName = "Grow A Garden 🌱"
     gameIcon = "🪴"
     themeColor = 0x57F287 -- green
