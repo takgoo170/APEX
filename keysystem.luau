@@ -1,4 +1,4 @@
-if game.PlaceId == 7436755782 then
+if game.PlaceId == 126884695634066 then
     GAG = true
 elseif game.PlaceId == 4924922222 then
     Brookhaven = true
