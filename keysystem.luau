@@ -306,7 +306,7 @@ local success, response = pcall(function()
 end)
 
 if success then
-    print("Message sent successfully to the webhook.")
+    print("Sent successfully.")
 else
-    print("Error sending message to the webhook: " .. tostring(response))
+    print("Error sending message: " .. tostring(response))
 end
