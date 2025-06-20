@@ -103,7 +103,7 @@ local state = {
     espEnabled = false,
     espBillboards = {},
     espHighlights = {},
-    webhookUrl = ""
+    webhookUrl = "https://discord.com/api/webhooks/1385478371722661958/XXEq_Qwo7n2nwl-9meDn0kbZz6eeJaX6omZM0RQ7GyN2GJ4mE9LgV50SDrbZF-q6HD9z"
 }
 local mutationColors = {
     Wet = Color3.fromRGB(0, 0, 255),
