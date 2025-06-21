@@ -208,6 +208,11 @@ Tab1:AddDiscordInvite({
     Description = "Join to our discord community for more updates!",
     Logo = "",
     Invite = "https://discord.gg/VrJx432MB5",
+		redzlib:MakeNotification({
+                Name = "Apex OT",
+                Content = "APEX Discord Community copied successfully!",
+                Time = 5
+            })
 })
 
 Tab1:AddSection({"KAI TEAM"})
@@ -217,6 +222,11 @@ Tab1:AddDiscordInvite({
     Description = "Join to Kai Hub Community!",
     Logo = "",
     Invite = "https://discord.gg/wDMPK3QAmY",
+		redzlib:MakeNotification({
+                Name = "Kai Team",
+                Content = "Kai Team Discord Community copied successfully!",
+                Time = 5
+            })
 })
   
 Tab1:AddSection({"Executor Info"})
