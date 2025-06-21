@@ -262,10 +262,11 @@ local Paragraph = Tab1:AddParagraph({"🔨 Developer", "Takgoo \n APEX TEAM"})
                      -- === Tab 2(15) === --
 -------------------------------------------------
 Tab15:AddSection({"Server Information"})
-
-Tab15:AddSection({"Server Menu"})
+Tab15:AddParagraph({"This Tab is not fully available for now! Expect the full release on version 1.3.1!"})
+Tab15:AddParagraph({"Tab is empty!"})
+Tab15:AddSection({"Server Menu [ SNEAK PEAK ]"})
 Tab15:AddButton({
-    Name = "Rejoin",
+    Name = "Rejoin [ BETA ]",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
         TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
