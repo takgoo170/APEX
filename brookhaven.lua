@@ -1962,12 +1962,13 @@ local function fireServer(eventName, args)
     end
 end
 
-local Section = Tab6:AddSection({""})
+local Section = Tab6:AddSection({"Avatar | RGB"})
 
 -- Nome + Bio RGB  juntos
 local nameBioRGBActive = false
 Tab6:AddToggle({
-    Name = "Name + Bio RGB ",
+    Name = "Avatar Name + Bio RGB",
+    Description = "Enables RGB on Avatar Name & Bio",
     Default = false,
     Callback = function(state)
         nameBioRGBActive = state
@@ -1984,7 +1985,7 @@ Tab6:AddToggle({
     end
 })
 
-local isNameActive = false
+--[[local isNameActive = false
 local isBioActive = false
 
 Tab6:AddToggle({
@@ -2047,7 +2048,7 @@ spawn(function()
         wait(0.7)
     end
 end)
-
+]]
 
 local ToggleCorpo = Tab6:AddToggle({
     Name = "RGB Corpo",
