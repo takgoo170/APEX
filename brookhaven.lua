@@ -5556,14 +5556,15 @@ Tab13:AddParagraph({"If any function didn't work, report directly.", "report aga
 --============================= TAB 14 : UPDATES ======================================--
 Tab14:AddSection({""})
 Tab14:AddParagraph({"🔔 REMINDER: Latest updates are based on date released."})
-Tab14:AddParagraph({"✅ Current Version: 1.3.0"})
+Tab14:AddParagraph({"✅ Current Version: 1.3.1"})
 Tab14:AddSection({"Updates Logs"})
 Tab14:AddParagraph({"📜 Updates [ v1.2 ] - June 13, 2025", "+ New Teleportation \n + Police Station [ Teleport ] \n + Fire Station [ Teleport ] \n + Campsite 1 [ Teleport ] \n + Campsite 2 [ Teleport ] \n + Solar Panel [ Teleport ] \n + Airport [ Teleport ] \n + Motel [ Teleport ] \n + Bank [ Teleport ] \n + Grocery [ Teleport ] \n + Hospital [ Teleport ] \n + Seaside 1 [ Teleport ] \n + Seaside 2 [ Teleport ] \n + City Hall [ Teleport ] \n + Main Square [ Teleport ] \n + Fixed Remove Ban House [ 100% working ] \n + Fixed Meme Sound not playing \n + Fixed Walkspeed Slider \n + Fixed some bugs"})
 Tab14:AddParagraph({"📜 Updates [ v1.2.5 ] - June 13, 2025", "+ Added Fly GUI \n + Added No Clip \n + Added Infinite Jump \n + Added ESP RGB \n + Added Anti Sit \n + Added Bring Car \n + Added Troll Selected Car \n + Added Troll All Car \n + Added Fling \n + Added Music [ ID ] \n + Added Copy Avatar \n + Added Troll Players \n + Added Scripts Tab [ UNIVERSALS ] \n + Removed Lag Server [ ISSUES Found ] \n + Removed Some Functions [ ISSUES Found ] \n + Fixed Teleportation \n + Fixed Everything"})
 Tab14:AddParagraph({"📜 Updates [ v1.2.7 ] - June 14, 2025", "+ Added Buong Bansa [ Walang Pake ] Meme Sound \n + Added Teleportation \n + Food Mart \n + Auto Shop/Mall \n + Club Brooks \n + Burger Barn \n + Fixed Music Not Playing \n + Fixed Fly Not Loading \n + Fixed Reset Movement Setting \n + Fixed Copy Avatar Not Copying \n + Fixed Equip Accessories Not Equipping \n + Fixed Troll Car Not Finding A Car \n + Fixed Teleport to Player \n + Fixed Updates List [ including player's list ] \n + Fixed ESP super laggy [ FREEZE ] \n + Fixed Fling \n + Fixed RGB changing color"})
 Tab14:AddParagraph({"📜 Updates [ v1.2.9 ] - June 18, 2025", "+ Added Reminder in some functions \n + Added New Sound \n + Fixed Troll Selected Car \n + Fixed Bring Selected Car \n + Fixed FOV of Selected Car \n + Fixed Teleportation \n + Fixed Music not playing \n + Fixed Loop Music \n + Fixed Copy Avatar \n + Fixed 3D Clothing \n + Fixed Infinite Jump \n + Fixed Walkspeed \n + Fixed Some Bugs"})
 Tab14:AddParagraph({"📜 Updates [ v1.3.0 ] - June 21, 2025", "+ Added Fling All V2 \n + Added Spam Chat \n + Added Spam Chat Delay \n + Added Spam Chat V2 \n + Added Clear Chat \n + Added Ballerina Cappuccina Head Accessory \n + Fixed Script Executing + Fixed Fling + Fixed Premium Teleportation + Fixed some bugs..."})
-
+Tab14:AddParagraph({"📜 Updates [ v1.3.1 ] - June 22, 2025", "+ Secret Teleport \n - Secret ;) \n + New Tab [ Server ] \n + Displays current server Job Id \n + Copy Current Game Job Id \n + Textbox Input [ Job Id ] \n + Join Server [ Job Id ] \n + Server Hop \n + Rejoin Current Server \n + Fixed RGB Speed \n + Fixed Avatar Name RGB \n + Fixed Avatar Bio RGB \n + Fixed Other RGB [ more stable now! ] \n + Fixed Executor Detecting [ more stable now! ] \n + Fixed Remove Ban House \n + Fixed Copy Avatar \n + Fixed 3D Accessory Equip \n + Fixed some bugs..."})
+		
 --[[ 
 
 THIS IS THE BOTTOM OF THE CODE, CONTACT US FOR MORE FUN FUNCTION! 🙂 
