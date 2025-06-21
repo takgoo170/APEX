@@ -162,6 +162,7 @@ local Window = redzlib:MakeWindow({
 
 -------------------- LOCAL TABS ------------------
 local Tab1 = Window:MakeTab({"Info", "info"})
+local Tab15 = Window:MakeTab({"Server", ""})
 local Tab14 = Window:MakeTab({"Updates", "hammer"})
 local Tab2= Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
@@ -192,7 +193,7 @@ Tab11 = More Scripts
 Tab12 = Teleport
 Tab13 = Visual
 Tab14 = Updates Log
-
+Tab15 = Server
 
 ]]
 
@@ -256,6 +257,21 @@ local Paragraph = Tab1:AddParagraph({"🔨 Developer", "Takgoo \n APEX TEAM"})
     end
   })
 ]]
+
+-----------------------------------------------
+                     -- === Tab 2(15) === --
+-------------------------------------------------
+Tab15:AddSection({"Server Information"})
+
+Tab15:AddSection({"Server Menu"})
+Tab15:AddButton({
+    Name = "Rejoin",
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end
+})
+
  ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 2: Fun === --
 -----------------------------------------------------------------------------------------------------------------------------------
