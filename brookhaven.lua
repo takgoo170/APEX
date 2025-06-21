@@ -208,11 +208,7 @@ Tab1:AddDiscordInvite({
     Description = "Join to our discord community for more updates!",
     Logo = "",
     Invite = "https://discord.gg/VrJx432MB5",
-		redzlib:MakeNotification({
-                Name = "Apex OT",
-                Content = "APEX Discord Community copied successfully!",
-                Time = 5,
-            })
+		print("discord invite copied successfully.")
 })
 
 Tab1:AddSection({"KAI TEAM"})
@@ -222,11 +218,7 @@ Tab1:AddDiscordInvite({
     Description = "Join to Kai Hub Community!",
     Logo = "",
     Invite = "https://discord.gg/wDMPK3QAmY",
-		redzlib:MakeNotification({
-                Name = "Kai Team",
-                Content = "Kai Team Discord Community copied successfully!",
-                Time = 5,
-            })
+		print("discord invite copied successfully.")
 })
   
 Tab1:AddSection({"Executor Info"})
@@ -255,7 +247,6 @@ local Paragraph = Tab1:AddParagraph({"💻 Executor", executorName})
 local Section = Tab1:AddSection({"APEX OT: version 1.2"})
 
 local Paragraph = Tab1:AddParagraph({"🔨 Developer", "Takgoo \n APEX TEAM"})
-
 
   
  --[[ Tab1:AddButton({
