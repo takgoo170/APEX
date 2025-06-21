@@ -1983,6 +1983,71 @@ Tab6:AddToggle({
     end
 })
 
+local isNameActive = false
+local isBioActive = false
+
+Tab6:AddToggle({
+    Name = "Avatar Name RGB",
+    Description = "Avatar Name Color is rainbow.",
+    Default = false,
+    Callback = function(value)
+        isNameActive = value
+        print(value and "Avatar Name RGB activated" or "Avatar Name RGB deactivated")
+    end
+})
+
+Tab:AddToggle({
+    Name = "Avatar Bio RGB",
+    Description = "",
+    Default = false,
+    Callback = function(value)
+        isBioActive = value
+        print(value and "Avatar Bio RGB activated" or "Avatar Bio RGB deactivated")
+    end
+})
+
+
+local vibrantColors = {
+    Color3.fromRGB(255, 0, 0),   -- Vermelho
+    Color3.fromRGB(0, 255, 0),   -- Verde
+    Color3.fromRGB(0, 0, 255),   -- Azul
+    Color3.fromRGB(255, 255, 0), -- Amarelo
+    Color3.fromRGB(255, 0, 255), -- Magenta
+    Color3.fromRGB(0, 255, 255), -- Ciano
+    Color3.fromRGB(255, 165, 0), -- Laranja
+    Color3.fromRGB(128, 0, 128), -- Roxo
+    Color3.fromRGB(255, 20, 147) -- Rosa choque
+}
+
+spawn(function()
+    while true do
+        if isNameActive then
+            local randomColor = vibrantColors[math.random(#vibrantColors)]
+            local args = {
+                [1] = "PickingRPNameColor",
+                [2] = randomColor
+            }
+            game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r"):FireServer(unpack(args))
+        end
+        wait(0.7)
+    end
+end)
+
+spawn(function()
+    while true do
+        if isBioActive then
+            local randomColor = vibrantColors[math.random(#vibrantColors)]
+            local args = {
+                [1] = "PickingRPBioColor",
+                [2] = randomColor
+            }
+            game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r"):FireServer(unpack(args))
+        end
+        wait(0.7)
+    end
+end)
+
+
 local ToggleCorpo = Tab6:AddToggle({
     Name = "RGB Corpo",
     Description = "RGB  no corpo",
