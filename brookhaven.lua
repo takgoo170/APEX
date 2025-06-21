@@ -162,7 +162,7 @@ local Window = redzlib:MakeWindow({
 
 -------------------- LOCAL TABS ------------------
 local Tab1 = Window:MakeTab({"Info", "info"})
-local Tab15 = Window:MakeTab({"Server", ""})
+local Tab15 = Window:MakeTab({"Server", "box"})
 local Tab14 = Window:MakeTab({"Updates", "hammer"})
 local Tab2= Window:MakeTab({"Player", "user"})
 local Tab3 = Window:MakeTab({"Avatar", "shirt"})
@@ -263,9 +263,106 @@ local Paragraph = Tab1:AddParagraph({"🔨 Developer", "Takgoo \n APEX TEAM"})
                      -- === Tab 2(15) === --
 -------------------------------------------------
 Tab15:AddSection({"Server Information"})
-Tab15:AddParagraph({"This Tab is not fully available for now! Expect the full release on version 1.3.1!"})
-Tab15:AddParagraph({"Tab is empty!"})
+Tab15:AddParagraph({"Server Job Id", game.JobId ~= "" and game.JobId or "Job ID not available."})
+Tab15:AddButton({
+	Name = "Copy Job Id",
+	Callback = function()
+        if tick() - lastCopyTime >= copyCooldown then
+            lastCopyTime = tick()
+            setclipboard(tostring(game.JobId))
+            print("JobId Copied!")
+        else
+            print("Please try again in a moment!")
+	
+        end
+    end
+})
 Tab15:AddSection({"Server Menu [ SNEAK PEAK ]"})
+Tab15:AddTextBox({
+	Name = "Job Id Input",
+	PlaceholderText = "Input",
+	Callback = function(Value)
+         getgenv().Job = Value
+		end
+	})
+Tab15:AddButton({
+	Name = "Join Server", 	
+	Callback = function()
+        if tick() - lastTeleportTime >= teleportCooldown then
+            lastTeleportTime = tick()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId, getgenv().Job, game.Players.LocalPlayer)        
+        end
+		end
+	})
+
+Tab15:AddButton({
+	Name = "Server Hop",
+	Callback = function()
+		Hop()
+	end
+	})
+function Hop()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end        
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end        
+        local num = 0
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)            
+            if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait(0.1)
+                    pcall(function()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(1)
+                    break
+                end
+            end
+        end
+    end
+    function Teleport() 
+        while true do
+            pcall(function()
+                TPReturner()
+                if foundAnything ~= "" then
+                    TPReturner()
+                end
+            end)
+            wait(2)
+        end
+    end
+    Teleport()
+end
 Tab15:AddButton({
     Name = "Rejoin [ BETA ]",
     Callback = function()
