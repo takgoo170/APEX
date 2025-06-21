@@ -1005,6 +1005,7 @@ AvatarManager.Avatares = {
     { Nome = "Gato de Manga", ID = 124948425515124 },
     { Nome = "Tung Tung Sahur", ID = 117098257036480 },
     { Nome = "Tralalelo Tralala", ID = 99459753608381 },
+    { Nome = "Ballerina Cappuccina", ID = 72961448671499 },
     { Nome = "Monstro S.A", ID = 123609977175226 },
     { Nome = "Trenzinho", ID = 80468697076178 },
     { Nome = "Dino", ID = 11941741105 },
@@ -1028,9 +1029,8 @@ AvatarManager.Avatares = {
     { Nome = "Inpostor", ID = 18234669337 },
     { Nome = "Simon yellow", ID = 75183593514657 },
     { Nome = "Simon blue", ID = 76155710249925 }
-    
 }
--- Função para obter os nomes dos avatares para o dropdown
+-- Function to get avatar names for dropdown
 function AvatarManager:GetAvatarNames()
     local nomes = {}
     for _, avatar in ipairs(self.Avatares) do
@@ -1039,7 +1039,7 @@ function AvatarManager:GetAvatarNames()
     return nomes
 end
 
--- Função para equipar o avatar
+-- Function to equip the avatar
 function AvatarManager:EquiparAvatar(avatarName)
     for _, avatar in ipairs(self.Avatares) do
         if avatar.Nome == avatarName then
@@ -1058,8 +1058,8 @@ function AvatarManager:EquiparAvatar(avatarName)
     self:MostrarNotificacao("Avatar " .. avatarName .. " not found!")
 end
 
--- Tab3: Opção de Avatar
--- Dropdown para avatares
+-- Tab3:  Avatar Option
+-- Dropdown for avatars
 local AvatarDropdown = Tab3:AddDropdown({
     Name = "3D Accessories",
     Description = "Select to equip",
@@ -1100,10 +1100,10 @@ Tab3:AddButton({
             {
                 117101023704825, -- Right Leg
                 125767940563838,  -- Left Leg
-                137301494386930,  -- Braço Direito
-                87357384184710,  -- Braço Esquerdo
+                137301494386930,  -- Right Arm
+                87357384184710,  --  Left Arm
                 133391239416999, -- Torso
-                111818794467824   -- Cabeça
+                111818794467824   -- Head
             }
         }
         game:GetService("ReplicatedStorage")
@@ -1121,8 +1121,8 @@ Tab3:AddButton({
     Callback = function()
         local args = {
             {
-                124355047456535, -- Perna Direita
-                120507500641962,  -- Perna Esquerda
+                124355047456535, -- Right Leg
+                120507500641962,  -- Left Leg
                 82273782655463,  -- Braço Direito
                 113625313757230,  -- Braço Esquerdo
                 109182039511426, -- Torso
