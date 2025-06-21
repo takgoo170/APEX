@@ -2,6 +2,11 @@
 ---- LAST EDITED
 
 print("Apex OT executed! expect 2s to load fully.")
+print("Detecting your executor...")
+print("...")
+print("...")
+print("...)
+print("Executor has been detected! Go to Info Tab to see what executor are you using.")
 print("Join: discord.gg/wDMPK3QAmY")
 print("Found some bugs? Just reset your character or report it to our community server.")
 
