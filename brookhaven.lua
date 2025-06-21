@@ -110,8 +110,8 @@ local function createLoadingScreen()
             
             -- Exibe a notificação de boas-vindas
             StarterGui:SetCore("SendNotification", {
-                Title = "APEX OT",
-                Text = "Welcome to APEX OT ",
+                Title = "APEX ON TOP",
+                Text = "Welcome to APEX OT! ",
                 Duration = 4
             })
             
@@ -138,6 +138,7 @@ local loadingPromise = createLoadingScreen()
 waitForPromise(loadingPromise)
 
 -- SEU CÓDIGO ABAIXO AQUI
+print("----------------------------------------------------------")
 print("Loading complete! Now running the script...")
 print("Loaded successfully! Enjoy using our script!")
 
@@ -159,7 +160,7 @@ local Window = redzlib:MakeWindow({
 ----------------- THEME ----------------
 
 
-
+-------------------- LOCAL TABS ------------------
 local Tab1 = Window:MakeTab({"Info", "info"})
 local Tab14 = Window:MakeTab({"Updates", "hammer"})
 local Tab2= Window:MakeTab({"Player", "user"})
@@ -175,7 +176,25 @@ local Tab9 = Window:MakeTab({"Troll", "skull"})
 local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
 local Tab11 = Window:MakeTab({"More Scripts", "scroll"})
 
+-------- TAB SUMMARY ------------
+--[[
+Tab1 = Info
+Tab2 = Player
+Tab3 = Avatar 
+Tab4 = House
+Tab5 = Car
+Tab6 = RGB
+Tab7 = Custom Music
+Tab8 = Music
+Tab9 = Troll
+Tab10 = Lag Server
+Tab11 = More Scripts 
+Tab12 = Teleport
+Tab13 = Visual
+Tab14 = Updates Log
 
+
+]]
 
 
 --------------------------------------------------------------------------------------------------------------------------------
@@ -4378,6 +4397,109 @@ flingToggle = Tab9:AddToggle({
     end
 })
 
+
+Tab9:AddButton({
+    Name = "Auto Fling All V2 [ BETA ]",
+    Description = "MUCH BETTER!",
+    Callback = function()
+    local Players = game:GetService("Players")
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local LocalPlayer = Players.LocalPlayer
+    local cam = workspace.CurrentCamera
+
+
+    local function ProcessPlayer(target)
+        if not target or not target.Character or target == LocalPlayer then return end
+        
+        local flingActive = true
+        local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local tRoot = target.Character and target.Character:FindFirstChild("HumanoidRootPart")
+        if not root or not tRoot then return end
+        
+        local char = LocalPlayer.Character
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        local original = root.CFrame
+
+    
+        ReplicatedStorage:WaitForChild("RE"):WaitForChild("1Clea1rTool1s"):FireServer("ClearAllTools")
+        task.wait(0.2)
+
+  
+        ReplicatedStorage.RE:FindFirstChild("1Too1l"):InvokeServer("PickingTools", "Couch")
+        task.wait(0.3)
+
+        local tool = LocalPlayer.Backpack:FindFirstChild("Couch")
+        if tool then
+            tool.Parent = char
+        end
+task.wait(0.1)
+
+game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.F, false, game)
+task.wait(0.25)
+
+        workspace.FallenPartsDestroyHeight = 0/0
+
+        local bv = Instance.new("BodyVelocity")
+        bv.Name = "FlingForce"
+        bv.Velocity = Vector3.new(9e8, 9e8, 9e8)
+        bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        bv.Parent = root
+
+        hum:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+        hum.PlatformStand = false
+        cam.CameraSubject = target.Character:FindFirstChild("Head") or tRoot or hum
+
+        
+ 
+        task.spawn(function()
+            local angle = 0
+            local parts = {root}
+            while flingActive and target and target.Character and target.Character:FindFirstChildOfClass("Humanoid") do
+                local tHum = target.Character:FindFirstChildOfClass("Humanoid")
+                if tHum.Sit then break end
+                angle += 50
+
+                for _, part in ipairs(parts) do
+                    local hrp = target.Character.HumanoidRootPart
+                    local pos = hrp.Position + hrp.Velocity / 1.5
+                    root.CFrame = CFrame.new(pos) * CFrame.Angles(math.rad(angle), 0, 0)
+                end
+
+                root.Velocity = Vector3.new(9e8, 9e8, 9e8)
+                root.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+                task.wait()
+            end
+
+         
+            flingActive = false
+            bv:Destroy()
+            hum:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+            hum.PlatformStand = false
+            root.CFrame = original
+            cam.CameraSubject = hum
+
+            for _, p in pairs(char:GetDescendants()) do
+                if p:IsA("BasePart") then
+                    p.Velocity = Vector3.zero
+                    p.RotVelocity = Vector3.zero
+                end
+            end
+
+            hum:UnequipTools()
+            ReplicatedStorage.RE:FindFirstChild("1Too1l"):InvokeServer("PickingTools", "Couch")
+        end)
+       
+        while flingActive do
+            task.wait()
+        end
+    end
+
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        ProcessPlayer(player)
+			end
+    end
+})
 local Section = Tab9:AddSection({"ALL"})
 
 -- Variáveis globais no início do Tab2
