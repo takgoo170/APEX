@@ -8,8 +8,8 @@ local minimizeUI = Enum.KeyCode.RightAlt
 
 -- 🟢 Create Main UI
 local Window = Fluent:CreateWindow({
-    Title = "Ringta Scripts",
-    SubTitle = "With BIGBACK",
+    Title = "APEX OT",
+    SubTitle = "by Takgoo",
     TabWidth = 160,
     Size = UDim2.fromOffset(480, 360),
     Acrylic = false,
