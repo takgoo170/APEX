@@ -211,7 +211,7 @@ Tab1:AddDiscordInvite({
 		redzlib:MakeNotification({
                 Name = "Apex OT",
                 Content = "APEX Discord Community copied successfully!",
-                Time = 5
+                Time = 5,
             })
 })
 
@@ -225,7 +225,7 @@ Tab1:AddDiscordInvite({
 		redzlib:MakeNotification({
                 Name = "Kai Team",
                 Content = "Kai Team Discord Community copied successfully!",
-                Time = 5
+                Time = 5,
             })
 })
   
