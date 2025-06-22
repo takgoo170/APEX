@@ -1320,6 +1320,26 @@ Tab3:AddParagraph({
     Content = ""
 })
 
+Tab3:AddButton({
+	Name = "Mini Pizza",
+	Callback = function()
+	local args = {
+	  {
+		120556508760512, -- Right Leg
+		92371100239477,  -- Left Leg
+		93120543600736,  -- Right Arm
+		136851648817779, -- Left Arm
+		123914106816549, -- Torso
+		138263644378487  -- Head
+				}
+			}
+	game:GetService("ReplicatedStorage")
+            :WaitForChild("Remotes")
+            :WaitForChild("ChangeCharacterBody")
+            :InvokeServer(unpack(args))
+        print("All body parts equipped!")
+    end
+	})
 -- Cria um botão para equipar todas as partes do corpo
 Tab3:AddButton({
     Name = "Mini REPO",
@@ -1354,7 +1374,7 @@ Tab3:AddButton({
                 82273782655463,  -- Braço Direito
                 113625313757230,  -- Braço Esquerdo
                 109182039511426, -- Torso
-                0   -- Cabeça
+                0   -- Head
             }
         }
         game:GetService("ReplicatedStorage")
@@ -1430,7 +1450,7 @@ Tab3:AddButton({
             :WaitForChild("Remotes")
             :WaitForChild("ChangeCharacterBody")
             :InvokeServer(unpack(args))
-        print("Todas as partes do corpo equipadas!")
+        print("All body parts equipped!")
     end
 })
 
@@ -1453,7 +1473,7 @@ Tab3:AddButton({
             :WaitForChild("Remotes")
             :WaitForChild("ChangeCharacterBody")
             :InvokeServer(unpack(args))
-        print("Todas as partes do corpo equipadas!")
+        print("All body parts equipped!")
     end
 })
 
