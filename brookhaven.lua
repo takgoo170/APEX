@@ -5339,7 +5339,7 @@ local Subway_TP = {
 
 local Secret_TP = {
 	["Secret 1"] = Vector3.new(-6.78, -133.98, 15.02)
-		
+}
 Tab12:AddDropdown({
     Name = "Brookhaven Locations",
     Description = "Select a location to teleport to",
