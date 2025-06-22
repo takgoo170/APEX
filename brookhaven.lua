@@ -5292,14 +5292,16 @@ Tab11:AddButton({
 -- Tab12: Teleportes
 Tab12:AddSection({"Teleportation"})
 local teleportPlayer = game.Players.LocalPlayer
-local teleportLocation = "Main Square" -- Default value
+local teleportLocation = "Main Square"      -- Default value
 local premiumLocation = "Police Helicopter" -- Default value
-local subwayLocation = "Blackhawk: Subway" -- Default value
+local subwayLocation = "Blackhawk: Subway"  -- Default value
+local secretLocation = "Secret 1"           -- Default Value
 
 local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
     ["Main Square"] = Vector3.new(-26.17, 3.48, -0.93),
     ["Bank"] = Vector3.new(1.99, 3.32, 236.65),
+    ["Bank Vault"] = Vector3.new(-9.40, 17.86, 267.89),
     ["Police"] = Vector3.new(-120.03, 3.55, 8.58),
     ["Hospital"] = Vector3.new(-303.2, 3.40, 13.74),
     ["City Hall"] = Vector3.new(-354.65, 7.32, -102.16),
@@ -5317,6 +5319,7 @@ local locations = {
     ["Club Brooks"] = Vector3.new(-70, 18, -131),
     ["Droneview"] = Vector3.new(-667.03, 249.17, 757.77),
     ["Lake Madison"] = Vector3.new(-222.88, 9.28, 768.09),
+    ["Lake Yacht"] = Vector3.new(-133.15, 31.48, 849.56),
     ["Campsite 1"] = Vector3.new(-352.33, 3.06, 555.47),
     ["Campsite 2"] = Vector3.new(-128.29, 3.06, 1064.05),
     ["Seaside 1"] = Vector3.new(55.69, 2.94, -1403.60),
@@ -5334,6 +5337,9 @@ local Subway_TP = {
             ["Downtown: Subway"] = Vector3.new(23.59, -14.65, 78.88)
 }
 
+local Secret_TP = {
+	["Secret 1"] = Vector3.new(-6.78, -133.98, 15.02)
+		
 Tab12:AddDropdown({
     Name = "Brookhaven Locations",
     Description = "Select a location to teleport to",
@@ -5343,6 +5349,7 @@ Tab12:AddDropdown({
         "Hill",
         "Main Square",
         "Bank",
+	"Bank Vault",
         "Police",
         "Hospital",
         "City Hall",
@@ -5360,6 +5367,7 @@ Tab12:AddDropdown({
         "Club Brooks",
         "Droneview",
         "Lake Madison",
+	"Lake Yacht",
         "Campsite 1",
         "Campsite 2",
         "Seaside 1",
@@ -5444,7 +5452,7 @@ Tab12:AddButton({
 Tab12:AddSection({"Subway Teleport"})
 
 Tab12:AddDropdown({
-        Name = "Subway Teleport",
+        Name = "Subway Locations",
         Description = "Select a subway to teleport to",
         Default = subwayLocation,
         Multi = false,
@@ -5487,6 +5495,46 @@ Tab12:AddButton({
     end
 })
 
+Tab12:AddSection({"Secret Teleport"})
+Tab12:AddDropdown({
+	Name = "Secret Locations",
+	Description = "Select a secret location to teleport to",
+	Default = secretLocation,
+	Multi = false,
+	Options = {
+		"Secret 1"
+	},
+	Callback = function(Value)
+		secretLocation = Value
+	end
+})
+Tab12:AddButton({
+    Name = "Teleport",
+    Description = "Teleports to the selected secret location",
+    Callback = function()
+        if teleportPlayer.Character and teleportPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = teleportPlayer.Character.HumanoidRootPart
+            local humanoid = teleportPlayer.Character:FindFirstChildOfClass("Humanoid")
+            local pos = Secret_TP[secretLocation]
+            if pos then
+                pcall(function()
+                    if humanoid then
+                        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+                        humanoid.WalkSpeed = 0
+                    end
+                    humanoidRootPart.Anchored = true
+                    humanoidRootPart.CFrame = CFrame.new(pos)
+                    task.wait(0.4)
+                    humanoidRootPart.Anchored = false
+                    if humanoid then
+                        humanoid.WalkSpeed = 16
+                        humanoid:ChangeState(Enum.HumanoidStateType.Running)
+                    end
+                end)
+            end
+        end
+    end
+})
 --=========================== TAB 13 : VISUAL =======================================
 Tab13:AddParagraph({"🔔 REMINDER!", "THIS VISUAL GAMEPASS FUNCTION MIGHT ONLY WORK ON SOME USERS, PLEASE LET US KNOW IF IT WORKS ON YOUR DEVICE." })
 Tab13:AddParagraph({"UPCOMING VISUAL", "House Pool \n MORE!"})
@@ -5563,7 +5611,7 @@ Tab14:AddParagraph({"📜 Updates [ v1.2.5 ] - June 13, 2025", "+ Added Fly GUI 
 Tab14:AddParagraph({"📜 Updates [ v1.2.7 ] - June 14, 2025", "+ Added Buong Bansa [ Walang Pake ] Meme Sound \n + Added Teleportation \n + Food Mart \n + Auto Shop/Mall \n + Club Brooks \n + Burger Barn \n + Fixed Music Not Playing \n + Fixed Fly Not Loading \n + Fixed Reset Movement Setting \n + Fixed Copy Avatar Not Copying \n + Fixed Equip Accessories Not Equipping \n + Fixed Troll Car Not Finding A Car \n + Fixed Teleport to Player \n + Fixed Updates List [ including player's list ] \n + Fixed ESP super laggy [ FREEZE ] \n + Fixed Fling \n + Fixed RGB changing color"})
 Tab14:AddParagraph({"📜 Updates [ v1.2.9 ] - June 18, 2025", "+ Added Reminder in some functions \n + Added New Sound \n + Fixed Troll Selected Car \n + Fixed Bring Selected Car \n + Fixed FOV of Selected Car \n + Fixed Teleportation \n + Fixed Music not playing \n + Fixed Loop Music \n + Fixed Copy Avatar \n + Fixed 3D Clothing \n + Fixed Infinite Jump \n + Fixed Walkspeed \n + Fixed Some Bugs"})
 Tab14:AddParagraph({"📜 Updates [ v1.3.0 ] - June 21, 2025", "+ Added Fling All V2 \n + Added Spam Chat \n + Added Spam Chat Delay \n + Added Spam Chat V2 \n + Added Clear Chat \n + Added Ballerina Cappuccina Head Accessory \n + Fixed Script Executing + Fixed Fling + Fixed Premium Teleportation + Fixed some bugs..."})
-Tab14:AddParagraph({"📜 Updates [ v1.3.1 ] - June 22, 2025", "+ Secret Teleport \n - Secret ;) \n + New Tab [ Server ] \n + Displays current server Job Id \n + Copy Current Game Job Id \n + Textbox Input [ Job Id ] \n + Join Server [ Job Id ] \n + Server Hop \n + Rejoin Current Server \n + Fixed RGB Speed \n + Fixed Avatar Name RGB \n + Fixed Avatar Bio RGB \n + Fixed Other RGB [ more stable now! ] \n + Fixed Executor Detecting [ more stable now! ] \n + Fixed Remove Ban House \n + Fixed Copy Avatar \n + Fixed 3D Accessory Equip \n + Fixed some bugs..."})
+Tab14:AddParagraph({"📜 Updates [ v1.3.1 ] - June 22, 2025", "+ Secret Teleport \n - Secret ;) \n + New Teleport Location \n + New Tab [ Server ] \n + Displays current server Job Id \n + Copy Current Game Job Id \n + Textbox Input [ Job Id ] \n + Join Server [ Job Id ] \n + Server Hop \n + Rejoin Current Server \n + Fixed RGB Speed \n + Fixed Avatar Name RGB \n + Fixed Avatar Bio RGB \n + Fixed Other RGB [ more stable now! ] \n + Fixed Executor Detecting [ more stable now! ] \n + Fixed Remove Ban House \n + Fixed Copy Avatar \n + Fixed 3D Accessory Equip \n + Fixed some bugs..."})
 		
 --[[ 
 
