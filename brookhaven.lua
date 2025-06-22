@@ -1232,6 +1232,8 @@ AvatarManager.Avatares = {
     { Nome = "Tung Tung Sahur", ID = 117098257036480 },
     { Nome = "Tralalelo Tralala", ID = 99459753608381 },
     { Nome = "Ballerina Cappuccina", ID = 72961448671499 },
+    { Nome = "Mini Potato", ID = 108351763963304 },
+    { Nome = "Mini Pizza", ID = 1624395 },
     { Nome = "Monstro S.A", ID = 123609977175226 },
     { Nome = "Trenzinho", ID = 80468697076178 },
     { Nome = "Dino", ID = 11941741105 },
@@ -1250,8 +1252,8 @@ AvatarManager.Avatares = {
     { Nome = "Noob Reversed", ID = 106596990206151 },
     { Nome = "Duck", ID = 135132836238349 },
     { Nome = "Cachorro Chihuahua", ID = 18656467256 },
-    { Nome = "Cat sla", ID = 18994959003 },
-    { Nome = "Cat fei ", ID = 77506186615650 },
+    { Nome = "Cat v1", ID = 18994959003 },
+    { Nome = "Cat v2 ", ID = 77506186615650 },
     { Nome = "Inpostor", ID = 18234669337 },
     { Nome = "Simon yellow", ID = 75183593514657 },
     { Nome = "Simon blue", ID = 76155710249925 }
@@ -1298,8 +1300,8 @@ local AvatarDropdown = Tab3:AddDropdown({
 
 -- Botão para equipar avatar
 Tab3:AddButton({
-    Name = "Equip ",
-    Description = "Equip selected",
+    Name = "Equip 3D Accessory",
+    Description = "Equip selected accessory",
     Callback = function()
         if not _G.SelectedAvatar or _G.SelectedAvatar == "" then
             AvatarManager:MostrarNotificacao("Nenhum avatar selecionado!")
