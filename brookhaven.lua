@@ -2175,8 +2175,8 @@ end)
 ]]
 
 local ToggleCorpo = Tab6:AddToggle({
-    Name = "RGB Corpo",
-    Description = "RGB  no corpo",
+    Name = "RGB Body",
+    Description = "RGB on Body",
     Default = false
 })
 ToggleCorpo:Callback(function(Value)
@@ -2224,7 +2224,7 @@ local Section = Tab6:AddSection({"Vehicles & Houses"})
 
 local ToggleCasa = Tab6:AddToggle({
     Name = "RGB House",
-    Description = "RGB in house",
+    Description = "RGB in house, must be closer to house to perform action.",
     Default = false
 })
 ToggleCasa:Callback(function(Value)
@@ -2372,7 +2372,7 @@ ToggleRosquinha:Callback(function(Value)
     end)
 end)
 
-
+Tab6:AddParagraph({"Suggestions", "If you have any suggestions about RGB, feel free to share it on our Discord Community!"})
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -2541,8 +2541,8 @@ createSoundDropdown("Play Selected Meme Sound", {
         {name = "pankapakan", id = "122547522269143"}, 
        
         {name = "Ultra fast Moan", id = "128863565301778"},
-        {name = "vai g0z@?", id = "116293771329297"},
-        {name = "G0z33iiii", id = "93462644278510"},
+        {name = "VAIII GOZAAAAAA", id = "116293771329297"},
+        {name = "GOZIIIIIEEEEE", id = "93462644278510"},
         {name = "Hommmm ", id = "133135656929513"},
         {name = "moan 1", id = "105263704862377"},
         {name = "moan 2", id = "92186909873950"},
@@ -2793,7 +2793,7 @@ createSoundDropdown("Play Selected Loud Sound", {
 ---------------------------------------------------------------------------------------------------------------------------------
                                           -- === Tab 8: Troll Music === --
 ---------------------------------------------------------------------------------------------------------------------------------
-
+--[[
 local function tocarMusica(id)
     local ReplicatedStorage = game:GetService("ReplicatedStorage")
     
@@ -3110,7 +3110,7 @@ Tab8:AddButton({
 })
 
 
-
+]]
 
 ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 9: troll === --
