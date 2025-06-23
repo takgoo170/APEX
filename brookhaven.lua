@@ -49,7 +49,7 @@ local function createLoadingScreen()
     image.Size = UDim2.new(0, 300, 0, 300)
     image.Position = UDim2.new(0.5, -150, 0.35, -150)
     image.BackgroundTransparency = 1
-    image.Image = "rbxassetid://73830511104990"
+    image.Image = "rbxassetid://93787935669608"
     image.Parent = frame
 
     local nameText = Instance.new("TextLabel")
