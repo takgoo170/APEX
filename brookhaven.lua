@@ -49,7 +49,7 @@ local function createLoadingScreen()
     image.Size = UDim2.new(0, 300, 0, 300)
     image.Position = UDim2.new(0.5, -150, 0.35, -150)
     image.BackgroundTransparency = 1
-    image.Image = "rbxassetid://15860246232"
+    image.Image = "rbxassetid://73830511104990"
     image.Parent = frame
 
     local nameText = Instance.new("TextLabel")
@@ -60,7 +60,7 @@ local function createLoadingScreen()
     nameText.BackgroundTransparency = 1
     nameText.Font = Enum.Font.FredokaOne
     nameText.TextScaled = true
-    nameText.Text = "Verifying user: "..lp.Name.." (Age: "..tostring(lp.AccountAge).." days)"
+    nameText.Text = "Verifying user: "..lp.Name.." | Wait..."
     nameText.Parent = frame
 
     local barBG = Instance.new("Frame")
@@ -117,7 +117,7 @@ local function createLoadingScreen()
             StarterGui:SetCore("SendNotification", {
                 Title = "APEX ON TOP",
                 Text = "Welcome to APEX OT! ",
-                Duration = 4
+                Duration = 5
             })
             
             -- Marca como concluído e limpa
@@ -158,7 +158,7 @@ local Window = redzlib:MakeWindow({
   })
 
   Window:AddMinimizeButton({
-    Button = { Image = "rbxassetid://15860246232", BackgroundTransparency = 0 },
+    Button = { Image = "rbxassetid://73830511104990", BackgroundTransparency = 0 },
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
 
