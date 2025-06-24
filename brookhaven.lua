@@ -4977,7 +4977,7 @@ end
 Tab9:AddTextBox({
     Name = "Whitelist Player",
     Description = "Enter part of the player's name",
-    PlaceholderText = "Ex.: rt to (player123)",
+    PlaceholderText = "...",
     Callback = function(Value)
         if Value == "" then
             showNotification("No Action", "Enter a name to add a player.", nil)
@@ -5343,7 +5343,7 @@ Tab11:AddButton({
     Name = "Kai Hub",
     Description = "Universal",
     Callback = function()
-
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo31/realtakgoo999/refs/heads/main/universal.lua"))()
     end
 })
 
@@ -5353,20 +5353,13 @@ Tab11:AddButton({
 
 
 Tab11:AddButton({
-    Name = "FE Jerk Off Hub Matrix",
+    Name = "Infinite Yield",
     Description = "Universal",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ExploitFin/AquaMatrix/refs/heads/AquaMatrix/AquaMatrix"))()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Yield.txt"))()
     end
 })
 
-Tab11:AddButton({
-    Name = "FE HUGG",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/JSFKGBASDJKHIOAFHDGHIUODSGBJKLFGDKSB/fe/refs/heads/main/FEHUGG"))()
-    end
-})
 
 
 
@@ -5378,8 +5371,6 @@ Tab11:AddButton({
     end
 })
 
-local Section = Tab11:AddSection({"esse system broochk e voidProtection"})
-
 Tab11:AddButton({
     Name = "System Broken",
     Description = "Universal",
@@ -5388,37 +5379,7 @@ Tab11:AddButton({
     end
 })
 
-Tab11:AddButton({
-    Name = "Roships",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-rochips-universal-18294"))()
-    end
-})
 
-Tab11:AddButton({
-    Name = "Sander X",
-    Description = "Somente para Brookhaven",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/kigredns/SanderXV4.2.2/refs/heads/main/New.lua"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "Reverso",
-    Description = "Universal",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/L"))()
-    end
-})
-
-Tab11:AddButton({
-    Name = "RD4",
-    Description = "Somente para Brookhaven",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/M1ZZ001/BrookhavenR4D/main/Brookhaven%20R4D%20Script"))()
-    end
-})
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -5431,10 +5392,10 @@ Tab11:AddButton({
 -- Tab12: Teleportes
 Tab12:AddSection({"Teleportation"})
 local teleportPlayer = game.Players.LocalPlayer
-local teleportLocation = "Main Square"      -- Default value
-local premiumLocation = "Police Helicopter" -- Default value
-local subwayLocation = "Blackhawk: Subway"  -- Default value
-local secretLocation = "Secret 1"           -- Default Value
+local teleportLocation = "..."      -- Default value
+local premiumLocation = "..." -- Default value
+local subwayLocation = "..."  -- Default value
+local secretLocation = "..."           -- Default Value
 
 local locations = {
     ["Hill"] = Vector3.new(-348.64, 65.94, -458.08),
