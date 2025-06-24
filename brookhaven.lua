@@ -1485,6 +1485,92 @@ Tab3:AddParagraph({
 ---------------------------------------------------------------------------------------------------------------------------------
                                           -- === Tab4: House === --
 ---------------------------------------------------------------------------------------------------------------------------------
+
+-- Variáveis globais
+local isUnbanActive = false
+local SelectHouse = nil
+local NoclipDoor = nil
+
+-- Função para obter lista de casas
+local function getHouseList()
+    local Tabela = {}
+    local lots = workspace:FindFirstChild("001_Lots")
+    if lots then
+        for _, House in ipairs(lots:GetChildren()) do
+            if House.Name ~= "For Sale" and House:IsA("Model") then
+                table.insert(Tabela, House.Name)
+            end
+        end
+    end
+    return Tabela
+end
+
+-- Dropdown para selecionar casas
+pcall(function()
+    Tab4:AddDropdown({
+        Name = "Select House",
+        Options = getHouseList(),
+        Default = "...",
+        Callback = function(Value)
+            SelectHouse = Value
+            if NoclipDoor then
+                NoclipDoor:Set(false)
+            end
+            print("House Selected: " .. tostring(Value))
+        end
+    })
+end)
+
+-- Função para atualizar a lista de casas
+local function DropdownHouseUpdate()
+    local Tabela = getHouseList()
+    print("DropdownHouseUpdate called. Houses found:", #Tabela)
+    pcall(function()
+        Tab4:ClearDropdown("Select House") -- Try clearing dropdown if supported
+        Tab4:AddDropdown({
+            Name = "Select House",
+            Options = Tabela,
+            Default = "...",
+            Callback = function(Value)
+                SelectHouse = Value
+                if NoclipDoor then
+                    NoclipDoor:Set(false)
+                end
+            end
+        })
+    end)
+end
+
+-- Inicializar dropdown
+pcall(DropdownHouseUpdate)
+
+-- Botão para atualizar lista de casas
+pcall(function()
+    Tab4:AddButton({
+        Name = "Update House List",
+        Callback = function()
+            print("House list are now updated! Live houses will be shown in the dropdown list. UYYYY PHILIPPINES!")
+            pcall(DropdownHouseUpdate)
+        end
+    })
+end)
+
+-- Botão para teleportar para casa
+pcall(function()
+    Tab4:AddButton({
+        Name = "Teleport to House",
+	Description = "Teleports to selected house.",
+        Callback = function()
+            local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+            if House and game.Players.LocalPlayer.Character then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(House.WorldPivot.Position)
+            else
+                print("Casa não encontrada: " .. tostring(SelectHouse))
+            end
+        end
+    })
+end)
+
 Tab4:AddSection({"Troll Houses [ FUN ]"})
 Tab4:AddParagraph({"⚠️ If bugs occurs, please reset your character.", "if bugs isn't able to be fixed by resetting character, try to report it on our community server."
 })
@@ -1545,6 +1631,37 @@ Tab4:AddButton({
         end
     end
 })
+
+-- Toggle para Auto Unban
+pcall(function()
+    Tab4:AddToggle({
+        Name = "Auto Unban Houses",
+	Description = "self explain!",
+        Default = true,
+        Callback = function(state)
+            isUnbanActive = state
+            if isUnbanActive then
+                print("Auto Unban Activated")
+                spawn(startAutoUnban)
+            else
+                print("Auto Unban Deactivated")
+            end
+        end
+    })
+end)
+
+function startAutoUnban()
+    while isUnbanActive do
+        pcall(function()
+            for _, v in pairs(game:GetService("Workspace"):WaitForChild("001_Lots"):GetDescendants()) do
+                if v.Name:match("^BannedBlock%d+$") then
+                    v:Destroy()
+                end
+            end
+        end)
+        task.wait(1)
+    end
+end
 
 Tab4:AddParagraph({"We recommend to turn on No Clip function in Player Movement Section.", "ONLY IF REMOVE BAN HOUSE IS NOT WORKING!"
 })
