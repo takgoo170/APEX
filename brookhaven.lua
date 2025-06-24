@@ -179,7 +179,7 @@ local Tab13 = Window:MakeTab({"Visual", "star"})
 local Tab7 = Window:MakeTab({"Music", "music"})    
 --local Tab8 = Window:MakeTab({"Music", "music"}) 
 local Tab9 = Window:MakeTab({"Troll", "skull"}) 
-local Tab10 = Window:MakeTab({"Lag Server", "bomb"})
+local Tab10 = Window:MakeTab({"Empty", "window"})
 local Tab11 = Window:MakeTab({"More Scripts", "scroll"})
 
 -------- TAB SUMMARY ------------
@@ -5210,8 +5210,8 @@ end})
 ---------------------------------------------------------------------------------------------------------------------------------
                                                    -- === Tab 10: lag server === --
 ---------------------------------------------------------------------------------------------------------------------------------
-Tab10:AddSection({"Lag Server"})
-Tab10:AddParagraph({"HEY!", "This function is currently unavailable for now due to some bugs."})
+Tab10:AddSection({"Available SOON"})
+Tab10:AddParagraph({"HEY!", "This function is currently unavailable for now."})
 
 
 
