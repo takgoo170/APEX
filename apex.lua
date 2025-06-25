@@ -1632,7 +1632,7 @@ end
 MainTab:AddSection("Main Farm")
 local FarmV1 = MainTab:AddToggle("FarmV1", {
     Title = "Auto Farm [ V1 ]",
-    Description = "",
+    Description = "FASTER BUT A LITTLE BIT LAGGY",
     Default = false,
     Callback = function(state) 
       autoFarmEnabled = state 
@@ -1646,7 +1646,7 @@ local FarmV1 = MainTab:AddToggle("FarmV1", {
 
 local FarmV2 = MainTab:AddToggle("FarmV2", {
     Title = "Auto Farm [ V2 ]",
-    Description = "",
+    Description = "SLOWER BUT MORE STABLE",
     Default = false,
     Callback = ToggleHarvest 
   })
@@ -2314,11 +2314,55 @@ ShopTab:AddButton({
 ]]
 ---------------------- PLAYER TAB ----------------------
 PlayerTab:AddSection("Movement")
-local FlyToggle = PlayerTab:AddToggle("FlyToggle", {
-	Title = "Fly",
-	Default = false,
-	Callback = function(state)
-        Fly(state)
+local FlyToggle = PlayerTab:AddToggle("fly", {
+    Title = "Fly",
+    Default = false,
+    Callback = function(Value)
+        flyEnabled = Value
+        if flyEnabled and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = Player.Character.HumanoidRootPart
+            bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+            bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+            bodyVelocity.Parent = humanoidRootPart
+
+            bodyGyro = Instance.new("BodyGyro")
+            bodyGyro.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+            bodyGyro.P = 10000
+            bodyGyro.D = 1000
+            bodyGyro.Parent = humanoidRootPart
+
+            RunService.RenderStepped:Connect(function()
+                if flyEnabled then
+                    local moveDirection = Vector3.new(0, 0, 0)
+                    if UIS:IsKeyDown(Enum.KeyCode.W) then moveDirection = moveDirection + humanoidRootPart.CFrame.LookVector end
+                    if UIS:IsKeyDown(Enum.KeyCode.S) then moveDirection = moveDirection - humanoidRootPart.CFrame.LookVector end
+                    if UIS:IsKeyDown(Enum.KeyCode.A) then moveDirection = moveDirection - humanoidRootPart.CFrame.RightVector end
+                    if UIS:IsKeyDown(Enum.KeyCode.D) then moveDirection = moveDirection + humanoidRootPart.CFrame.RightVector end
+                    if UIS:IsKeyDown(Enum.KeyCode.Space) then moveDirection = moveDirection + Vector3.new(0, 1, 0) end
+                    if UIS:IsKeyDown(Enum.KeyCode.LeftControl) then moveDirection = moveDirection - Vector3.new(0, 1, 0) end
+
+                    moveDirection = moveDirection.Unit * flySpeed
+                    bodyVelocity.Velocity = Vector3.new(moveDirection.X, moveDirection.Y, moveDirection.Z)
+                    bodyGyro.CFrame = humanoidRootPart.CFrame
+                end
+            end)
+            KaiUI:Notify({
+                Title = "Fly | APEX OT",
+                Content = "Fly Mode enabled (WASD to move, Space to ascend, Ctrl to descend)",
+                --Image = "rbxassetid://4483345998",
+                Duration = 5
+            })
+        else
+            if bodyVelocity then bodyVelocity:Destroy() end
+            if bodyGyro then bodyGyro:Destroy() end
+            KaiUI:Notify({
+                Title = "Fly | APEX OT",
+                Content = "Fly Mode disabled",
+                --Image = "rbxassetid://4483345998",
+                Duration = 5.2
+            })
+        end
     end
 })
 local NoClip = PlayerTab:AddToggle("NoClip", {
