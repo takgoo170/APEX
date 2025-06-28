@@ -2,6 +2,8 @@
 ---- LAST EDITED
 
 print("Apex OT executed! expect 2s to load fully.")
+print("Detecting the game...")
+print("Game Detected! [ BROOKHAVEN RP ]")
 print("Detecting your executor...")
 print("...")
 print("...")
