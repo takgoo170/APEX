@@ -62,7 +62,7 @@ local function createLoadingScreen()
     nameText.BackgroundTransparency = 1
     nameText.Font = Enum.Font.FredokaOne
     nameText.TextScaled = true
-    nameText.Text = "Verifying user: "..lp.Name.." | Wait..."
+    nameText.Text = "VERIFYING: "..lp.Name.." | LOADING..."
     nameText.Parent = frame
 
     local barBG = Instance.new("Frame")
@@ -569,7 +569,7 @@ Tab2:AddSlider({
 
  Tab2:AddButton({
     Name = "Reset Movement Settings",
-    Description = "Resets back your Walkspeed, Jump Power, Gravity.",
+    Description = "Resets back your Walkspeed, Jump Power, Gravity to default.",
     Callback = function()
         -- Resetar Speed
         local player = game.Players.LocalPlayer
@@ -840,9 +840,10 @@ function sendchat(msg)
     end
 end
 
+Tab2:AddParagraph({"❗NOTICE!", "In order to use this functions, your account must be verified in Roblox Chat!"})
 Tab2:AddTextBox({
     Name = "Enter Text",
-    PlaceholderText = "ex: Hi",
+    PlaceholderText = "ex: Spammm!",
     Callback = function(text)
         TextSave = text
     end
@@ -1230,7 +1231,7 @@ end
 
 -- Tabela de avatares
 AvatarManager.Avatares = {
-    { Nome = "Gato de Manga", ID = 124948425515124 },
+    { Nome = "Manga Cat", ID = 124948425515124 },
     { Nome = "Tung Tung Sahur", ID = 117098257036480 },
     { Nome = "Tralalelo Tralala", ID = 99459753608381 },
     { Nome = "Ballerina Cappuccina", ID = 72961448671499 },
@@ -1244,19 +1245,19 @@ AvatarManager.Avatares = {
     { Nome = "Coelho", ID = 71797333686800  },
     { Nome = "Hipopótamo", ID = 73215892129281 },
     { Nome = "Ratatuli", ID = 108557570415453 },
-    { Nome = "Galinha", ID = 71251793812515 },
+    { Nome = "Hen", ID = 71251793812515 },
     { Nome = "Peppa pig", ID = 92979204778377 },
     { Nome = "Penguin", ID = 94944293759578 },
     { Nome = "Sid", ID = 87442757321244 },
-    { Nome = "puga grande", ID = 111436158728716 },
+    { Nome = "Big Puga", ID = 111436158728716 },
     { Nome = "SHREK CURSED", ID = 120960401202173 },
-    { Nome = "mosquito grande", ID = 108052868536435 },
+    { Nome = "Big Mosquito", ID = 108052868536435 },
     { Nome = "Noob Reversed", ID = 106596990206151 },
     { Nome = "Duck", ID = 135132836238349 },
     { Nome = "Cachorro Chihuahua", ID = 18656467256 },
     { Nome = "Cat v1", ID = 18994959003 },
     { Nome = "Cat v2 ", ID = 77506186615650 },
-    { Nome = "Inpostor", ID = 18234669337 },
+    { Nome = "Impostor", ID = 18234669337 },
     { Nome = "Simon yellow", ID = 75183593514657 },
     { Nome = "Simon blue", ID = 76155710249925 }
 }
@@ -1510,7 +1511,7 @@ end
 -- Dropdown para selecionar casas
 pcall(function()
     Tab4:AddDropdown({
-        Name = "Select House",
+        Name = "Select Players' House",
         Options = getHouseList(),
         Default = "...",
         Callback = function(Value)
@@ -1573,14 +1574,14 @@ pcall(function()
     })
 end)
 
-Tab4:AddSection({"Troll Houses [ FUN ]"})
+Tab4:AddSection({"Troll Houses"})
 Tab4:AddParagraph({"⚠️ If bugs occurs, please reset your character.", "if bugs isn't able to be fixed by resetting character, try to report it on our community server."
 })
 
 -- Botão para remover ban de todas as casas
 Tab4:AddButton({
-    Name = "Remove Ban from All Houses",
-    Description = "Remove ban's house.",
+    Name = "Remove Ban House",
+    Description = "Remove all bans on houses.",
     Callback = function()
         local successCount = 0
         local failCount = 0
@@ -1638,8 +1639,8 @@ Tab4:AddButton({
 pcall(function()
     Tab4:AddToggle({
         Name = "Auto Unban Houses",
-	Description = "self explain!",
-        Default = true,
+	Description = "⚠️ THIS IS CURRENTLY BUGGED AND NOT WORKING PROPERLY.",
+        Default = false,
         Callback = function(state)
             isUnbanActive = state
             if isUnbanActive then
@@ -5452,7 +5453,7 @@ Tab12:AddDropdown({
         "Hill",
         "Main Square",
         "Bank",
-	"Bank Vault",
+	    "Bank Vault",
         "Police",
         "Hospital",
         "City Hall",
@@ -5470,7 +5471,7 @@ Tab12:AddDropdown({
         "Club Brooks",
         "Droneview",
         "Lake Madison",
-	"Lake Yacht",
+	    "Lake Yacht",
         "Campsite 1",
         "Campsite 2",
         "Seaside 1",
@@ -5638,7 +5639,10 @@ Tab12:AddButton({
         end
     end
 })
+Tab12:AddSection({"Olympics Teleport [ SOON ]"})
 --=========================== TAB 13 : VISUAL =======================================
+Tab13:AddParagraph({"❗ THIS FUNCTION IS NOT WORKING ANYMORE [ PATCHED ]"})
+Tab13:AddParagraph({"This tab will be deleted soon!"})
 Tab13:AddParagraph({"🔔 REMINDER!", "THIS VISUAL GAMEPASS FUNCTION MIGHT ONLY WORK ON SOME USERS, PLEASE LET US KNOW IF IT WORKS ON YOUR DEVICE." })
 Tab13:AddParagraph({"UPCOMING VISUAL", "House Pool \n MORE!"})
 
@@ -5715,10 +5719,11 @@ Tab14:AddParagraph({"📜 Updates [ v1.2.7 ] - June 14, 2025", "+ Added Buong Ba
 Tab14:AddParagraph({"📜 Updates [ v1.2.9 ] - June 18, 2025", "+ Added Reminder in some functions \n + Added New Sound \n + Fixed Troll Selected Car \n + Fixed Bring Selected Car \n + Fixed FOV of Selected Car \n + Fixed Teleportation \n + Fixed Music not playing \n + Fixed Loop Music \n + Fixed Copy Avatar \n + Fixed 3D Clothing \n + Fixed Infinite Jump \n + Fixed Walkspeed \n + Fixed Some Bugs"})
 Tab14:AddParagraph({"📜 Updates [ v1.3.0 ] - June 21, 2025", "+ Added Fling All V2 \n + Added Spam Chat \n + Added Spam Chat Delay \n + Added Spam Chat V2 \n + Added Clear Chat \n + Added Ballerina Cappuccina Head Accessory \n + Fixed Script Executing + Fixed Fling + Fixed Premium Teleportation + Fixed some bugs..."})
 Tab14:AddParagraph({"📜 Updates [ v1.3.1 ] - June 22, 2025", "+ Secret Teleport \n - Secret ;) \n + New Teleport Location \n + New Tab [ Server ] \n + Displays current server Job Id \n + Copy Current Game Job Id \n + Textbox Input [ Job Id ] \n + Join Server [ Job Id ] \n + Server Hop \n + Rejoin Current Server \n + Fixed RGB Speed \n + Fixed Avatar Name RGB \n + Fixed Avatar Bio RGB \n + Fixed Other RGB [ more stable now! ] \n + Fixed Executor Detecting [ more stable now! ] \n + Fixed Remove Ban House \n + Fixed Copy Avatar \n + Fixed 3D Accessory Equip \n + Fixed some bugs..."})
-		
+Tab14:AddParagraph({"📜 Updates [ v1.3.2 ] - February 21, 2026", "+ Fixed Some Bugs \n + Fixed Chat Function \n + Better Stability and Performance"})
 --[[ 
 
 THIS IS THE BOTTOM OF THE CODE, CONTACT US FOR MORE FUN FUNCTION! 🙂 
 
 ]]
+
 
