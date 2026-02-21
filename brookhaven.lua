@@ -151,12 +151,12 @@ print("Loaded successfully! Enjoy using our script!")
 
 -- ... resto do seu código ...
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/takgoo170/ui_source/refs/heads/main/redzhub.ui.luau"))()
 
 local Window = redzlib:MakeWindow({
     Title = "APEX OT | BROOKHAVEN RP",
     SubTitle = "by Kai and Apex Team ",
-    SaveFolder = "teste"
+    SaveFolder = ""
   })
 
   Window:AddMinimizeButton({
@@ -5721,3 +5721,4 @@ Tab14:AddParagraph({"📜 Updates [ v1.3.1 ] - June 22, 2025", "+ Secret Telepor
 THIS IS THE BOTTOM OF THE CODE, CONTACT US FOR MORE FUN FUNCTION! 🙂 
 
 ]]
+
